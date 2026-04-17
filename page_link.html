@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>AI-POP 링크</title>
+	<style>
+		body {
+			font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+			margin: 24px;
+			color: #111827;
+		}
+
+		.open-btn {
+			display: inline-block;
+			padding: 10px 16px;
+			border: 1px solid #26499D;
+			border-radius: 6px;
+			background: #26499D;
+			color: #ffffff;
+			font-size: 14px;
+			font-weight: 600;
+			cursor: pointer;
+		}
+
+		.open-btn:hover {
+			background: #1e40af;
+		}
+	</style>
+</head>
+<body>
+	<button type="button" class="open-btn" id="openPopup">AI-POP 화면 열기</button>
+
+	<script>
+		(function () {
+			var button = document.getElementById("openPopup");
+			button.addEventListener("click", function () {
+				var width = 700;
+				var height = 600;
+				var left = Math.max(0, Math.round((screen.width - width) / 2));
+				var top = Math.max(0, Math.round((screen.height - height) / 2));
+
+				window.open(
+					"./ai-pop-html copy 2.html",
+					"ai_pop_popup",
+					"width=" + width + ",height=" + height + ",left=" + left + ",top=" + top + ",resizable=yes,scrollbars=yes"
+				);
+			});
+		})();
+	</script>
+</body>
+</html>
