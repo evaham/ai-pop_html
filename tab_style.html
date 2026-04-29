@@ -4,6 +4,12 @@
   <meta charset="utf-8" />
   <title>탭 스타일</title>
   <link rel="stylesheet" href="tab_style.css" />
+<link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
+
+
 </head>
 
 <body>
@@ -11,43 +17,48 @@
     <div class="tab_menu">
       <div class="tabouter">
         <ul id="ulTopMenu">
-            <li><a id="ucTopMenu_linkBiz" class="link_pagetitle">일반문자</a></li>
-            <li><a id="ucTopMenu_linkRcs" class="link_pagetitle">RCS</a></li>
-            <li class="yellow"><a id="ucTopMenu_linkKakao" class="link_pagetitle"><svg xmlns="http://www.w3.org/2000/svg"
-                width="20" height="20" style="margin-right:4px" viewBox="0 0 20 20" fill="none">
-                <rect width="20" height="20" rx="1.76471" fill="#fae100"></rect>
-                <ellipse cx="10" cy="9.11765" rx="6.76471" ry="5.58824" fill="#3C1E1E"></ellipse>
-                <path d="M9.11765 14.1177L5.68235 17.4706L6.17647 15V13.5294L9.11765 10.1177Z" fill="#3C1E1E"></path>
-              </svg>친구톡</a></li>
-            <li class="yellow"><a id="ucTopMenu_linkKakaoAlimtalk" class="link_pagetitle"><svg xmlns="http://www.w3.org/2000/svg"
-                width="20" height="20" style="margin-right:4px" viewBox="0 0 20 20" fill="none">
-                <rect width="20" height="20" rx="1.76471" fill="#fae100"></rect>
-                <ellipse cx="10" cy="9.11765" rx="6.76471" ry="5.58824" fill="#3C1E1E"></ellipse>
-                <path d="M9.11765 14.1177L5.68235 17.4706L6.17647 15V13.5294L9.11765 10.1177Z" fill="#3C1E1E"></path>
-              </svg>알림톡</a></li>
-            <li class="red"><a id="ucTopMenu_linkWebLink" class="link_pagetitle">모바일전단</a></li>
-            <li class="red"><a id="ucTopMenu_linkOrder" class="link_pagetitle">주문기능</a></li>
-            <li class="red"><a id="ucTopMenu_linkGP" class="link_pagetitle">공동구매</a></li>
-            <li class="red active" style="letter-spacing:-2px;"><a id="ucTopMenu_linkCloud" class="link_pagetitle">이미지클라우드</a></li>
-
-            <li><a id="ucTopMenu_linkPush" class="link_pagetitle">푸시메세지</a></li>
-
+            <li><a id="ucTopMenu_linkBiz" class="link_pagetitle"><i class="ri-chat-2-line"></i>일반문자</a></li>
+            <li><a id="ucTopMenu_linkRcs" class="link_pagetitle"><i class="ri-discuss-line"></i>RCS</a></li>
+            <li class=""><a id="ucTopMenu_linkKakao" class="link_pagetitle"><i class="ri-kakao-talk-line"></i>친구톡</a></li>
+            <li class=""><a id="ucTopMenu_linkKakaoAlimtalk" class="link_pagetitle"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
+            <li class=""><a id="ucTopMenu_linkWebLink" class="link_pagetitle"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
+            <li class=""><a id="ucTopMenu_linkOrder" class="link_pagetitle"><i class="ri-list-check-3"></i>주문기능</a></li>
+            <li class=""><a id="ucTopMenu_linkGP" class="link_pagetitle"><i class="ri-team-line"></i>공동구매</a></li>
+            <li class="active"><a id="ucTopMenu_linkCloud" class="link_pagetitle"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
+            <li><a id="ucTopMenu_linkPush" class="link_pagetitle"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
         </ul>
       </div>
       <div class="tabside">
         <ul>
-
-
-            <li><a class="tabside__btn" style="letter-spacing:-1px;">온라인매뉴얼</a></li>
-
-            <li><a id="ucTopMenu_linkTS" class="tabside__btn">충전안내</a></li>
-            <li><a id="ucTopMenu_linkReport" class="tabside__btn">레포트</a></li>
+            <li><a class="tabside__btn">온라인매뉴얼</a></li>
+            <li><a class="tabside__btn">충전안내</a></li>
+            <li><a class="tabside__btn">레포트</a></li>
         </ul>
       </div>
     </div>
 
   </div>
-
-
-
 </body>
+
+<script>
+  const topMenu = document.getElementById("ulTopMenu");
+
+  if (topMenu) {
+    topMenu.addEventListener("click", (event) => {
+      const link = event.target.closest("a");
+      if (!link || !topMenu.contains(link)) {
+        return;
+      }
+
+      const activeItem = topMenu.querySelector("li.active");
+      if (activeItem) {
+        activeItem.classList.remove("active");
+      }
+
+      const parentItem = link.closest("li");
+      if (parentItem) {
+        parentItem.classList.add("active");
+      }
+    });
+  }
+</script>

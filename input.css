@@ -4,9 +4,8 @@
 
 
 
-
 /* 2025-07-18 ver 1.3.2 */
-html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;}
+html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; font-weight: 500}
 
 
 /* 기본형 */
@@ -79,17 +78,44 @@ html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system
     @apply flex gap-1;
 }
 
-.tab_menu .tabouter ul > li {
+.tab_menu .tabouter ul > li {}
+
+
+
+
+/* 탭 메뉴 링크 */
+.link_pagetitle {
+    @apply flex items-center justify-center h-8 px-4 text-sm text-gray-500 cursor-pointer;
+}
+.link_pagetitle:hover {
+    @apply bg-gray-200 text-gray-800 rounded;
+}
+
+/* 탭 메뉴 링크 아이콘 */
+.link_pagetitle i {
+    @apply mr-1
+}
+
+.tab_menu .tabouter ul > li.active a {
+    @apply bg-[#26499d] text-white rounded; 
 }
 
 
-.tab_menu .tabouter ul > li.active { font-weight:bold; background:#2c5aa7;}
+/** Tab 버튼그룹 스타일 **/
+.tabside { display:flex; align-items:center; margin-left:auto; z-index: 3; text-align:right; }
 
-.tab_menu .tabouter ul > li:last-child {border-right: none;}
+.tabside ul { display: flex; gap: 4px; }
 
-.tab_menu .tabouter ul > li a {
-    @apply flex items-center justify-center h-8 px-4 text-gray-600;
-}
+.tabside__btn { 
+    @apply flex border rounded text-sm;
+        /* display: inline-block; min-width: 80px; padding: 2px 6px; border: 1px solid #9d9d9d; border-radius: 3px; text-align: center;  */
+    }
+
+.tabside__btn:hover { text-decoration: none; background: #dfdfdf; }
+
+.tabside__btn.bg_dark {  background: #475569; color: #fff; border-color:transparent; }
+
+
 
 
 /* 색상추가*/
@@ -99,16 +125,7 @@ html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system
 
 .tab_menu .tabouter ul li.red.active {background:#cb3342}
 
-/** Tab 버튼그룹 스타일 **/
-.tabside { display:flex; align-items:center; margin-left:auto; z-index: 3; text-align:right; }
 
-.tabside ul { display: flex; gap: 4px; }
-
-.tabside__btn { display: inline-block; min-width: 80px; padding: 2px 6px; border: 1px solid #9d9d9d; border-radius: 3px; text-align: center; }
-
-.tabside__btn:hover { text-decoration: none; background: #dfdfdf; }
-
-.tabside__btn.bg_dark {  background: #475569; color: #fff; border-color:transparent; }
 
 
 /* 서브 탭 */

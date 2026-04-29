@@ -8,9 +8,14 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-300: oklch(87.2% 0.01 258.338);
-    --color-gray-600: oklch(44.6% 0.03 256.802);
+    --color-gray-500: oklch(55.1% 0.027 264.364);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
+    --color-white: #fff;
     --spacing: 0.25rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -172,6 +177,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 html,body {
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 500;
 }
 .tab_menu {
   display: flex;
@@ -188,30 +194,29 @@ html,body {
   display: flex;
   gap: calc(var(--spacing) * 1);
 }
-.tab_menu .tabouter ul > li.active {
-  font-weight: bold;
-  background: #2c5aa7;
-}
-.tab_menu .tabouter ul > li:last-child {
-  border-right: none;
-}
-.tab_menu .tabouter ul > li a {
+.link_pagetitle {
   display: flex;
   height: calc(var(--spacing) * 8);
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   padding-inline: calc(var(--spacing) * 4);
-  color: var(--color-gray-600);
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+  color: var(--color-gray-500);
 }
-.tab_menu .tabouter ul li.yellow.active {
-  background: #fae100;
-  color: #333;
+.link_pagetitle:hover {
+  border-radius: 0.25rem;
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-800);
 }
-.tab_menu .tabouter ul li.yellow.active a {
-  color: #333;
+.link_pagetitle i {
+  margin-right: calc(var(--spacing) * 1);
 }
-.tab_menu .tabouter ul li.red.active {
-  background: #cb3342;
+.tab_menu .tabouter ul > li.active a {
+  border-radius: 0.25rem;
+  background-color: #26499d;
+  color: var(--color-white);
 }
 .tabside {
   display: flex;
@@ -225,12 +230,12 @@ html,body {
   gap: 4px;
 }
 .tabside__btn {
-  display: inline-block;
-  min-width: 80px;
-  padding: 2px 6px;
-  border: 1px solid #9d9d9d;
-  border-radius: 3px;
-  text-align: center;
+  display: flex;
+  border-radius: 0.25rem;
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
 }
 .tabside__btn:hover {
   text-decoration: none;
@@ -240,6 +245,16 @@ html,body {
   background: #475569;
   color: #fff;
   border-color: transparent;
+}
+.tab_menu .tabouter ul li.yellow.active {
+  background: #fae100;
+  color: #333;
+}
+.tab_menu .tabouter ul li.yellow.active a {
+  color: #333;
+}
+.tab_menu .tabouter ul li.red.active {
+  background: #cb3342;
 }
 .tab_submenu {
   overflow: hidden;
