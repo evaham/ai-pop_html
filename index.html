@@ -30,10 +30,16 @@
 	</style>
 </head>
 <body>
+	<button type="button" class="open-btn" id="openTab">탭 화면 열기</button>
 	<button type="button" class="open-btn" id="openPopup">AI-POP 화면 열기</button>
 
 	<script>
 		(function () {
+			var tabButton = document.getElementById("openTab");
+			tabButton.addEventListener("click", function () {
+				window.open("./tab_style.html", "_blank");
+			});
+
 			var button = document.getElementById("openPopup");
 			button.addEventListener("click", function () {
 				var width = 700;
