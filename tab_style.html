@@ -4,53 +4,153 @@
   <meta charset="utf-8" />
   <title>탭 스타일</title>
   <link rel="stylesheet" href="tab_style.css" />
-<link
-  href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
-  rel="stylesheet"
-/>
-
-
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
 </head>
-
 <body>
   <div id="ucTopMenu_UPTabOuter">
-    <div class="tab_menu">
+    <div id="tabMenu1" class="tab_menu">
       <div class="tabouter">
         <ul id="ulTopMenu">
-            <li><a id="ucTopMenu_linkBiz" class="link_pagetitle"><i class="ri-chat-2-line"></i>일반문자</a></li>
-            <li><a id="ucTopMenu_linkRcs" class="link_pagetitle"><i class="ri-discuss-line"></i>RCS</a></li>
-            <li class=""><a id="ucTopMenu_linkKakao" class="link_pagetitle"><i class="ri-kakao-talk-line"></i>친구톡</a></li>
-            <li class=""><a id="ucTopMenu_linkKakaoAlimtalk" class="link_pagetitle"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
-            <li class=""><a id="ucTopMenu_linkWebLink" class="link_pagetitle"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
-            <li class=""><a id="ucTopMenu_linkOrder" class="link_pagetitle"><i class="ri-list-check-3"></i>주문기능</a></li>
-            <li class=""><a id="ucTopMenu_linkGP" class="link_pagetitle"><i class="ri-team-line"></i>공동구매</a></li>
-            <li class="active"><a id="ucTopMenu_linkCloud" class="link_pagetitle"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
-            <li><a id="ucTopMenu_linkPush" class="link_pagetitle"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
+            <li><a class="tab_menu__link" data-tab-target="general"><i class="ri-chat-2-line"></i>일반문자</a></li>
+            <li><a class="tab_menu__link" data-tab-target="rcs"><i class="ri-discuss-line"></i>RCS</a></li>
+            <li><a class="tab_menu__link" data-tab-target="friendtalk"><i class="ri-kakao-talk-line"></i>친구톡</a></li>
+            <li><a class="tab_menu__link" data-tab-target="alerttalk"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
+            <li><a class="tab_menu__link" data-tab-target="push"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
+
+            <li><a class="tab_menu__link" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
+            <li><a class="tab_menu__link" data-tab-target="ai-pop"><i class="ri-file-list-3-line"></i>AI POP</a></li>
+            <li class="active"><a class="tab_menu__link" data-tab-target="image-cloud"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
+
+            <li><a class="tab_menu__link" data-tab-target="order"><i class="ri-list-check-3"></i>주문기능</a></li>
+            <li><a class="tab_menu__link" data-tab-target="groupbuy"><i class="ri-team-line"></i>공동구매</a></li>
         </ul>
       </div>
-      <div class="tabside">
+      <div class="tab_menu__side">
         <ul>
-            <li><a class="tabside__btn">온라인매뉴얼</a></li>
-            <li><a class="tabside__btn">충전안내</a></li>
-            <li><a class="tabside__btn">레포트</a></li>
+            <li><a class="tab_menu__side-btn">온라인매뉴얼</a></li>
+            <li><a class="tab_menu__side-btn">충전안내</a></li>
+            <li><a class="tab_menu__side-btn">레포트</a></li>
+            <li><a class="tab_menu__side-btn" data-tab-switch="2">탭2 전환</a></li>
         </ul>
       </div>
     </div>
-
   </div>
+  <div id="tabMenu2" class="tab_menu2" style="display: none;">
+    <div class="tabouter">
+      <ul id="ulTopMenu2">
+          <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="general"><i class="ri-chat-2-line"></i>일반문자</a></li>
+          <li><a class="tab_menu2__link" data-tab-target="rcs"><i class="ri-discuss-line"></i>RCS</a></li>
+          <li><a class="tab_menu2__link" data-tab-target="friendtalk"><i class="ri-kakao-talk-line"></i>친구톡</a></li>
+          <li><a class="tab_menu2__link" data-tab-target="alerttalk"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
+          <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="push"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
+
+          <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
+          <li><a class="tab_menu2__link" data-tab-target="ai-pop"><i class="ri-file-list-3-line"></i>AI POP</a></li>
+          <li class="active"><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="image-cloud"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
+
+          <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="order"><i class="ri-list-check-3"></i>주문기능</a></li>
+          <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="groupbuy"><i class="ri-team-line"></i>공동구매</a></li>
+      </ul>
+    </div>
+    <div class="tab_menu2__side">
+      <ul>
+          <li><a class="tab_menu2__side-btn">온라인매뉴얼</a></li>
+          <li><a class="tab_menu2__side-btn">충전안내</a></li>
+          <li><a class="tab_menu2__side-btn">레포트</a></li>
+          <li><a class="tab_menu2__side-btn" data-tab-switch="1">탭1 전환</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-tab-content="general" style="min-width:1520px; margin-bottom: 40px;">
+    <img src="./img/일반문자.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="rcs" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/RCS.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="friendtalk" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/친구톡.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="alerttalk" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/알림톡.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="push" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/푸시메시지.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="flyer" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/모바일전단.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="ai-pop" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/AI_POP.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="image-cloud" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/이미지클라우드.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="order" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/주문기능.png" alt="탭 스타일 예시" />
+  </div>
+  <div data-tab-content="groupbuy" style="min-width:1520px; margin-bottom: 40px; display: none;">
+    <img src="./img/공동구매.png" alt="탭 스타일 예시" />
+  </div>
+
 </body>
-
 <script>
-  const topMenu = document.getElementById("ulTopMenu");
+  const topMenus = [
+    document.getElementById("ulTopMenu"),
+    document.getElementById("ulTopMenu2"),
+  ].filter(Boolean);
 
-  if (topMenu) {
-    topMenu.addEventListener("click", (event) => {
+  const tabMenu1 = document.getElementById("tabMenu1");
+  const tabMenu2 = document.getElementById("tabMenu2");
+  const tabContents = Array.from(document.querySelectorAll("[data-tab-content]"));
+
+  const showTabMenu = (target) => {
+    if (!tabMenu1 || !tabMenu2) {
+      return;
+    }
+
+    const showFirst = target === "1";
+    tabMenu1.style.display = showFirst ? "" : "none";
+    tabMenu2.style.display = showFirst ? "none" : "";
+
+    const activeLink = (showFirst ? tabMenu1 : tabMenu2)?.querySelector("li.active a");
+    if (activeLink) {
+      showTabContent(activeLink.dataset.tabTarget);
+    }
+  };
+
+  const showTabContent = (target) => {
+    if (!target) {
+      return;
+    }
+
+    tabContents.forEach((section) => {
+      section.style.display = section.dataset.tabContent === target ? "" : "none";
+    });
+  };
+
+  document.querySelectorAll("[data-tab-switch]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      showTabMenu(button.dataset.tabSwitch);
+    });
+  });
+
+  topMenus.forEach((menu) => {
+    menu.addEventListener("click", (event) => {
       const link = event.target.closest("a");
-      if (!link || !topMenu.contains(link)) {
+      if (!link || !menu.contains(link)) {
         return;
       }
 
-      const activeItem = topMenu.querySelector("li.active");
+      const activeItem = menu.querySelector("li.active");
       if (activeItem) {
         activeItem.classList.remove("active");
       }
@@ -59,6 +159,15 @@
       if (parentItem) {
         parentItem.classList.add("active");
       }
+
+      showTabContent(link.dataset.tabTarget);
     });
+  });
+
+  const initialActiveLink = (tabMenu1?.style.display === "none" ? tabMenu2 : tabMenu1)?.querySelector(
+    "li.active a"
+  );
+  if (initialActiveLink) {
+    showTabContent(initialActiveLink.dataset.tabTarget);
   }
 </script>
