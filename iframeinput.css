@@ -15,78 +15,81 @@
 html,body {
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-weight: 500;
-  color: var(--ui-text);
-  background: var(--ui-bg);
 }
-
-
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 .app {
   min-height: 100vh;
-  background: var(--ui-bg);
 }
 .wrap {
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
+  @apply flex w-full min-h-dvh;
 }
 .side {
-  width: 260px;
-  background-color: #f9f9f9;
-  border-right: 1px solid var(--ui-border);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  @apply flex flex-col w-43 border-r border-slate-100;
 }
 .side-logo {
-  width: 120px;
+  @apply block w-auto px-2 py-2 border-b border-slate-300;
 }
 .logo-image {
-  width: 100%;
-  height: auto;
+  @apply size-auto;
 }
+
 .side-header {
-  display: grid;
-  gap: 4px;
+  @apply flex text-slate-600;
 }
 .side-title {
-  font-size: 16px;
-  font-weight: 700;
-}
-.side-subtitle {
-  font-size: 12px;
-  color: var(--ui-muted);
+  @apply px-2 pt-2 text-sm font-bold;
 }
 .side-menu {
-  display: grid;
-  gap: 6px;
+  @apply flex flex-col px-2 gap-1;
 }
-.side-menu a {
-  display: block;
-  padding: 8px 10px;
-  border-radius: 8px;
-  color: var(--ui-text);
-  background: transparent;
+.side-menu > li > a {
+  @apply flex items-center px-2 py-1 rounded-md text-[#666666];
 }
-.side-menu li.active a {
-  background: #eeeeee;
-  font-weight: 600;
+.side-menu > li > a svg {
+  @apply size-5 inline-block mr-1;
 }
-.side-menu a:hover {
-  background: #f0f0f0;
+.side-menu > li > a:hover {
+  @apply bg-slate-50;
 }
+.side-menu > li.active > a {
+  @apply bg-[#EEF3FF] font-bold text-[#26499D];
+}
+
+
+/* 서브메뉴 */
 .side-submenu {
-  margin-top: 6px;
-  padding-left: 10px;
-  border-left: 2px solid var(--ui-border);
-  display: grid;
-  gap: 4px;
+  @apply flex flex-col mt-1;
 }
-.side-submenu a {
-  font-size: 13px;
-  color: var(--ui-muted);
+.side-submenu > li {
+  @apply border-l border-dashed border-slate-300 ml-4 pl-2;
 }
+.side-submenu > li.active {
+  @apply border-double border-[#26499D];
+}
+
+
+.side-submenu > li > a {
+  @apply flex items-center pl-2 py-1 rounded text-[#666666];
+}
+.side-submenu > li > a:hover {
+  @apply bg-slate-50;
+}
+.side-submenu > li.active > a {
+  @apply bg-slate-50 text-[#26499D] font-bold;
+}
+
+
+
+
+
+
+
+
 .container {
   flex: 1;
   background-color: var(--ui-panel);
