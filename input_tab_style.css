@@ -68,7 +68,7 @@ html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system
 
 /* tab_menu style1 */
 .tab_menu {
-    @apply flex min-w-380 px-1 py-1 border-b border-gray-300;
+    @apply flex min-w-380 px-1 py-1.5 border-b border-gray-300;
 }
 .tab_menu .tabouter {
     @apply relative;
@@ -79,7 +79,7 @@ html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system
 
 /* tab_menu button */
 .tab_menu__link {
-    @apply flex items-center justify-center h-8 px-4 text-sm text-gray-500 cursor-pointer transition-all duration-200 ease-out transform;
+    @apply flex items-center justify-center h-8 px-4 text-gray-500 cursor-pointer transition-all duration-200 ease-out transform;
 }
 .tab_menu__link:hover {
     @apply bg-gray-200 text-gray-800 rounded;
@@ -109,9 +109,9 @@ html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system
 }
 
 /* 탭메뉴 스타일2 */
-/* tab_menu style2 */
+/* tab_menu2 style2 */
 .tab_menu2 {
-    @apply flex min-w-380 px-1 py-1 border-b border-gray-300;
+    @apply flex min-w-380 px-1 py-1.5 border-b border-gray-300;
 }
 .tab_menu2 .tabouter {
     @apply relative;
@@ -121,10 +121,10 @@ html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system
 }
 
 
-/* tab_menu button */
+/* tab_menu2 button*/
 
 .tab_menu2__link {
-    @apply flex items-center justify-center h-8 px-4 text-sm bg-(--tab-primary) border border-(--tab-primary) text-white cursor-pointer transition-all duration-200 ease-out transform;
+    @apply flex items-center justify-center h-8 px-4 bg-(--tab-primary) border border-(--tab-primary) text-white/90 cursor-pointer transition-all duration-200 ease-out transform;
 }
 .tab_menu2__link:hover {
     @apply bg-(--tab-primary)/85;
@@ -142,7 +142,7 @@ html,body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system
 }
 
 .tab_menu2 .tabouter ul > li.active a {
-    @apply bg-white border border-(--tab-primary) text-gray-600;
+    @apply bg-white border border-(--tab-primary) text-(--tab-primary);
 }
 
 /* tab_menu side 버튼 그룹 */

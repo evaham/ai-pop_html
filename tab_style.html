@@ -15,7 +15,7 @@
 </head>
 <body>
   <div id="ucTopMenu_UPTabOuter">
-    <div id="tabMenu1" class="tab_menu" style="display: none;">
+    <div id="tabMenu1" class="tab_menu">
       <div class="tabouter">
         <ul id="ulTopMenu">
             <li><a class="tab_menu__link" data-tab-target="general"><i class="ri-chat-2-line"></i>일반문자</a></li>
@@ -24,9 +24,9 @@
             <li><a class="tab_menu__link" data-tab-target="alerttalk"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
             <li><a class="tab_menu__link" data-tab-target="push"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
 
-            <li><a class="tab_menu__link" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
+            <li class="active"><a class="tab_menu__link" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
             <li><a class="tab_menu__link" data-tab-target="ai-pop"><i class="ri-file-list-3-line"></i>AI POP</a></li>
-            <li class="active"><a class="tab_menu__link" data-tab-target="image-cloud"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
+            <li><a class="tab_menu__link" data-tab-target="image-cloud"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
 
             <li><a class="tab_menu__link" data-tab-target="order"><i class="ri-list-check-3"></i>주문기능</a></li>
             <li><a class="tab_menu__link" data-tab-target="groupbuy"><i class="ri-team-line"></i>공동구매</a></li>
@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-  <div id="tabMenu2" class="tab_menu2">
+  <div id="tabMenu2" class="tab_menu2" style="display: none;">
     <div class="tabouter">
       <ul id="ulTopMenu2">
           <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="general"><i class="ri-chat-2-line"></i>일반문자</a></li>
@@ -51,8 +51,8 @@
           <li><a class="tab_menu2__link" data-tab-target="alerttalk"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
           <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="push"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
 
-          <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
-          <li class="active"><a class="tab_menu2__link" data-tab-target="ai-pop"><i class="ri-file-list-3-line"></i>AI POP</a></li>
+          <li class="active"><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
+          <li><a class="tab_menu2__link" data-tab-target="ai-pop"><i class="ri-file-list-3-line"></i>AI POP</a></li>
           <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="image-cloud"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
 
           <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="order"><i class="ri-list-check-3"></i>주문기능</a></li>
@@ -88,10 +88,12 @@
         <img src="./img/푸시메시지.png" alt="탭 스타일 예시" />
       </div>
       <div data-tab-content="flyer" style="min-width:1520px; margin-bottom: 40px; display: none;">
-        <img src="./img/모바일전단.png" alt="탭 스타일 예시" />
+        <iframe src="./iframe_aipop2.html" title="AI-POP 페이지" style="width:1325px; min-height:800px;">
+          ai-pop
+        </iframe>        
       </div>
       <div data-tab-content="ai-pop" style="min-width:1520px; margin-bottom: 40px;">
-        <iframe src="./iframe_aipop.html" title="AI-POP 페이지" style="width:1325px; min-height:800px; margin-inline:5px; border-inline: 1px solid #ddd;">
+        <iframe src="./iframe_aipop.html" title="AI-POP 페이지" style="width:1325px; min-height:800px;">
           ai-pop
         </iframe>
       </div>
