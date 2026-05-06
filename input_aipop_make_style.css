@@ -126,8 +126,7 @@ p, h1, h2, h3 {
 }
 
 .ap__ct {
-  position: relative;
-  @apply w-full h-full;
+  @apply relative w-full h-full;
 }
 
 .ap__ti {
@@ -325,31 +324,17 @@ p, h1, h2, h3 {
 }
 
 .ap__mn {
-  @apply absolute inset-0;
+  @apply absolute inset-0 flex;
 }
-
-.ap__pn {
-  float: left;
-  width: 50%;
-  height: 100%;
-  position: relative;
-}
-
 
 .ap__cd {
-  background: #ffffff;
-  padding: 10px;
-  min-height: 0;
+  @apply p-0;
 }
 
 .ap__pn--rs .ap__cd {
-  position: relative;
-  height: 100%;
+  @apply relative h-full;
 }
 
-.ap__cdh {
-  /* margin-bottom: 4px; */
-}
 
 .ap__cdt {
   display: inline-block;
@@ -543,6 +528,13 @@ p, h1, h2, h3 {
   border: 1px solid #f9fafb;
   border-radius: 8px;
   padding: 0 12px;
+}
+
+
+
+
+.ap__pn--rs {
+    @apply relative h-full;
 }
 
 .ap__pn--rs .ap__rl,
@@ -856,11 +848,10 @@ p, h1, h2, h3 {
 }
 
 .ap__pn--main {
-  width: 60%;
+  @apply relative flex-1 h-full;
 }
-
-.ap__pn--side {
-  width: 40%;
+.ap__pn--rs {
+  @apply relative w-90 h-full;
 }
 
 .ap__cd--no-pr {

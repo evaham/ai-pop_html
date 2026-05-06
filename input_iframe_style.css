@@ -45,10 +45,10 @@ html,body {
   @apply px-2 pt-2 text-sm font-bold;
 }
 .side-menu {
-  @apply flex flex-col p-2 gap-1;
+  @apply flex flex-col;
 }
 .side-menu > li > a {
-  @apply flex items-center px-2 py-1 rounded text-[#666666];
+  @apply flex items-center px-2 py-2 text-[#666666];
 }
 .side-menu > li > a svg {
   @apply size-5 inline-block mr-1;
@@ -142,7 +142,7 @@ hr {
 }
 
 .content {
-  @apply p-4 bg-white rounded-tl-none rounded-tr-none;
+  @apply relative p-4 bg-white rounded-tl-none rounded-tr-none;
 }
 
 
