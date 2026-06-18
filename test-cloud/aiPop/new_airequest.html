@@ -1,0 +1,2838 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI POP</title>
+<link rel="stylesheet" href="web_font.css?20260102" />
+<link rel="stylesheet" href="new_aipop_common.css?20260709" />
+<script type="text/javascript" src="/test-cloud/resources/js/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
+<style>
+	/* 인쇄 시 다른 UI 숨기기 */
+    @media print {
+		body {margin : 0; padding: 0;}
+		#loading {display: none;}
+		#popupLayer {display: none;}
+		.wrap_top { display: none !important; margin: 0;}
+		#printArea { position: relative; display: block; margin: 0; padding: 0; width: 100vw; height: 100vh; page-break-before: avoid; break-before: avoid; box-sizing: border-box}
+		#printArea img { margin: 0; }		
+    }
+    #printArea { position: relative; display: flex; overflow: hidden;}
+</style>
+
+</head>
+<body>
+	
+	<div id="loading" class="divLoading hidden">
+		<img src="/test-cloud/resources/img/img_loading.gif" />
+	</div>
+	<div id="popupLayer" class="popup_layer hidden">
+		<div class="popup_background"></div>
+		<div class="popup_content">
+			<div id="pricecardTemplate" class="hidden">
+				<div class="ai_crt_info">템플릿명을 입력해 주십시오.</div>
+				<div class="ai_crt_info--small">작은따옴표는 입력할 수 없습니다.</div>
+				<input type="text" class="tf_comm" style="margin-top:8px; width: 250px" id="pricecardTemplateTitle" onkeyup="jsGetByte(this, 50)"/>
+				<div style="color: #7f7f7f; font-size: 12px; width: 100%; text-align: right">
+					<span id="pricecardTemplateTitleByte" style="color: #555; font-weight: bold">0</span> / 50 byte
+				</div>
+				<div style="width: 100%; text-align: center; margin-top: 10px;">
+					<button type="button" id="btnTemplateUpdate" class="ai_crt_box_btn selected" style="height:30px;">
+						<div class="ai_crt_info--small" style="font-size: 13px">현재 템플릿 수정하기</div>
+					</button>
+					<button type="button" class="ai_crt_box_btn selected" style="height:30px;" onclick="jsSaveTemplate2(0)">
+						<div class="ai_crt_info--small" style="font-size: 13px">새 템플릿 저장하기</div>
+					</button>
+					<button type="button" class="ai_crt_box_btn" style="height:30px;" onclick="jsCloseLayer()">
+						<div class="ai_crt_info--small" style="font-size: 13px">취소</div>
+					</button>
+				</div>
+			</div>
+			<div class="hidden" style="display:flex; flex-direction:column; align-items:center; overflow: auto">
+				<div class="ai_crt_info" style="width:100%; margin-bottom: 8px; border-bottom: 1px solid #aaa;">이미지 생성 완료</div>
+				<img id="pricecardImage" src=""/>
+				<div style="margin-top:8px">
+					<button type="button" class="ai_crt_box_btn selected" style="margin-right: 8px;" onclick="jsPrint()">
+						<div class="ai_crt_info" style="font-size:14px;">인쇄하기</div>
+					</button>
+					<button type="button" class="ai_crt_box_btn selected" style="margin-right: 8px;" onclick="jsDownload()">
+						<div class="ai_crt_info" style="font-size:14px;">다운로드</div>
+					</button>
+					<button type="button" class="ai_crt_box_btn" onclick="jsCloseLayer()">
+						<div class="ai_crt_info" style="font-size:14px">닫기</div>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--// wrap_top -->
+	<div class="h-screen">
+		<div class="wrap_groupbox layout-container">
+			<div class="wrap_left layout-contents">
+				<div class="tab_submenu tab-submenu">
+					<div class="tabs" id="menuTab">
+						<ul class="level1 static" tabindex="0" role="menubar">
+							<li role="menuitem" class="static">
+								<a class="level1 tab selected static" href="#" onclick="jsAIPopMenu(0)" tabindex="-1">AI이미지생성</a>
+							</li>
+							<li role="menuitem" class="static">
+								<a class="level1 tab static" href="_blank" onclick="jsAIPopMenu(0)" tabindex="-1">AI이미지관리</a>
+							</li>
+							<li role="menuitem" class="static">
+								<a class="level1 tab static" href="#" onclick="jsAIPopMenu(0)" tabindex="-1">AI이용현황</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="ai_crt_tblform flex">
+					<!-- 입력 영역 -->
+					<div class="ai_crt_box ai_crt_box--white flex flex-col gap-4">
+						<!-- 용도 선택 -->
+            <div class="panel_box">
+              <div class="ai_crt_fieldset">
+                <div class="ai_crt_info">어떤 홍보물을 만드시겠어요?</div>
+                <div class="ai_crt_info--small">용도에 맞는 템플릿을 선택하시면 최적화된 이미지가 생성됩니다.</div>
+                <div id="selObject" class="ai_crt_functionbox_row">
+                  <button type="button" class="ai_crt_box_btn" onclick="jsSelectObject(2)" style="width: 150px;">
+                    <div class="ai_crt_info">POP이미지</div>
+                    <div class="ai_crt_info--small">
+                      자유형식 이미지 생성<br />홍보 및 안내용
+                    </div>
+                  </button>
+                  <button type="button" class="ai_crt_box_btn selected" onclick="jsSelectObject(3)" style="width: 150px;">
+                    <div class="ai_crt_info">프라이스 카드</div>
+                    <div class="ai_crt_info--small">
+                      매대 부착용<br />상품명·가격 강조
+                    </div>
+                  </button>
+                  <button type="button" class="ai_crt_box_btn" onclick="jsSelectObject(1)" style="width: 150px;">
+                    <div class="ai_crt_info">전단지형</div>
+                    <div class="ai_crt_info--small">
+                      A4 사이즈 상품 전단<br />모바일 발송 및 출력용
+                    </div>
+                  </button>
+                  <button type="button" class="ai_crt_box_btn" data-field="signage" onclick="jsSelectObject(4)" style="width: 150px;">
+                    <div class="ai_crt_info">디지털 사이니지</div>
+                    <div class="ai_crt_info--small">
+                      매장 내 모니터<br />홍보용 배너 형태
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+						<!-- 프라이스카드형 설정 -->
+            <div class="panel_box flex-1 flex flex-col overflow-hidden ">
+              <div id="pricecardBox" class="flex-1 min-h-0 overflow-y-scroll">
+                <!-- 프라이스카드 레이아웃 -->
+                <div class="ai_crt_fieldset">
+                  <div class="ai_crt_info">
+                    <span class="required_item">*</span>레이아웃을 선택하세요.
+                  </div>
+                  <div class="ai_crt_info--small">등록할 상품 수에 맞는 레이아웃을 선택하세요. 최대 24개까지 가능합니다.</div>
+                  <div id="selPricecardDirection" class="ai_crt_functionbox_row" data-direction="portrait">
+                    <button type="button" class="ai_crt_box_btn" data-field="pricecard" data-direction="landscape" onclick="jsSelectLayout(this)">
+                      <div class="ai_crt_info" style="font-size: 14px">가로형</div>
+                    </button>
+                    <button type="button" class="ai_crt_box_btn selected" data-field="pricecard" data-direction="portrait" onclick="jsSelectLayout(this)">
+                      <div class="ai_crt_info" style="font-size: 14px">세로형</div>
+                    </button>
+                    <input type="text" id="pricecardRowCount" data-row="" class="tf_comm" style="text-align: right; margin-left: 10px; margin-right: -7px; width: 50px" onkeyup="jsSetLayout()" />
+                    행
+                    <input type="text" id="pricecardColCount" data-col="" class="tf_comm" style="text-align: right; margin-left: 5px; margin-right: -7px; width: 50px" onkeyup="jsSetLayout()" />
+                    열
+                  </div>
+                </div>
+                <!-- 프라이스카드 템플릿 선택 -->
+                <div class="ai_crt_fieldset">
+                  <div class="ai_crt_info">템플릿을 선택하세요.</div>
+                  <div class="ai_crt_info--small">템플릿에서 직접 변형/다른 이름으로 저장이 가능합니다.</div>
+                  <div id="selPricecardTemplate" class="ai_crt_functionbox_row" style="flex-wrap: wrap; gap: 5px;">
+                    
+                      
+                        
+                        <button type="button" class="ai_crt_box_btn" data-template="1" data-mart="0" data-direction="portrait" data-row="4" data-col="1" onclick="jsSelectTemplate(this)">
+                          <div class="ai_crt_info--small" style="font-size: 13px">센터템플릿1<br/>(세로형, 4×1)</div>
+                        </button>
+                        <input type="hidden" data-template="1" data-goodscol="Name,Spec,DCPrice,SPrice" value='<div class="ai_crt_layer" data-shape="rectangle" style="width: 289px; height: 145px; top: -22px; left: 376px; transform-origin: center center; transform: rotate(45deg);"><div class="ai_crt_layer_content"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="#ff0000" stroke="transparent" stroke-width="0"></rect></svg></div><div class="ai_crt_layer_handle h-w" data-dir="w"></div><div class="ai_crt_layer_handle h-s" data-dir="s"></div><div class="ai_crt_layer_handle h-e" data-dir="e"></div><div class="ai_crt_layer_rotate" data-dir="rotate" data-angle="45"></div></div><div class="ai_crt_layer" data-shape="text" data-column="name" style="width: 382px; height: 122px; top: 15px; left: 18px;"><div class="ai_crt_layer_content"><div data-goods="name" data-size="30" style="color: rgb(51, 51, 51); font-weight: bold; font-size: 40px; line-height: 45px; font-style: normal; text-align: left; paint-order: stroke; padding: 3px;" class="web_font_3">상품</div></div><div class="ai_crt_layer_handle h-w" data-dir="w"></div><div class="ai_crt_layer_handle h-s" data-dir="s"></div><div class="ai_crt_layer_handle h-e" data-dir="e"></div><div class="ai_crt_layer_rotate" data-dir="rotate" data-angle="0"></div></div><div class="ai_crt_layer" data-shape="text" data-column="dcprice" style="width: 225px; height: 75px; top: 121px; left: 248px;"><div class="ai_crt_layer_content"><div data-goods="dcprice" data-size="30" style="color: rgb(255, 0, 0); font-weight: bold; font-size: 60px; line-height: 65px; font-style: normal; text-align: right; paint-order: stroke; padding: 3px;" class="web_font_2"><span style="display: inline-block; font-size: 30px;">￦</span>가격</div></div><div class="ai_crt_layer_handle h-w" data-dir="w"></div><div class="ai_crt_layer_handle h-s" data-dir="s"></div><div class="ai_crt_layer_handle h-e" data-dir="e"></div><div class="ai_crt_layer_rotate" data-dir="rotate" data-angle="0"></div></div><div class="ai_crt_layer" data-shape="text" data-column="" style="width: 138px; height: 100px; top: 3px; left: 421px;"><div class="ai_crt_layer_content"><div data-goods="etc" data-size="30" style="color: rgb(255, 255, 255); font-weight: normal; font-size: 40px; line-height: 45px; font-style: italic; text-align: right; paint-order: stroke; padding: 3px 10px 3px 3px;" ondblclick="jsEditableText(this)" class="web_font_5">이주의 특가!</div></div><div class="ai_crt_layer_handle h-w" data-dir="w"></div><div class="ai_crt_layer_handle h-s" data-dir="s"></div><div class="ai_crt_layer_handle h-e" data-dir="e"></div><div class="ai_crt_layer_rotate" data-dir="rotate" data-angle="0"></div></div><div class="ai_crt_layer" data-shape="text" data-column="spec" style="width: 100px; height: 35px; top: 116px; left: 20px;"><div class="ai_crt_layer_content"><div data-goods="spec" data-size="20" style="color: rgb(51, 51, 51); font-weight: bold; font-size: 30px; line-height: 35px; font-style: normal; text-align: left; paint-order: stroke; padding: 3px;" class="web_font_3">규격</div></div><div class="ai_crt_layer_handle h-w" data-dir="w"></div><div class="ai_crt_layer_handle h-s" data-dir="s"></div><div class="ai_crt_layer_handle h-e" data-dir="e"></div><div class="ai_crt_layer_rotate" data-dir="rotate" data-angle="0"></div></div><div class="ai_crt_layer" data-shape="text" data-column="sprice" style="width: 100px; height: 35px; top: 152px; left: 159px;"><div class="ai_crt_layer_content"><div data-goods="sprice" data-size="20" style="color:#333333; font-weight:normal; font-size:20px; line-height:25px; font-style:normal; text-align: right; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; padding:3px; text-decoration:line-through #333333;" class="web_font_2"><span style="display:inline-block;font-size:20px">￦</span>정상가격</div></div><div class="ai_crt_layer_handle h-w" data-dir="w"></div><div class="ai_crt_layer_handle h-s" data-dir="s"></div><div class="ai_crt_layer_handle h-e" data-dir="e"></div><div class="ai_crt_layer_rotate" data-dir="rotate" data-angle="0"></div></div>'/>
+                      
+                    
+                  </div>
+                </div>
+                <!-- 프라이스카드 색상테마 -->
+                <div class="ai_crt_fieldset">
+                  <div class="ai_crt_info">색상테마를 선택하세요.</div>
+                  <div class="ai_crt_info--small">색상 선택이 고민되시면 색상테마를 적용해 보세요.</div>
+                  <div id="selPricecardTheme" class="ai_crt_functionbox_row" style="flex-wrap: wrap; gap: 5px;">
+                    <button type="button" class="ai_crt_box_btn" onclick="jsSelectTheme('yellow')">
+                      <div class="ai_crt_info--small" style="display:flex; font-size: 13px">
+                        <div style="display:inline-block; width: 13px; height: 13px; background:yellow; margin-right:3px; border-radius: 7px; border:1px solid #aaa;"></div>
+                        노랑
+                      </div>
+                    </button>
+                    <button type="button" class="ai_crt_box_btn" onclick="jsSelectTheme('red')">
+                      <div class="ai_crt_info--small" style="display:flex; font-size: 13px">
+                        <div style="display:inline-block; width: 13px; height: 13px; background:red; margin-right:3px; border-radius: 7px; border:1px solid #aaa;"></div>
+                        빨강
+                      </div>
+                    </button>
+                    <button type="button" class="ai_crt_box_btn" onclick="jsSelectTheme('green')">
+                      <div class="ai_crt_info--small" style="display:flex; font-size: 13px">
+                        <div style="display:inline-block; width: 13px; height: 13px; background:green; margin-right:3px; border-radius: 7px; border:1px solid #aaa;"></div>
+                        초록
+                      </div>
+                    </button>
+                    <button type="button" class="ai_crt_box_btn" onclick="jsSelectTheme('blue')">
+                      <div class="ai_crt_info--small" style="display:flex; font-size: 13px">
+                        <div style="display:inline-block; width: 13px; height: 13px; background:blue; margin-right:3px; border-radius: 7px; border:1px solid #aaa;"></div>
+                        파랑
+                      </div>
+                    </button>
+                    <button type="button" class="ai_crt_box_btn" onclick="jsSelectTheme('white')">
+                      <div class="ai_crt_info--small" style="display:flex; font-size: 13px">
+                        <div style="display:inline-block; width: 13px; height: 13px; background:#fff; margin-right:3px; border-radius: 7px; border:1px solid #aaa;"></div>
+                        흰색
+                      </div>
+                    </button>
+                  </div>
+                </div>
+                <!-- 프라이스카드 상품등록 -->
+                <div class="ai_crt_fieldset">
+                  <div class="ai_crt_info">
+                    <span class="required_item">*</span>상품 데이터를 입력하세요.
+                  </div>
+                  <div class="ai_crt_info--small">입력하실 엑셀 데이터를 복사하신 후 노란색 칸에 붙여넣기 하면 미리보기에 나타납니다. (데이터 순서를 꼭 지켜주세요!)</div>
+                  <div class="ai_crt_functionbox_row" style="margin-bottom: 10px">
+                    <div id="selPricecardColumn">
+                      <button type="button" class="ai_crt_box_btn selected" data-field="pricecard" data-column="name" style="margin-right:3px">
+                        <div class="ai_crt_info--small" style="font-size: 13px">
+                          <span class="required_item" style="margin-left: -3px">*</span>상품명
+                        </div>
+                      </button>
+                      <button type="button" class="ai_crt_box_btn" data-field="pricecard" data-column="spec" onclick="jsSelectColumn(this)" style="margin-right:3px">
+                        <div class="ai_crt_info--small" style="font-size: 13px">규격</div>
+                      </button>
+                      <button type="button" class="ai_crt_box_btn selected" data-field="pricecard" data-column="dcprice" style="margin-right:3px">
+                        <div class="ai_crt_info--small" style="font-size: 13px">
+                          <span class="required_item" style="margin-left: -3px">*</span>가격
+                        </div>
+                      </button>
+                      <button type="button" class="ai_crt_box_btn" data-field="pricecard" data-column="sprice" onclick="jsSelectColumn(this)" style="margin-right:3px">
+                        <div class="ai_crt_info--small" style="font-size: 13px">정상가격</div>
+                      </button>
+                      <button type="button" class="ai_crt_box_btn" data-field="pricecard" data-column="dcrate" onclick="jsSelectColumn(this)">
+                        <div class="ai_crt_info--small" style="font-size: 13px">할인율</div>
+                      </button>
+                    </div>
+                    <div class="ai_crt_info--small" style="font-size:13px; margin-left:20px; margin-right:-5px">가격 단위 :</div>
+                    <div id="selPricecardPriceUnit">										
+                      <button type="button" class="ai_crt_box_btn selected" data-unit="" style="margin-right:3px" onclick="jsSelectPriceUnit(this)">
+                        <div class="ai_crt_info--small" style="font-size: 13px">없음</div>
+                      </button>
+                      <button type="button" class="ai_crt_box_btn" data-unit="front" style="margin-right:3px" onclick="jsSelectPriceUnit(this)">
+                        <div class="ai_crt_info--small" style="font-size: 13px">￦(앞)</div>
+                      </button>
+                      <button type="button" class="ai_crt_box_btn" data-unit="back"  onclick="jsSelectPriceUnit(this)">
+                        <div class="ai_crt_info--small" style="font-size: 13px">원(뒤)</div>
+                      </button>
+                    </div>
+                    <button type="button" class="ai_crt_box_btn" style="margin-left:auto" onclick="jsRemoveExcelRow()">
+                      <div class="ai_crt_info--small" style="font-size: 13px">행 비우기</div>
+                    </button>
+                  </div>
+                  <div id="pricecardExcel" data-count="0" class="ai_crd_goods_grid"></div>
+                </div>
+              </div>
+            </div>
+					</div>
+					<!-- 미리보기 영역 -->
+					<div class="ai_crt_preview">
+						<div id="pricecardPreview">
+							<div style="display: flex; gap: 10px">
+								<div style="width:840px; height: 840px; overflow:auto">
+									<div id="pricecardFrame" class="ai_crt_preview_frame" tabindex="0">
+										<div id="pricecardCanvas" class="ai_crt_canvas" style="width: 566px; height: 800px; top: 20px; left: 137px; transform-origin: top left;"></div>
+										<div id="pricecardEditor" class="ai_crt_canvas_editor" style="width: 566px; height: 800px; transform-origin: top left;"></div>
+									</div>
+								</div>
+								<div class="ai_crt_functionbox_col" style="justify-content: flex-start; margin-top: 0">
+									<div class="ai_crt_info" style="width: 100%; font-size: 14px; margin-left: 2px; border-bottom: 1px solid #aaa;">레이어 추가</div>
+									<div class="ai_crt_functionbox_row" style="gap: 5px;">
+										<button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('line', null)">
+											<div class="ai_crt_info--small" style="font-size: 13px">선</div>
+										</button>
+										<button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('rectangle', null)">
+											<div class="ai_crt_info--small" style="font-size: 13px">사각형</div>
+										</button>
+										<button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('ellipse', null)">
+											<div class="ai_crt_info--small" style="font-size: 13px">타원형</div>
+										</button>
+										<button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('triangle', null)">
+											<div class="ai_crt_info--small" style="font-size: 13px">삼각형</div>
+										</button>
+									</div>
+									<div class="ai_crt_functionbox_row" style="gap: 5px; margin-top: 6px">
+										<button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('text', '')">
+											<div class="ai_crt_info--small" style="font-size: 13px">텍스트</div>
+										</button>
+										<button type="button" class="ai_crt_box_btn" onclick="jsCopyShape()">
+											<div class="ai_crt_info--small" style="font-size: 13px">복사하기</div>
+										</button>
+									</div>
+									<div class="ai_crt_info" style="width: 100%; font-size: 14px; margin-top: 15px; margin-left: 2px; border-bottom: 1px solid #aaa;">레이어 순서</div>
+									<div style="display:flex; gap:5px">
+										<div class="ai_crt_functionbox_col" style="gap: 5px;">
+											<button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('front')" style="width:66px">
+												<div class="ai_crt_info--small" style="font-size: 13px">맨위로</div>
+											</button>
+											<button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('forward')" style="width:66px">
+												<div class="ai_crt_info--small" style="font-size: 13px">위로</div>
+											</button>
+											<button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('backward')" style="width:66px">
+												<div class="ai_crt_info--small" style="font-size: 13px">밑으로</div>
+											</button>
+											<button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('back')" style="width:66px">
+												<div class="ai_crt_info--small" style="font-size: 13px">맨밑으로</div>
+											</button>
+										</div>
+										<div id="pricecardLayerOrder" class="ai_crt_layerbox_col"></div>
+									</div>
+									<div class="ai_crt_info" style="width: 100%; font-size: 14px; margin: 15px 0 8px 2px; border-bottom: 1px solid #aaa;">레이어 편집</div>
+									<div id="pricecardEditBox" style="display: grid; gap: 7px 10px; grid-template-columns: 60px auto;" >
+										<!-- 편집모드 -->
+										<div class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">편집모드</div>
+										<div style="display:flex; gap:5px; align-items:center; font-size:13px">
+											일괄모드
+											<label class="switch_comm">
+												<input type="checkbox" id="pricecardAllMode" checked onchange="jsSelectMode(this)"/>
+												<span class="switch_slider"></span>
+											</label>
+											개별모드
+										</div>
+										<!-- 배율 -->
+										<div class="ai_crt_info--small" style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px" >배율</div>
+										<div style="display: flex; align-items:center; font-size:13px; line-height: 23px">
+											<div id="pricecardScale" style="display: inline-block">1</div>
+											배
+											<button type="button" class="ai_crt_box_btn" data-scale="1" onclick="jsSelectScale(this)" style="width: 35px; height:19px; padding:0; margin-left:10px;">
+												<div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x1</div>
+											</button>
+											<button type="button" class="ai_crt_box_btn" data-scale="2" onclick="jsSelectScale(this)" style="width: 35px; height:19px; padding:0; margin-left:3px;">
+												<div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x2</div>
+											</button>
+											<button type="button" class="ai_crt_box_btn" data-scale="3" onclick="jsSelectScale(this)" style="width: 35px; height:19px; padding:0; margin-left:3px;">
+												<div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x3</div>
+											</button>
+										</div>
+										<!-- 크기정보 -->
+										<div class="ai_crt_info--small" style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px" >크기</div>
+										<div>
+											<div style="font-size:13px; line-height: 23px">
+												가로 <input type="text" id="pricecardWidth" class="tf_comm" style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLocation(this)"/>
+												<div class="ai_crt_info--small" style="display: inline-block">px</div>
+											</div>											
+											<div style="font-size:13px; line-height: 23px">
+												세로 <input type="text" id="pricecardHeight" class="tf_comm" style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLocation(this)"/>
+												<div class="ai_crt_info--small" style="display: inline-block">px</div>
+											</div>
+										</div>
+										<!-- 위치정보 -->
+										<div class="ai_crt_info--small" style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px" >위치</div>
+										<div>
+											<div style="font-size:13px; line-height: 23px">
+												왼쪽에서 <input type="text" id="pricecardLeft" class="tf_comm" style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLocation(this)"/>
+												<div class="ai_crt_info--small" style="display: inline-block">px</div>
+											</div>
+											<div style="font-size:13px; line-height: 23px">
+												위쪽에서 <input type="text" id="pricecardTop" class="tf_comm" style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLocation(this)"/>
+												<div class="ai_crt_info--small" style="display: inline-block">px</div>
+											</div>
+										</div>
+										<div class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px;">회전각</div>
+										<div>
+											<input type="text" id="pricecardAngle" class="tf_comm" style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLocation(this)"/>
+											<div class="ai_crt_info--small" style="font-size: 16px; display: inline-block">˚</div>
+										</div>									
+										<!-- 색상 -->
+										<div class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">색상</div>
+										<div style="display: flex; align-items: center; height: 25px">
+											<input type="color" id="pricecardColorSelector" style="background:transparent; border:none; width: 54px; height: 30px; margin: -4px -2px;"/>
+											<input type="text" id="pricecardColor" readonly="readonly" tabindex="-1" style="display: inline-block; margin-left: 5px; width: 95px; height: 23px; color: #333; line-height: 1.4; border: none; pointer-events: none;" value="#000000" />
+										</div>
+										<!-- 선 굵기 -->
+										<div data-edit="line" class="ai_crt_info--small hidden" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">선 굵기</div>
+										<div data-edit="line" class="hidden">
+											<input type="text" id="pricecardLineWidth" class="tf_comm" style="width:50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLine(this)"/>
+											<div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
+										</div>
+										<!-- 선 끝모양 -->
+										<div data-edit="line" class="ai_crt_info--small hidden" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">선 끝모양</div>
+										<select id="pricecardLineCap" data-edit="line" class="opt_comm hidden" style="width: 150px; height: auto; font-size:13px" onchange="jsMakeLine(this)">
+											<option value="square">사각 모양</option>
+											<option value="round">둥근 모양</option>
+											<option value="arrow">화살표</option>
+										</select>
+										<!-- 테두리 색상 -->
+										<div data-edit="border" class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">테두리 색상</div>
+										<div data-edit="border" style="display: flex; align-items: center; height: 25px">
+											<div id="pricecardBorderColorless" style="width: 47px; height: 18px; border: 1px solid #777; display: inline-block; background: linear-gradient(to top left, transparent 46%, red 49%, transparent 52%) white;" onclick="jsToggleBorderColor('click')"></div>
+											<input type="color" id="pricecardBorderColorSelector" style="visibility: hidden; background:transparent; border:none; width: 54px; height: 30px; margin: -4px -2px;" oninput="jsMakeBorder(this)"/>
+											<input type="text" id="pricecardBorderColor" class="tf_comm" style="margin-left: -45px; width: 95px; height: 23px" value="" oninput="jsMakeBorder(this)"/>
+										</div>
+										<!-- 테두리 굵기 -->
+										<div data-edit="border" class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">테두리 굵기</div>
+										<div data-edit="border" >
+											<input type="text" id="pricecardBorderWidth" class="tf_comm" style="width:50px; text-align: right; height: 23px;" value="0" oninput="jsMakeBorder(this)"/>
+											<div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
+										</div>
+										<!-- 글꼴 -->
+										<div data-edit="font" class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글꼴</div>
+										<select id="pricecardFont" data-edit="font" class="opt_comm" style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
+											<option value="" selected>기본(나눔고딕)</option>
+											<option value="web_font_1">여기어때잘난체</option>
+											<option value="web_font_2">페이퍼로지</option>
+											<option value="web_font_3">학교안심둥근미소</option>
+											<option value="web_font_4">경기천년제목체</option>
+											<option value="web_font_5">가나초콜릿체</option>
+										</select>
+										<!-- 글씨 굵기 -->
+										<div data-edit="font" class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 굵기</div>
+										<select id="pricecardFontWeight" data-edit="font" class="opt_comm" style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
+											<option value="normal">보통</option>
+											<option value="bold">굵게</option>
+										</select>
+										<!-- 글씨 스타일 -->
+										<div data-edit="font" class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 스타일</div>
+										<select id="pricecardFontStyle" data-edit="font" class="opt_comm" style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
+											<option value="normal">보통</option>
+											<option value="italic">이탤릭</option>
+										</select>
+										<!-- 글씨 크기 -->
+										<div data-edit="font" class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 크기</div>
+										<div data-edit="font">
+											<input type="text" id="pricecardFontSize" class="tf_comm" style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeFont(this)"/>
+											<div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
+										</div>
+										<!-- 글자 정렬 -->
+										<div data-edit="font" class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글자 정렬</div>
+										<select id="pricecardFontAlign" data-edit="font" class="opt_comm" style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
+											<option value="left">왼쪽 정렬</option>
+											<option value="center">가운데 정렬</option>
+											<option value="right">오른쪽 정렬</option>
+										</select>
+										<!-- 단위 크기 -->
+										<div data-edit="unit" class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">단위 크기</div>
+										<div data-edit="unit">
+											<input type="text" id="pricecardUnitSize" class="tf_comm" style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeFont(this)"/>
+											<div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
+										</div>
+									</div>
+									<div class="ai_crt_functionbox_row" style="margin-top:30px; gap:5px;">
+										<button type="button" class="ai_crt_box_btn selected" onclick="jsSaveImage()">
+											<div class="ai_crt_info" style="font-size:14px">이미지 생성하기</div>
+										</button>
+										<button type="button" class="ai_crt_box_btn selected" onclick="jsSaveTemplate()">
+											<div class="ai_crt_info" style="font-size:14px">템플릿으로 저장</div>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="printArea" style="width: 0px; height: 0px;"></div>
+	<script type="text/javascript">
+		//전역변수
+		const pricecardEditor = document.getElementById("pricecardEditor");
+		const pricecardCanvas = document.getElementById("pricecardCanvas");
+		const pricecardFrame = document.getElementById("pricecardFrame");
+		//const pricecardMenu = document.getElementById("pricecardCustomMenu");
+		let editorMode = 0;
+		let priceUnit = '';
+		let markerCount = 0;
+		let pricecardSelectedLayer = null;
+		let activeLayer = null;
+		let isDragging = false;
+		let isResizing = false;
+		let isRotating = false;
+		let startX, startY, startWidth, startHeight, startLeft, startTop;
+		let currentDirection = null;
+		let currentShape = '';
+		let currentStroke = 0;
+		let arrExcelColumn = [];
+		let excelGoodsMap = new Map();
+		/*$(document).ready(function() {
+			
+		});*/
+		
+		function jsSelectObject(svc){
+			location.href = "aiRequest.do?requestService=" + svc;
+		}
+		
+		function jsSelectLayout(obj){
+			if(editorMode === 1){
+				alert("개별모드에서는 레이아웃을 변경할 수 없습니다.");
+				return false;
+			}
+			
+			if(obj.className.includes("selected")) return false; //택일하는 조건일 때
+			
+			const parent = obj.parentElement;
+			const previous = parent.querySelector(".selected");
+			if(previous){
+				previous.classList.remove("selected");
+			}
+			
+			obj.classList.add("selected");
+			const direction = obj.dataset.direction;
+			parent.dataset.direction = direction;
+			if(direction == "landscape"){
+				pricecardEditor.style.width = "800px";
+				pricecardEditor.style.height = "566px";
+				pricecardEditor.style.top = "137px";
+				pricecardEditor.style.left = "20px";
+				pricecardCanvas.style.width = "800px";
+				pricecardCanvas.style.height = "566px";
+				pricecardCanvas.style.top = "137px";
+				pricecardCanvas.style.left = "20px";
+			}else if(direction == "portrait"){
+				pricecardEditor.style.width = "566px";
+				pricecardEditor.style.height = "800px";
+				pricecardEditor.style.top = "20px";
+				pricecardEditor.style.left = "137px";
+				pricecardCanvas.style.width = "566px";
+				pricecardCanvas.style.height = "800px";
+				pricecardCanvas.style.top = "20px";
+				pricecardCanvas.style.left = "137px";
+			}				
+			jsSetLayout();
+		}
+		
+		function jsSelectColumn(obj){
+			if(editorMode === 1){
+				alert("개별모드에서는 데이터 컬럼을 변경할 수 없습니다.");
+				return false;
+			}
+			
+			const className = obj.className;
+			
+			if(className.includes("selected")){
+				obj.classList.remove("selected");
+			}else{
+				obj.classList.add("selected");
+			}
+			
+			jsSetGoodsDataToExcel();
+		}
+		
+		function jsSelectPriceUnit(obj){
+			if(editorMode === 1){
+				alert("개별모드에서는 데이터 컬럼을 변경할 수 없습니다.");
+				return false;
+			}
+			
+			if(obj.className.includes("selected")) return false;
+			
+			const previous = obj.parentElement.querySelector(".selected");
+			if(previous){
+				previous.classList.remove("selected");
+			}
+			obj.classList.add("selected");
+			priceUnit = obj.dataset.unit;
+			
+			//단위 span을 추가
+			const dcpriceElement = pricecardEditor.querySelector('[data-goods="dcprice"]');
+			const spriceElement = pricecardEditor.querySelector('[data-goods="sprice"]');
+			if(dcpriceElement){
+				if(priceUnit == ''){
+					if(dcpriceElement.querySelector('span')){
+						dcpriceElement.querySelector('span').remove();
+					}
+				}else if(priceUnit == 'front'){
+					if(dcpriceElement.querySelector('span')){
+						const spanClone = dcpriceElement.querySelector('span').cloneNode(true);
+						spanClone.innerHTML = '￦';
+						dcpriceElement.querySelector('span').remove();
+						dcpriceElement.prepend(spanClone);
+					}else{
+						const span = document.createElement('span');
+						span.innerHTML = '￦';
+						span.style.display = 'inline-block';
+						span.style.fontSize = dcpriceElement.style.fontSize;
+						dcpriceElement.prepend(span);
+					}
+				}else if(priceUnit == 'back'){
+					if(dcpriceElement.querySelector('span')){
+						const spanClone = dcpriceElement.querySelector('span').cloneNode(true);
+						spanClone.innerHTML = '원';
+						dcpriceElement.querySelector('span').remove();
+						dcpriceElement.append(spanClone);
+					}else{
+						const span = document.createElement('span');
+						span.innerHTML = '원';
+						span.style.display = 'inline-block';
+						span.style.fontSize = dcpriceElement.style.fontSize;
+						dcpriceElement.append(span);
+					}
+				}
+			}
+			if(spriceElement){
+				if(priceUnit == ''){
+					if(spriceElement.querySelector('span')){
+						spriceElement.querySelector('span').remove();
+					}
+				}else if(priceUnit == 'front'){
+					if(spriceElement.querySelector('span')){
+						const spanClone = spriceElement.querySelector('span').cloneNode(true);
+						spanClone.innerHTML = '￦';
+						spriceElement.querySelector('span').remove();
+						spriceElement.prepend(spanClone);
+					}else{
+						const span = document.createElement('span');
+						span.innerHTML = '￦';
+						span.style.display = 'inline-block';
+						span.style.fontSize = spriceElement.style.fontSize;
+						spriceElement.prepend(span);
+					}
+				}else if(priceUnit == 'back'){
+					if(spriceElement.querySelector('span')){
+						const spanClone = spriceElement.querySelector('span').cloneNode(true);
+						spanClone.innerHTML = '원';
+						spriceElement.querySelector('span').remove();
+						spriceElement.append(spanClone);
+					}else{
+						const span = document.createElement('span');
+						span.innerHTML = '원';
+						span.style.display = 'inline-block';
+						span.style.fontSize = spriceElement.style.fontSize;
+						spriceElement.append(span);
+					}
+				}
+			}
+			
+			jsMakePreview();
+			jsVariation();
+		}
+		
+		function jsSelectTemplate(obj){
+			// TODO : 템플릿 선택
+			if(editorMode === 1){
+				alert("개별모드에서는 템플릿을 사용할 수 없습니다.");
+				return false;
+			}
+		
+			const goodsCount = Number(document.getElementById('pricecardExcel').dataset.count);
+			if(goodsCount !== 0){
+				if(!confirm('템플릿을 적용하면 지금까지 편집하신 내용이 사라집니다. 템플릿을 적용하시겠습니까?')){
+					return false;
+				}
+			}
+		
+			const parent = obj.parentElement;
+			if(!obj.className.includes('selected')){
+				const previous = parent.querySelector('.selected');
+				if(previous){
+					previous.classList.remove('selected');
+				}
+				obj.classList.add('selected');
+			}
+			
+			const templateCode = obj.dataset.template;
+			const dir = obj.dataset.direction;
+			const row = obj.dataset.row;
+			const col = obj.dataset.col;
+			const templateElement = parent.querySelector('input[data-template="' + templateCode + '"]');
+			const selectedColumns = templateElement.dataset.goodscol.toLowerCase().split(',');
+			const template = templateElement.value;
+			
+			//상품 데이터 선택
+			const goodsColumns = document.getElementById('selPricecardColumn').children; 
+			for(const column of goodsColumns){
+				if(selectedColumns.includes(column.dataset.column)){
+					column.classList.add('selected');
+				}else{
+					column.classList.remove('selected');
+				}
+			}
+			
+			//레이아웃 선택
+			jsSelectLayout(document.getElementById('selPricecardDirection').querySelector('button[data-direction="' + dir + '"]'));
+			document.getElementById('pricecardRowCount').value = row;
+			document.getElementById('pricecardColCount').value = col;
+			jsSetLayout();
+			
+			//템플릿 코드 적용
+			pricecardEditor.innerHTML = template;
+			
+			//레이어순서 등록
+			const layerOrder = document.getElementById('pricecardLayerOrder');
+			layerOrder.innerHTML = '';
+			[...pricecardEditor.children].forEach(layer => {
+				const button = document.createElement('button');
+				button.type = 'button';
+				button.className = 'ai_crt_layerbox_btn';
+				button.setAttribute('onclick', 'jsSelectLayer2(this)');
+				button.style.width = '100%';
+				const layerShape = layer.dataset.shape;
+				if(layerShape === 'text'){
+					const layerColumn = layer.dataset.column;
+					if(layerColumn === 'name'){
+						button.innerHTML = '상품명';
+					}else if(layerColumn === 'dcprice'){
+						button.innerHTML = '가격';
+					}else if(layerColumn === 'spec'){
+						button.innerHTML = '규격';
+					}else if(layerColumn === 'sprice'){
+						button.innerHTML = '정상가격';
+					}else if(layerColumn === 'dcrate'){
+						button.innerHTML = '할인율';
+					}else{
+						button.innerHTML = '텍스트';
+					}
+				}else if(layerShape === 'line'){
+					button.innerHTML = '선';
+				}else if(layerShape === 'rectangle'){
+					button.innerHTML = '사각형';
+				}else if(layerShape === 'ellipse'){
+					button.innerHTML = '타원형';
+				}else if(layerShape === 'triangle'){
+					button.innerHTML = '삼각형';
+				}
+				layerOrder.prepend(button);
+			});
+			
+			//금액 단위 있는지 확인
+			const selPriceUnit = document.getElementById('selPricecardPriceUnit');
+			selPriceUnit.querySelector('.selected').classList.remove('selected');
+			if(pricecardEditor.querySelector('[data-goods="dcprice"]').querySelector('span')){
+				const unit = pricecardEditor.querySelector('[data-goods="dcprice"]').querySelector('span').innerHTML;
+				if(unit === '￦'){
+					priceUnit = 'front';
+				}else{
+					priceUnit = 'back';					
+				}
+				
+				selPriceUnit.querySelector('[data-unit="' + priceUnit + '"]').classList.add('selected');
+			}else{
+				selPriceUnit.firstElementChild.classList.add('selected');
+				priceUnit = '';
+			}
+			
+			
+			jsMakePreview();
+			jsSelectLayer(pricecardEditor.lastElementChild);
+		}
+		
+		function jsSelectTheme(theme){
+			let nameColor;
+			let nameBorder;
+			let dcpriceColor;
+			let dcpriceBorder;
+			
+			if(theme === 'yellow'){
+				nameColor = '#FFFF00';
+				nameBorder = '#333333';
+				dcpriceColor = '#FF0000';
+				dcpriceBorder = '#FFFF00';
+			}else if(theme === 'red'){
+				nameColor = '#FFFFFF';
+				nameBorder = '#FF0000';
+				dcpriceColor = '#FF0000';
+				dcpriceBorder = '#FFFFFF';
+			}else if(theme === 'green'){
+				nameColor = '#6EF649';
+				nameBorder = '#333333';
+				dcpriceColor = '#008000';
+				dcpriceBorder = '';
+			}else if(theme === 'blue'){
+				nameColor = '#FFFFFF';
+				nameBorder = '#0647AC';
+				dcpriceColor = '#0647AC';
+				dcpriceBorder = '#FFFFFF';
+			}else{ //white
+				nameColor = '#FFFFFF';
+				nameBorder = '#333333';
+				dcpriceColor = '#FF0000';
+				dcpriceBorder = '#FFFFFF';
+			}
+						
+			[...pricecardEditor.children].forEach(layer => {
+				if(layer.dataset.shape === 'text'){
+					const column = layer.dataset.column;
+					const target = layer.firstElementChild.firstElementChild;
+					if(column === 'name'){
+						target.style.color = nameColor;
+						target.style.webkitTextStrokeColor = nameBorder;
+						target.style.webkitTextStrokeWidth = '10px';
+						if(target.style.fontStyle === 'italic'){
+							target.style.padding = '5px 15px 5px 10px';
+						}else{
+							target.style.padding = '5px 10px';
+						}
+						
+						if(layer.className.includes('selected')){
+							jsVariation();
+						}
+					}else if(column === 'dcprice'){
+						target.style.color = dcpriceColor;
+						target.style.webkitTextStrokeColor = (dcpriceBorder == '' ? 'transparent' : dcpriceBorder);
+						target.style.webkitTextStrokeWidth = (dcpriceBorder == '' ? '0px' : '10px');
+						if(target.style.fontStyle === 'italic'){
+							target.style.padding = (dcpriceBorder == '' ? '3px 10px 3px 3px' : '5px 15px 5px 10px');
+						}else{
+							target.style.padding = (dcpriceBorder == '' ? '3px' : '5px 10px');
+						}
+						
+						if(layer.className.includes('selected')){
+							jsVariation();
+						}
+					}
+				}
+			});
+			
+			jsMakePreview();
+		}
+		
+		function jsSetLayout(){     	
+			if(editorMode === 1){
+				alert("개별모드에서는 레이아웃을 변경할 수 없습니다.");
+				return false;
+			}
+			
+			const rowElement = document.getElementById("pricecardRowCount");
+        	const colElement = document.getElementById("pricecardColCount");
+			
+			const rowCount = rowElement.value.trim();
+			const colCount = colElement.value.trim();
+			
+			if(rowCount == "" || isNaN(rowCount) || colCount == "" || isNaN(colCount)){
+				return false;	
+			}
+			
+			let row = parseInt(Math.abs(rowCount));
+			let col = parseInt(Math.abs(colCount));
+			
+			if(row != rowCount) rowElement.value = row;
+			if(col != colCount) colElement.value = col;
+			
+			if(row == 0 || col == 0){
+				return false;
+			}else if(row*col > 24){
+				alert("상품 개수가 24개를 넘지 않도록 행/열을 조정해 주십시오.");
+				return false;
+			}
+            
+			rowElement.dataset.row = row;
+			colElement.dataset.col = col;
+			
+			//배율을 정상으로 변경한다.
+			pricecardFrame.style.removeProperty('transform');
+			document.getElementById('pricecardScale').innerHTML = '1';
+			
+			pricecardCanvas.innerHTML = '';
+			pricecardCanvas.style.gridTemplateRows = 'repeat(' + row + ',1fr)';
+			pricecardCanvas.style.gridTemplateColumns = 'repeat(' + col + ',1fr)';
+			
+			for(let i = 0; i < row; i++){
+				for(let j = 0; j < col; j++){
+					const div = document.createElement('div');
+					div.style.position = 'relative';
+					div.style.overflow = 'hidden';
+					div.style.transformOrigin = 'top left';
+					div.style.boxSizing = 'border-box';
+					if(i > 0) div.style.borderTop = '1px dashed #aaa';
+					if(j > 0) div.style.borderLeft = '1px dashed #aaa';
+					pricecardCanvas.append(div);
+				}
+			}
+			
+			//기존의 커버를 삭제
+			const covers = pricecardFrame.querySelectorAll('.ai_crt_canvas_cover');
+			covers.forEach(el => {
+				el.remove();
+			})
+			//커버를 새로 만든다.
+			const childList= pricecardCanvas.children;
+			let defaultTop = 0;
+			let defaultLeft = 0;
+			//direction에 따라 위치보정값
+			const direction = document.getElementById('selPricecardDirection').dataset.direction;
+			let correctTop = direction == 'landscape' ? 137 : 20;
+			let correctLeft = direction == 'landscape' ? 20 : 137;
+			for(let h = 0; h < childList.length; h++){ 
+	        	const cellRect = childList[h].getBoundingClientRect();
+	        	if(h == 0){
+					pricecardEditor.style.width = cellRect.width + 'px';
+        			pricecardEditor.style.height = cellRect.height + 'px';
+        			pricecardEditor.dataset.cover = String(h);
+        			defaultTop = cellRect.top;
+        			defaultLeft = cellRect.left;
+	        	}else{
+	        		const div = document.createElement('div');
+	        		div.className = 'ai_crt_canvas_cover';
+	        		div.dataset.cover = String(h);
+	        		div.style.transformOrigin = "top left";
+	        		div.style.width = cellRect.width + 'px';
+	        		div.style.height = cellRect.height + 'px';
+	        		div.style.top = (cellRect.top - defaultTop + correctTop) + 'px';
+	        		div.style.left = (cellRect.left - defaultLeft + correctLeft) + 'px';
+	        		if(editorMode == 1) div.setAttribute('ondblclick', 'jsSelectCover(this)');
+	        		pricecardFrame.append(div);
+	        	}	        	
+			}
+			
+			document.getElementById('pricecardExcel').dataset.count = String(row*col);
+			jsSetGoodsDataToExcel();
+	    }
+		
+		function jsSetGoodsDataToExcel(){
+			const selectedColumns = document.getElementById('selPricecardColumn').querySelectorAll('.selected');
+        	const excel = document.getElementById('pricecardExcel');
+        	excel.innerHTML = '';
+        	const excelRow = Number(excel.dataset.count);
+        	
+        	if(excelRow == 0) return false;
+        	
+        	const excelCol = selectedColumns.length;
+        	excel.style.gridTemplateRows = 'repeat(' + (excelRow+1) + ',1fr)';
+				        	
+        	arrExcelColumn = [];
+			
+        	const thNumber = document.createElement('div');
+			thNumber.innerHTML = '<input type="checkbox" class="chk_comm" id="pricecardAllRow" onclick="jsSelectAllRow(this)"/>No';
+			excel.append(thNumber);
+			let columnWidth = '45px';
+			selectedColumns.forEach((col, index) => {
+				const thColumn = document.createElement('div');
+				if(col.dataset.column === 'name'){
+					thColumn.innerHTML = '상품명';
+					columnWidth += ' 250px';
+					arrExcelColumn.push('pricecardGoodsName');
+       			}else if(col.dataset.column === 'dcprice'){
+       				thColumn.innerHTML = '가격';
+       				columnWidth += ' 90px';
+       				arrExcelColumn.push('pricecardGoodsDCPrice');
+       			}else if(col.dataset.column === 'spec'){
+       				thColumn.innerHTML = '규격';
+       				columnWidth += ' 90px';
+       				arrExcelColumn.push('pricecardGoodsSpec');
+       			}else if(col.dataset.column === 'sprice'){
+       				thColumn.innerHTML = '정상가격';
+       				columnWidth += ' 90px';
+       				arrExcelColumn.push('pricecardGoodsSPrice');
+       			}else if(col.dataset.column == 'dcrate'){
+       				thColumn.innerHTML = '할인율';
+       				columnWidth += ' 60px';
+       				arrExcelColumn.push('pricecardGoodsDCRate');
+       			}
+				excel.append(thColumn);
+			});
+			
+			excel.style.gridTemplateColumns = columnWidth;
+			excel.style.justifyItems = 'center';
+			excel.style.alignItems = 'center';
+			
+        	for(let k = 0; k < excelRow; k++){
+        		const tdNumber = document.createElement('div');
+				tdNumber.innerHTML = '<input type="checkbox" class="chk_comm" id="chkExcel_' + k + '" onkeydown="jsMoveExcelCell(event)"/>' + (k+1);
+				excel.append(tdNumber);
+        		
+				arrExcelColumn.forEach((col, index) => {
+        			const inputElement = document.createElement('input');
+        			inputElement.type = 'text';
+        			inputElement.className = 'tf_comm_excel';
+        			if(col !== 'pricecardGoodsName' && col !== 'pricecardGoodsSpec'){
+        				inputElement.style.textAlign = 'right';
+        			}
+        			inputElement.id = col + '_' + k;
+        			
+        			if(k == 0 && index == 0){ //첫번째 칸
+        				inputElement.setAttribute('onpaste', 'jsPasteExcel(event)');
+        				inputElement.setAttribute('oninput', 'jsInsertExcel(event)');
+        				inputElement.setAttribute('onkeydown', 'jsMoveExcelCell(event)');
+        				inputElement.style.background = '#ffff55';
+        			}else{
+        				inputElement.setAttribute('oninput', 'jsInsertExcel2(event)');
+        				inputElement.setAttribute('onkeydown', 'jsMoveExcelCell(event)');
+        			}
+        			excel.append(inputElement);
+        		});
+        	}
+        	
+        	const goodsCount = excelGoodsMap.size;
+        	if(goodsCount > 0){
+				let loopCount = excelRow;
+        		if(loopCount < goodsCount) loopCount = goodsCount;
+        		
+        		for(let i = 0; i < loopCount; i++){
+					if(i >= excelRow){
+						excelGoodsMap.delete(i);
+					}else if(i >= goodsCount){
+						const obj = new Object();
+						arrExcelColumn.forEach((col, index) => {
+							const key = col.replace('pricecardGoods', '');
+							obj[key] = '';
+						});
+						excelGoodsMap.set(i, obj);
+					}else{
+						const obj = excelGoodsMap.get(i);
+						arrExcelColumn.forEach((col, index) => {
+							const key = col.replace('pricecardGoods', '');
+							if(!Object.hasOwn(obj, key)){
+								obj[key] = '';
+							}else{
+								document.getElementById(col + '_' + i).value = obj[key];
+							}
+						});
+					}
+				}
+
+				jsCalculateDCRate(); //할인율 자동계산
+        	}else{
+        		for(let i = 0; i < excelRow; i++){
+        			const obj = new Object();
+        			arrExcelColumn.forEach((col, index) => {
+						const key = col.replace('pricecardGoods', '');
+						obj[key] = '';
+					});
+        			excelGoodsMap.set(i, obj);
+        		}
+        	}
+	        	
+        	//shape 생성
+        	if(!document.querySelector('div[data-goods="name"]')){
+        		jsCreateShape("text", "name");
+        	}
+        	if(!document.querySelector('div[data-goods="dcprice"]')){
+        		jsCreateShape("text", "dcprice");
+        	}
+        	if(arrExcelColumn.includes('pricecardGoodsSpec')){
+        		if(!document.querySelector('div[data-goods="spec"]')){
+	        		jsCreateShape("text", "spec");
+	        	}
+        	}else{
+        		if(document.querySelector('div[data-goods="spec"]')){
+        			const removeTargets = document.querySelectorAll('div[data-goods="spec"]');
+        			removeTargets.forEach((el, index) => {el.parentElement.parentElement.remove();});
+	        	}
+        	}
+        	if(arrExcelColumn.includes('pricecardGoodsSPrice')){
+        		if(!document.querySelector('div[data-goods="sprice"]')){
+	        		jsCreateShape("text", "sprice");
+	        	}
+        	}else{
+        		if(document.querySelector('div[data-goods="sprice"]')){
+        			const removeTargets = document.querySelectorAll('div[data-goods="sprice"]');
+        			removeTargets.forEach((el, index) => {el.parentElement.parentElement.remove();});
+	        	}
+        	}
+        	if(arrExcelColumn.includes('pricecardGoodsDCRate')){
+        		if(!document.querySelector('div[data-goods="dcrate"]')){
+	        		jsCreateShape("text", "dcrate");
+	        	}
+        	}else{
+        		if(document.querySelector('div[data-goods="dcrate"]')){
+        			const removeTargets = document.querySelectorAll('div[data-goods="dcrate"]');
+        			removeTargets.forEach((el, index) => {el.parentElement.parentElement.remove();});
+	        	}
+        	}
+        	
+        	jsMakePreview();
+		}
+		
+		function jsCalculateDCRate(){
+			//할인율 계산
+			if(arrExcelColumn.includes('pricecardGoodsSPrice') && arrExcelColumn.includes('pricecardGoodsDCRate')){ //할인율 자동계산
+				const rowCount = Number(document.getElementById('pricecardExcel').dataset.count);
+				for(let i = 0; i < rowCount; i++){
+					const obj = excelGoodsMap.get(i);
+					if(obj.DCRate === ''){
+						const dcprice = obj.DCPrice;
+						const sprice = obj.SPrice;
+						if(dcprice != '' && sprice != '' && !isNaN(dcprice) && !isNaN(sprice)){
+							const dcrate = parseInt((sprice-dcprice)*100/sprice);
+							document.getElementById('pricecardGoodsDCRate_' + i).value = dcrate;
+							obj.DCRate = dcrate;
+							excelGoodsMap.set(i, obj);
+						}
+					}
+				}
+			}
+		}
+		
+		function jsPasteExcel(e){
+			const pastedData = (e.clipboardData || window.clipboadData).getData('text');
+			if(pastedData){
+				const rowCount = Number(document.getElementById('pricecardExcel').dataset.count);
+				const rows = pastedData.trim().split('\n');
+				const loop = rowCount < rows.length ? rowCount : rows.length;
+				for(let i = 0; i < loop; i++){
+					//혹시 줄바꿈 문자가 \r\n인 경우를 대비하여
+					const rowStr = rows[i].replace('\r', '');
+					const columns = rowStr.split('\t');
+					const obj = excelGoodsMap.get(i);
+					for(let j = 0; j < arrExcelColumn.length; j++){
+						if(columns[j]){
+							document.getElementById(arrExcelColumn[j] + '_' + i).value = columns[j].trim();
+							obj[arrExcelColumn[j].replace('pricecardGoods', '')] = columns[j].trim();
+						}
+					}
+					excelGoodsMap.set(i, obj);
+				}
+			}
+		}
+		
+		function jsInsertExcel(e){
+			const type = e.inputType;
+			if(type === 'insertFromPaste'){
+				e.target.value = excelGoodsMap.get(0).Name;
+
+				jsCalculateDCRate();
+				jsSetGoodsDataToCanvas();
+			}else{
+				jsInsertExcel2(e);
+			}
+		}
+		
+		function jsInsertExcel2(e){
+			const id = e.target.id;
+			const arr = id.split('_');
+			const key = arr[0].replace('pricecardGoods', '');
+			const dataIndex = Number(arr[1]);
+			const obj = excelGoodsMap.get(dataIndex);
+			obj[key] = e.target.value.trim();
+			excelGoodsMap.set(dataIndex, obj);
+			jsSetGoodsDataToCanvas(dataIndex, key, e.target.value.trim());
+		}
+		
+		function jsMoveExcelCell(e){
+			if(e.key === 'ArrowUp'){
+				const id = e.target.id;
+				const arr = id.split('_');
+				const index = Number(arr[1]);
+				if(id.includes('_0')){
+					const rowCount = Number(document.getElementById('pricecardExcel').dataset.count);
+					document.getElementById(arr[0] + '_' + (rowCount-1)).focus();
+				}else{
+					document.getElementById(arr[0] + '_' + (index-1)).focus();
+				}
+			}else if(e.key === 'ArrowDown' || e.key === 'Enter'){
+				const id = e.target.id;
+				const arr = id.split('_');
+				const index = Number(arr[1]);
+				const rowCount = Number(document.getElementById('pricecardExcel').dataset.count);
+				if(index == (rowCount-1)){
+					document.getElementById(arr[0] + '_0').focus();
+				}else{
+					document.getElementById(arr[0] + '_' + (index+1)).focus();
+				}
+			}else if(e.key === 'ArrowLeft'){
+				const id = e.target.id;
+				if(id === 'chkExcel_0'){
+					document.getElementById('pricecardExcel').lastElementChild.focus();
+				}else if(id.startsWith('chkExcel_')){
+					e.target.parentElement.previousElementSibling.focus();
+				}else{
+					const previousElement = e.target.previousElementSibling;
+					if(previousElement.tagName === 'DIV'){
+						previousElement.querySelector('input').focus();
+					}else{
+						previousElement.focus();
+					}
+				}
+			}else if(e.key === 'ArrowRight'){
+				const id = e.target.id;
+				if(id.startsWith('chkExcel_')){
+					e.target.parentElement.nextElementSibling.focus();
+				}else{
+					const nextElement = e.target.nextElementSibling;
+					if(nextElement){
+						if(nextElement.tagName === 'DIV'){
+							nextElement.querySelector('input').focus();
+						}else{
+							nextElement.focus();
+						}
+					}else{
+						document.getElementById('chkExcel_0').focus();
+					}
+				}
+			}
+		}
+		
+		function jsRemoveExcelRow(){
+			const checkList = document.getElementById('pricecardExcel').querySelectorAll('input[type="checkbox"]:checked');
+			if(checkList){
+				checkList.forEach(chk => {
+					if(chk.id != 'pricecardAllRow'){
+						const dataIndex = Number(chk.id.replace('chkExcel_', ''));
+						if(excelGoodsMap.get(dataIndex)){ 
+							const obj = excelGoodsMap.get(dataIndex);
+							const arrKey = Object.keys(obj);
+							arrKey.forEach(key => {
+								document.getElementById('pricecardGoods' + key + '_' + dataIndex).value = '';
+								obj[key] = '';
+							});
+							excelGoodsMap.set(dataIndex, obj);
+						}
+					}
+				});
+				
+				jsSetGoodsDataToCanvas();
+			}
+		}
+		
+		function jsSelectAllRow(){
+			const checked = document.getElementById('pricecardAllRow').checked;
+			const checkList = document.getElementById('pricecardExcel').querySelectorAll('input[type="checkbox"]');
+			if(checkList){
+				checkList.forEach(chk => {
+					chk.checked = checked;
+				});
+			}
+		}
+		
+		function jsAddComma(num) {
+			if(num === '' || isNaN(num)) return num;
+			var str = num.toString();
+			return str.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+		}
+
+		function jsGetByte(obj, maxByte) {
+			var str = obj.value;
+			//작은따옴표 제거
+			str = str.replaceAll("'", "");
+
+			var rbyte = 0;
+			var str1 = "";
+			for (var i = 0; i < str.length; i++) {
+				var one_char = str.charAt(i);
+				var char_byte = 0;
+
+				//공백문자인지 확인 - " "로 치환한다.
+				var unicode = one_char.charCodeAt(0).toString(16);
+				if (unicode == 'a0' || unicode == '2800' || unicode == '3000'
+						|| unicode == 'feff') {
+					one_char = " "; //일반 공백으로 변경
+				} else if (unicode.length == 4
+						&& (unicode.indexOf('200') == 0 || unicode
+								.indexOf('fe0') == 0)) {
+					if (unicode != '200b') {
+						one_char = " ";
+					} else {
+						continue;
+					}
+				}
+
+				if (escape(one_char).length > 4) {
+					char_byte = 2;
+				} else {
+					char_byte = 1;
+				}
+
+				if (rbyte + char_byte <= maxByte) {
+					str1 += one_char;
+					rbyte += char_byte;
+				} else {
+					break;
+				}
+			}
+
+			obj.value = str1;
+			document.getElementById(obj.id + "Byte").innerHTML = rbyte;
+		}
+
+		function jsGetByte(obj, maxByte) {
+			var str = obj.value;
+			//작은따옴표 제거
+			str = str.replaceAll("'", "");
+
+			var rbyte = 0;
+			var str1 = "";
+			for (var i = 0; i < str.length; i++) {
+				var one_char = str.charAt(i);
+				var char_byte = 0;
+
+				//공백문자인지 확인 - " "로 치환한다.
+				var unicode = one_char.charCodeAt(0).toString(16);
+				if (unicode == 'a0' || unicode == '2800' || unicode == '3000'
+						|| unicode == 'feff') {
+					one_char = " "; //일반 공백으로 변경
+				} else if (unicode.length == 4
+						&& (unicode.indexOf('200') == 0 || unicode
+								.indexOf('fe0') == 0)) {
+					if (unicode != '200b') {
+						one_char = " ";
+					} else {
+						continue;
+					}
+				}
+
+				if (escape(one_char).length > 4) {
+					char_byte = 2;
+				} else {
+					char_byte = 1;
+				}
+
+				if (rbyte + char_byte <= maxByte) {
+					str1 += one_char;
+					rbyte += char_byte;
+				} else {
+					break;
+				}
+			}
+
+			obj.value = str1;
+			document.getElementById(obj.id + "Byte").innerHTML = rbyte;
+			
+			if(obj.id == "leafletTitle"){
+				document.getElementById("leafletPreview").querySelector(".ai_crt_preview_title").innerHTML = (str1 == "" ? "전단행사명" : str1);
+			}
+		}
+		
+		function jsFormatDate(ms, format) { //yyyy-mm-dd hh:mi format
+			var date = new Date(ms);
+
+			var yyyy = date.getFullYear();
+			var mm = date.getMonth() + 1; // 월은 0부터 시작하므로 +1
+			var dd = date.getDate();
+			var hh = date.getHours();
+			var mi = date.getMinutes();
+			var ss = date.getSeconds();
+
+			// 10 미만인 경우 앞에 0 추가
+			if (mm < 10)
+				mm = '0' + mm;
+			if (dd < 10)
+				dd = '0' + dd;
+			if (hh < 10)
+				hh = '0' + hh;
+			if (mi < 10)
+				mi = '0' + mi;
+			if (ss < 10)
+				ss = '0' + ss;
+
+			format = format.replace("yyyy", yyyy);
+			format = format.replace("mm", mm);
+			format = format.replace("dd", dd);
+			format = format.replace("hh", hh);
+			format = format.replace("mi", mi);
+			format = format.replace("ss", ss);
+
+			return format;
+		}
+	     
+		function jsCreateShape(shape, column){
+			if(editorMode === 1){
+				alert("개별모드에서는 레이어를 추가할 수 없습니다.");
+				return false;
+			}
+			
+			const rowCount = document.getElementById('pricecardExcel').dataset.count;
+			if(rowCount == '' || rowCount == '0' || isNaN(rowCount)){
+				alert('레이아웃을 먼저 설정하세요.');
+				return false;
+			}
+			
+			let width = 100;
+			let height = 100;
+			let top = 0;
+			let left = 0;
+			let buttonName = '';
+			
+			const layer = document.createElement('div');
+			layer.className = 'ai_crt_layer';
+			layer.dataset.shape = shape;
+			
+			const content = document.createElement('div');
+			content.className = "ai_crt_layer_content";
+			
+			let html = "";
+			if(shape == "text"){
+				let text;
+				width = 100;
+				layer.dataset.column = column;
+				if(column == "name"){
+					buttonName = '상품명';
+					height = 45;
+					html += '<div data-goods="name" data-size="30" style="color:#333333; font-weight:bold; font-size:30px; line-height:35px; font-style:normal; text-align: left; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; padding:3px;">상품명</div>';
+				}else if(column == "dcprice"){
+					buttonName = '가격';
+					top = 35;
+					height = 45;
+					html += '<div data-goods="dcprice" data-size="30" style="color:#ff0000; font-weight:bold; font-size:30px; line-height:35px; font-style:normal; text-align: right; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; padding:3px;">';
+					html += (priceUnit == 'front' ? '<span style="display:inline-block;font-size:30px">￦</span>' : '') + '가격' + (priceUnit == 'back' ? '<span style="display:inline-block;font-size:30px">원</span>' : '') + '</div>';
+				}else if(column == "spec"){
+					buttonName = '규격';
+					left = 50;
+					height = 35;
+					html += '<div data-goods="spec" data-size="20" style="color:#333333; font-weight:normal; font-size:20px; line-height:25px; font-style:normal; text-align: left; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; padding:3px;">규격</div>';
+				}else if(column == "sprice"){
+					buttonName = '정상가격';
+					top = 70;
+					height = 35;
+					html += '<div data-goods="sprice" data-size="20" style="color:#333333; font-weight:normal; font-size:20px; line-height:25px; font-style:normal; text-align: right; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; padding:3px; text-decoration:line-through #333333;">';
+					html += (priceUnit == 'front' ? '<span style="display:inline-block;font-size:20px">￦</span>' : '') + '정상가격' + (priceUnit == 'back' ? '<span style="display:inline-block;font-size:20px">원</span>' : '') + '</div>';
+				}else if(column == "dcrate"){
+					buttonName = '할인율';
+					left = 100;
+					height = 35;
+					html += '<div data-goods="dcrate" data-size="20" style="color:#ff0000; font-weight:normal; font-size:20px; line-height:25px; font-style:normal; text-align: right; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; padding:3px;">할인율<span style="font-size:20px">%</span></div>';
+				}else{
+					buttonName = '텍스트';
+					height = 45;
+					html += '<div data-goods="etc" data-size="30" style="color:#333333; font-weight:normal; font-size:30px; line-height:35px; font-style:normal; text-align: left; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; padding:3px;" ondblclick="jsEditableText(this)">텍스트</div>';
+				}
+			}else if(shape == 'line'){
+				buttonName = '선';
+				height = 50;
+				html += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" preserveAspectRatio="none">';
+				html += '<defs><marker id="arrow_' + markerCount + '" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">';
+			    html += '<path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" /></marker></defs>';
+				html += '<line x1="0" y1="25" x2="100" y2="25" stroke="#00ff00" data-marker="' + markerCount + '" stroke-width="5" stroke-linecap="square"/>';
+				html += '</svg>';
+				markerCount++;
+			}else if(shape == 'rectangle'){
+				buttonName = '사각형';
+				html += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">';
+				html += '<rect width="100" height="100" fill="#ff0000" stroke="transparent" stroke-width="0" />';
+				html += '</svg>';
+			}else if(shape == 'ellipse'){
+				buttonName = '타원형';
+				left = 100;
+				html += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">';
+				html += '<ellipse cx="50" cy="50" rx="50" ry="50" fill="#ffff00" stroke="transparent" stroke-width="0" />';
+				html += '</svg>';
+			}else if(shape == 'triangle'){
+				buttonName = '삼각형';
+				top = 100;
+				html += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">';
+				html += '<polygon points="0,0 50,100 100,0" fill="#0000ff" stroke="transparent" stroke-width="0" />';
+				html += '</svg>';
+			}
+			
+			content.innerHTML = html;
+			
+			layer.style.width = width + "px";
+			layer.style.height = height + "px";
+			layer.style.top = top + "px";
+			layer.style.left = left + "px";
+			
+		    /*const handle = document.createElement('div');
+	    	handle.className = 'ai_crt_layer_handle h-se';
+	    	handle.setAttribute('data-dir', 'se');
+	    	layer.appendChild(handle);*/
+		    
+	    	const handleWest = document.createElement('div');
+	    	handleWest.className = 'ai_crt_layer_handle h-w';
+	    	handleWest.setAttribute('data-dir', 'w');
+	    	layer.appendChild(handleWest);
+	    	
+	    	const handleSouth = document.createElement('div');
+	    	handleSouth.className = 'ai_crt_layer_handle h-s';
+	    	handleSouth.setAttribute('data-dir', 's');
+	    	layer.appendChild(handleSouth);
+	    	
+	    	const handleEast = document.createElement('div');
+	    	handleEast.className = 'ai_crt_layer_handle h-e';
+	    	handleEast.setAttribute('data-dir', 'e');
+	    	layer.appendChild(handleEast);
+	    	
+			const rotate = document.createElement('div');
+			rotate.className = 'ai_crt_layer_rotate';
+			rotate.setAttribute('data-dir', 'rotate');
+			rotate.setAttribute('data-angle', 0);
+			layer.appendChild(rotate);
+			
+			layer.insertBefore(content, layer.firstChild);
+			document.getElementById("pricecardEditor").appendChild(layer);
+			
+			//순서에 추가
+			const button = document.createElement('button');
+			button.type = 'button';
+			button.className = 'ai_crt_layerbox_btn';
+			button.setAttribute('onclick', 'jsSelectLayer2(this)');
+			button.style.width = '100%';
+			button.innerHTML = buttonName;
+			document.getElementById('pricecardLayerOrder').prepend(button);
+			
+			currentShape = shape;
+			currentStroke = shape === 'line' ? 5 : 0;
+			jsSelectLayer(layer);
+			jsMakePreview();
+		}
+		
+		function jsCopyShape(){
+			if(!pricecardSelectedLayer){
+				return false;
+			}
+			
+			const cloneLayer = pricecardSelectedLayer.cloneNode(true);
+			const cloneShape = cloneLayer.dataset.shape;
+			cloneLayer.classList.remove('selected');
+			if(cloneShape === 'text'){
+				cloneLayer.dataset.column = '';
+				const target = cloneLayer.firstElementChild.firstElementChild;
+				target.innerHTML = '텍스트';
+				target.dataset.goods = 'etc';
+				target.dataset.size = '20';
+				target.setAttribute("ondblclick", "jsEditableText(this)");
+			}else if(cloneShape === 'line'){
+				cloneLayer.querySelector('marker').id = 'arrow_' + markerCount;
+				const line = cloneLayer.querySelector('line');
+				line.dataset.marker= String(markerCount);
+				if(line.getAttribute('marker-end')){
+					line.setAttribute('marker-end', 'url(#arrow_' + markerCount + ')');
+				}
+				markerCount++;
+			}
+			let top = Number(cloneLayer.style.top.replace('px', ''));
+			let left = Number(cloneLayer.style.left.replace('px', ''));
+			cloneLayer.style.top = (top + 10) + 'px';
+			cloneLayer.style.left = (left + 10) + 'px';
+			
+			pricecardEditor.append(cloneLayer);
+			jsSelectLayer(cloneLayer);
+			
+			jsMakePreview();
+		}
+		
+		function jsSelectCover(obj){
+			const beforeCover = pricecardEditor.dataset.cover;
+			const afterCover = obj.dataset.cover;
+			
+			const beforeTop = pricecardEditor.style.top;
+			const beforeLeft = pricecardEditor.style.left;
+			
+			const afterTop = obj.style.top;
+			const afterLeft = obj.style.left;
+			
+			pricecardEditor.dataset.cover = afterCover;
+			pricecardEditor.style.top = afterTop;
+			pricecardEditor.style.left = afterLeft;
+			
+			obj.dataset.cover = beforeCover;
+			obj.style.top = beforeTop == '' ? '20px' : beforeTop;
+			obj.style.left = beforeLeft == '' ? '137px' : beforeLeft;
+			
+			pricecardEditor.innerHTML = pricecardCanvas.children[Number(afterCover)].innerHTML;
+		}
+		
+		function jsSelectMode(obj){
+			editorMode = obj.checked ? 0 : 1;
+			
+			const coverList = pricecardFrame.querySelectorAll('.ai_crt_canvas_cover');
+			if(editorMode == 1){ //개별수정
+				coverList.forEach(cover => {
+					cover.setAttribute('ondblclick', 'jsSelectCover(this)');
+					cover.classList.add('on');
+				});
+			
+				document.getElementById("pricecardRowCount").disabled = true;
+	        	document.getElementById("pricecardColCount").disabled = true;
+			}else{ //전체수정
+				//에디터를 첫번째 커버로 옮긴다.
+				const editorCover = pricecardEditor.dataset.cover;
+				coverList.forEach(cover => {
+					if(cover.dataset.cover === '0'){
+						jsSelectCover(cover);
+					}
+					cover.removeAttribute('ondblclick');
+					cover.classList.remove('on');
+				});
+				
+				document.getElementById("pricecardRowCount").disabled = false;
+	        	document.getElementById("pricecardColCount").disabled = false;
+			}				
+		}
+		
+		function jsSelectScale(obj){
+			const scale = Number(obj.dataset.scale);
+			const currentScale = Number(document.getElementById('pricecardScale').innerHTML);
+			
+			if(scale === currentScale) return false;
+			
+			if(scale === 1){
+				pricecardFrame.style.removeProperty('transform');	
+			}else{
+				pricecardFrame.style.transform = 'scale(' + scale + ')';
+			}
+			document.getElementById('pricecardScale').innerHTML = scale;
+		}
+		
+		function jsSelectLayer(layer){
+			if(pricecardSelectedLayer){
+				pricecardSelectedLayer.classList.remove('selected');
+			}
+			pricecardSelectedLayer = layer;
+			
+			let index = -1;
+			if(pricecardSelectedLayer){
+				pricecardSelectedLayer.classList.add('selected');
+				jsVariation();
+				
+				const childrenArray = [...pricecardEditor.children];
+				index = childrenArray.indexOf(pricecardSelectedLayer);
+				index = childrenArray.length - 1 - index;
+			}
+			
+			const layerOrder = document.getElementById('pricecardLayerOrder')
+			if(layerOrder.querySelector('.selected')){
+				layerOrder.querySelector('.selected').classList.remove('selected');
+			}
+			if(index > -1){
+				layerOrder.children[index].classList.add('selected');
+			}
+		}
+		
+		function jsSelectLayer2(obj){
+			if(obj.className.includes('selected')) return false;
+
+			const childrenArray = [...document.getElementById('pricecardLayerOrder').children];
+			index = childrenArray.indexOf(obj);
+			index = childrenArray.length - 1 - index;
+			
+			const target = pricecardEditor.children[index];
+			jsSelectLayer(target);
+		}
+		
+		function jsSendLayer(dir){
+			if(pricecardSelectedLayer){
+				const layerOrder = document.getElementById('pricecardLayerOrder');
+				const selectedOrder = layerOrder.querySelector('.selected');
+				
+				if(dir == "front"){
+					pricecardEditor.appendChild(pricecardSelectedLayer);
+					layerOrder.prepend(selectedOrder);
+				}else if(dir == "forward"){
+					if(pricecardSelectedLayer.nextElementSibling){
+						pricecardEditor.insertBefore(pricecardSelectedLayer.nextElementSibling, pricecardSelectedLayer);
+						layerOrder.insertBefore(selectedOrder, selectedOrder.previousElementSibling);						
+					}
+				}else if(dir == "backward"){
+					if(pricecardSelectedLayer.previousElementSibling){
+						pricecardEditor.insertBefore(pricecardSelectedLayer, pricecardSelectedLayer.previousElementSibling);
+						layerOrder.insertBefore(selectedOrder.nextElementSibling, selectedOrder);	
+					}
+				}else if(dir == "back"){
+					pricecardEditor.prepend(pricecardSelectedLayer);
+					layerOrder.appendChild(selectedOrder);
+				}
+				
+				jsMakePreview();
+			}
+		}
+		
+		function jsVariation(){
+			//열려진 레이어의 값을 가져와서 배치.
+			if(pricecardSelectedLayer){
+				const shape = pricecardSelectedLayer.dataset.shape;
+				currentShape = shape;
+				
+				const editBox = document.getElementById('pricecardEditBox');
+				const editFont = editBox.querySelectorAll('[data-edit="font"]');
+				const editUnit = editBox.querySelectorAll('[data-edit="unit"]');
+				const editLine = editBox.querySelectorAll('[data-edit="line"]');
+				const editBorder = editBox.querySelectorAll('[data-edit="border"]');
+				let color;
+				let borderColor;
+				let borderWidth;				
+				
+				if(shape === 'text'){
+					editFont.forEach(el => {
+						el.style.visibility = 'visible';
+					});
+					editLine.forEach(el => {
+						el.classList.add('hidden');
+					});
+					editBorder.forEach(el => {
+						el.classList.remove('hidden');
+					});
+					
+					const target = pricecardSelectedLayer.firstElementChild.firstElementChild;
+					const column = target.dataset.goods;
+					const fontWeight = target.style.fontWeight;
+					const fontStyle = target.style.fontStyle;
+					const fontAlign = target.style.textAlign;
+					const fontSize = target.style.fontSize.replace('px', '');
+					
+					document.getElementById('pricecardFontAlign').value = fontAlign == '' ? 'left' : fontAlign;
+					document.getElementById('pricecardFont').value = target.className;
+					document.getElementById('pricecardFontWeight').value = fontWeight == '' ? 'normal' : fontWeight;
+					document.getElementById('pricecardFontStyle').value = fontStyle == '' ? 'normal' : fontStyle;
+					document.getElementById('pricecardFontSize').value = fontSize;
+					
+					color = target.style.color;
+					borderWidth = target.style.webkitTextStrokeWidth;
+					borderColor = target.style.webkitTextStrokeColor;
+					
+					
+					if((priceUnit !== '' && (column == 'dcprice' || column == 'sprice')) || column == 'dcrate'){
+						//텍스트 레이어의 단위 엘리먼트
+						const unit = target.querySelector('span');
+						const unitSize = unit.style.fontSize;
+						document.getElementById('pricecardUnitSize').value = unitSize == '' ? fontSize : unitSize.replace('px', '');
+						editUnit.forEach(el => {
+							el.style.visibility = 'visible';
+						});
+					}else{
+						editUnit.forEach(el => {
+							el.style.visibility = 'hidden';
+						});
+					}					
+				}else{
+					editFont.forEach(el => {
+						el.style.visibility = 'hidden';
+					});
+					editUnit.forEach(el => {
+						el.style.visibility = 'hidden';
+					});
+					
+					if(shape === 'line'){
+						editLine.forEach(el => {
+							el.classList.remove('hidden');
+						});
+						editBorder.forEach(el => {
+							el.classList.add('hidden');
+						});
+						
+						const target = pricecardSelectedLayer.querySelector('svg').querySelector('line');
+						color = target.getAttribute('stroke');
+						document.getElementById('pricecardLineWidth').value = target.getAttribute('stroke-width');
+						borderWidth = '';
+						borderColor = '';
+					}else{
+						editLine.forEach(el => {
+							el.classList.add('hidden');
+						});
+						editBorder.forEach(el => {
+							el.classList.remove('hidden');
+						});
+						
+						const target = pricecardSelectedLayer.querySelector('svg').firstElementChild;
+						color = target.getAttribute('fill');
+						borderWidth = target.getAttribute('stroke-width');
+						borderColor = target.getAttribute('stroke');
+					}					
+				}			
+					
+				color = jsHexaCode(color);
+				if(color.startsWith('#')){
+					document.getElementById('pricecardColor').value = color;
+					document.getElementById('pricecardColorSelector').value = color;
+				}
+				
+				borderColor = jsHexaCode(borderColor);
+				jsToggleBorderColor(borderColor == 'NOTCOLOR' ? '' : borderColor);
+				document.getElementById('pricecardBorderColor').value = borderColor == 'transparent' ? '' : borderColor;
+				document.getElementById('pricecardBorderWidth').value = borderWidth == '' ? '0' : borderWidth.replace('px', '');
+			}
+		}
+		
+		function jsToggleBorderColor(color){
+			const txtColor = document.getElementById('pricecardBorderColor');
+			const colorSelector = document.getElementById('pricecardBorderColorSelector');
+			const colorless = document.getElementById('pricecardBorderColorless');
+			if(color === '' || color === 'transparent'){
+				colorSelector.style.visibility = 'hidden';
+				colorless.classList.remove('hidden');
+				txtColor.style.marginLeft = "-45px";
+			}else{
+				colorless.classList.add('hidden');
+				colorSelector.style.visibility = 'visible';
+				txtColor.style.marginLeft = "5px";
+			}
+			
+			if(color === 'click'){
+				colorSelector.click();
+				txtColor.value = "#000000";
+				jsMakeBorder(colorSelector);
+			}else{
+				colorSelector.value = color;
+			}
+		}
+		
+		function jsHexaCode(color) {
+			if(color === '' || color === 'transparent'){
+				return color;
+			}
+			
+			const hexaReg = /^#?([A-Fa-f0-9]{6})$/;
+			if(hexaReg.test(color)){
+				return color;
+			}
+			
+			const hexaReg2 = /^#?([A-Fa-f0-9]{3})$/;
+			if(hexaReg2.test(color)){
+				let newColor = '';
+				[...color].forEach((ch, index) => {
+					newColor += ch;
+					if(index > 0) newColor += ch;
+				});
+				return newColor;
+			}
+			
+			let check;
+			if(color.startsWith('rgb(')){
+				check = color.replace('rgb(', '').replace(')', '');
+			}else if(color.startsWith('rgba(')){
+				check = color.replace('rgba(', '').replace(')', '');
+			}else{
+				return 'NOTCOLOR';
+			}
+			let array = [];
+			if(check.includes(',')){
+				array = check.split(',');
+			}else if(check.includes(' ')){
+				array = check.split(' ');
+			}else{
+				return 'NOTCOLOR';
+			}
+			
+			let hexaCode = '#';
+			if(array.length > 2){
+				for(let i = 0; i < 3; i++){
+					try{
+						const num = Number(array[i]);
+						if(num < 0 || num > 255){
+							return 'NOTCOLOR';
+						}else{
+							hexaCode += num.toString(16).padStart(2, '0');
+						}
+					}catch(error){
+						return 'NOTCOLOR';
+					}
+				}
+			}else{
+				return 'NOTCOLOR';
+			}
+		    return hexaCode;
+		}
+		
+		function jsEditableText(obj){
+			if(!pricecardSelectedLayer){
+				return false;
+			}
+			
+			if(!obj.hasAttribute('contenteditable')){
+				obj.setAttribute('contenteditable', 'true');
+				obj.addEventListener('keydown', (e) => {
+					if(e.key === 'Enter'){
+						e.target.blur();
+					}
+				});
+				obj.addEventListener('blur', (e) => {					
+					e.target.removeAttribute('contenteditable');
+					e.target.scrollTop = 0;
+					e.target.scrollLeft = 0;
+				});
+			}
+			
+			obj.focus();
+			//커서를 맨마지막으로 이동
+			const range = document.createRange();
+			const selection = window.getSelection();
+			  
+			range.selectNodeContents(obj);
+			range.collapse(false); // false: 맨 끝으로 축소
+			  
+			selection.removeAllRanges();
+			selection.addRange(range);
+			
+			jsMakePreview();
+		}
+		
+		function jsMakeLocation(obj){
+			if(!pricecardSelectedLayer) return false;
+			
+			const value = obj.value;
+			if(value === '' || isNaN(value)){
+				return false;
+			}
+			
+			if(obj.id === 'pricecardTop'){
+				pricecardSelectedLayer.style.top = value + 'px';				
+			}else if(obj.id === 'pricecardLeft'){
+				pricecardSelectedLayer.style.left = value + 'px';
+			}else if(obj.id === 'pricecardWidth'){
+				let width = Number(value);
+				if(width < 30){
+					return false;
+				}
+				pricecardSelectedLayer.style.width = width + 'px';
+			}else if(obj.id === 'pricecardHeight'){
+				let height = Number(value);
+				if(height < 30){
+					return false;
+				}
+				pricecardSelectedLayer.style.height = height + 'px';
+			}else if(obj.id === 'pricecardAngle'){
+				let angle = parseInt(value);
+				if(angle !== Number(value)){
+					obj.value = angle;
+				}
+				
+		    	// 💡 핵심: 부모 div 자체를 CSS 스타일로 회전시킵니다.
+		    	pricecardSelectedLayer.style.transformOrigin = 'center';
+		    	pricecardSelectedLayer.style.transform = 'rotate(' + angle + 'deg)';
+		    	pricecardSelectedLayer.querySelector('.ai_crt_layer_rotate').dataset.angle = angle;
+			}
+		
+			jsMakePreview();
+		}
+		
+		function jsMakeBorder(obj){
+			let width = 0;
+			let color = '';
+			const previous = currentStroke;
+			if(!pricecardSelectedLayer) return false;
+			
+			if(obj.id === 'pricecardBorderWidth'){
+				width = obj.value;
+				
+				if(width == '' || isNaN(width)){
+					width = 0;
+				}else{
+					width = parseInt(Math.abs(width));
+					if(width != obj.value){
+						obj.value = width;
+					}
+				}
+			}else{
+				width = parseInt(document.getElementById('pricecardBorderWidth').value);
+			}
+			
+			if(obj.id === 'pricecardBorderColorSelector'){
+				color = obj.value;
+				document.getElementById('pricecardBorderColor').value = color;
+			}else{
+				color = jsHexaCode(document.getElementById('pricecardBorderColor').value);
+				if(color === 'NOTCOLOR') return false;
+				else jsToggleBorderColor(color);
+			}
+			
+			if(color === '' || color === 'transparent'){
+				currentStroke = 0;
+			}else{
+				currentStroke = width;
+			}
+
+			if(currentShape === 'text'){
+				const target = pricecardSelectedLayer.firstElementChild.firstElementChild;
+				let padding;
+				if(document.getElementById('pricecardFontStyle').value === 'italic'){
+					padding = currentStroke == 0 ? '3px 10px 3px 3px' : Math.round(width/2) + 'px ' + Math.round(width*3/2) + 'px ' + Math.round(width/2) + 'px ' + width + 'px';
+				}else{
+					padding = currentStroke == 0 ? '3px' : Math.round(width/2) + 'px ' + width + 'px';
+				}
+				target.style.webkitTextStrokeWidth = width + 'px';
+				target.style.webkitTextStrokeColor = (color == '' ? 'transparent' : color);
+				target.style.padding = padding;
+			}else{
+				const target = pricecardSelectedLayer.querySelector('svg').firstElementChild;
+				target.setAttribute("stroke", color);
+				target.setAttribute("stroke-width", width);
+				
+				//사이즈 보정이 필요함.
+				if(previous != currentStroke){
+					const newWidth = activeLayer.style.width.replace('px', '');
+					const newHeight = activeLayer.style.height.replace('px', '');
+					jsCorrection(newWidth, newHeight);
+				}
+			}
+			
+			jsMakePreview();
+		}
+		
+		function jsMakeFont(obj){
+			if(!pricecardSelectedLayer) return false;
+			if(currentShape !== 'text') return false;
+			
+			const target = pricecardSelectedLayer.firstElementChild.firstElementChild;
+			const column = target.dataset.goods;
+			const id = obj.id;
+			const value = obj.value;		
+			
+			if(id === 'pricecardFont'){
+				const classList = target.classList;
+				classList.forEach((className) => {
+					if(className.startsWith('web_font_')){
+						classList.remove(className);
+					}
+				});
+				if(value !== ''){
+					classList.add(value);
+				}
+			}else if(id === 'pricecardFontWeight'){
+				target.style.fontWeight = value;
+			}else if(id === 'pricecardFontSize'){
+				if(value !== '' && !isNaN(value)){
+					const size = parseInt(Math.abs(value));
+					target.style.fontSize = size + 'px';
+					target.style.lineHeight = (size + 5 + Math.round(currentStroke/2)) + 'px';
+				}
+			}else if(id === 'pricecardFontStyle'){
+				target.style.fontStyle = value;
+				let padding;
+				if(value === 'italic'){
+					padding = currentStroke == 0 ? '3px 10px 3px 3px' : Math.round(currentStroke/2) + 'px ' + Math.round(currentStroke*3/2) + 'px ' + Math.round(currentStroke/2) + 'px ' + currentStroke + 'px';
+				}else{
+					padding = currentStroke == 0 ? '3px' : Math.round(currentStroke/2) + 'px ' + currentStroke + 'px';
+				}
+				target.style.padding = padding;
+			}else if(id === 'pricecardFontAlign'){
+				target.style.textAlign = value;
+			}else if(id === 'pricecardUnitSize'){
+				if(priceUnit !== '' && value !== '' && !isNaN(value)){
+					const size = parseInt(Math.abs(value));
+					target.querySelector('span').style.fontSize = size + 'px';
+				}
+			}
+			
+			jsMakePreview();
+		}
+		
+		function jsMakeLine(obj){
+			if(!pricecardSelectedLayer) return false;
+			if(currentShape !== 'line') return false;
+			
+			const target = pricecardSelectedLayer.firstElementChild.querySelector('line');
+			const column = target.dataset.goods;
+			const id = obj.id;
+			const value = obj.value;		
+			
+			if(id === 'pricecardLineCap'){
+				const width = Number(target.getAttribute('stroke-width'));
+				currentStroke = width;
+				if(value == 'arrow'){
+					target.removeAttribute('stroke-linecap');
+					target.setAttribute('marker-end', 'url(#arrow_' + target.dataset.marker + ')');
+				}else{
+					target.setAttribute('stroke-linecap', value);
+					target.removeAttribute('marker-end');
+				}
+			}else if(id === 'pricecardLineWidth'){				
+				if(value == '' || isNaN(value)){
+					return false;
+				}else{
+					const width = parseInt(Math.abs(value));
+					if(width !== Number(obj.value)){
+						obj.value = width;
+					}
+					
+					target.setAttribute('stroke-width', String(width));
+					currentStroke = width;
+				}
+			}
+			
+			const svgWidth = Number(pricecardSelectedLayer.style.width.replace('px', ''));
+			const svgHeight = Number(pricecardSelectedLayer.style.height.replace('px', ''));
+			jsCorrection(svgWidth, svgHeight);
+			jsMakePreview();
+		}
+		
+		function jsCorrection(newWidth, newHeight){
+			if(currentShape === 'rectangle'){
+				const target = activeLayer.querySelector('rect');
+				target.parentElement.setAttribute('viewBox', '0 0 ' + newWidth + ' ' + newHeight);
+				target.setAttribute('width', (newWidth - currentStroke));
+				target.setAttribute('height', (newHeight - currentStroke));
+				target.setAttribute('x', (currentStroke/2));
+				target.setAttribute('y', (currentStroke/2));
+			}else if(currentShape === 'ellipse'){
+				const target = activeLayer.querySelector('ellipse');
+				target.parentElement.setAttribute('viewBox', '0 0 ' + newWidth + ' ' + newHeight);
+				target.setAttribute('cx', (newWidth/2));
+				target.setAttribute('cy', (newHeight/2));
+				target.setAttribute('rx', ((newWidth-currentStroke)/2));
+				target.setAttribute('ry', ((newHeight-currentStroke)/2));
+			}else if(currentShape === 'triangle'){
+				const target = activeLayer.querySelector('polygon');
+				target.parentElement.setAttribute('viewBox', '0 0 ' + newWidth + ' ' + newHeight);
+				let arrayPoints = target.getAttribute('points').split(' ');
+				let newPoints = '';
+				let correct = currentStroke;
+				if(newWidth <= 2*newHeight){
+					correct *= Number(0.8);					
+				}
+				
+				arrayPoints.forEach((e, index) => {
+					const pointSet = e.split(',');
+					if(index === 0){
+						newPoints += String(correct) + ',' + String(currentStroke/2);
+					}else if(index === 1){
+						 newPoints += ' ' + String(newWidth/2) + ',' + String(newHeight-correct);
+					}else if(index === 2){
+						 newPoints += ' ' + String(newWidth-correct) + ',' + String(currentStroke/2);
+					}
+				});
+				target.setAttribute('points', newPoints);					
+			}else if(currentShape === 'line'){
+				const target = activeLayer.querySelector('line');
+				const width = Number(target.getAttribute('stroke-width'));
+				const lineCap = target.getAttribute('stroke-linecap');
+				target.parentElement.setAttribute('viewBox', '0 0 ' + newWidth + ' ' + newHeight);
+				if(lineCap != null){
+					target.setAttribute('x1', Math.round(width/2));
+					target.setAttribute('x2', (newWidth - Math.round(width/2)));
+				}else{
+					target.setAttribute('x1', 0);
+					target.setAttribute('x2', (newWidth - width));
+				}
+				
+				target.setAttribute('y1', parseInt(newHeight/2));
+				target.setAttribute('y2', parseInt(newHeight/2));
+			}
+		}
+		
+		function jsMakePreview(){ 	
+			//뭔가 바뀌면 전체를 다시 그린다.	
+			const childList = pricecardCanvas.children;
+			if(editorMode === 0){
+				let index = 0;
+				for(const child of childList){
+					child.innerHTML = pricecardEditor.innerHTML.replaceAll('ai_crt_layer selected', 'ai_crt_layer');
+					const markerList = child.querySelectorAll("marker");
+					if(markerList){
+						markerList.forEach(marker => {
+							const id = marker.id + '__' + index;
+							const dataMarker = id.replace('arrow_', '');
+							const line = marker.parentElement.nextElementSibling;
+							marker.id = id;
+							line.dataset.marker = dataMarker;
+							if(line.getAttribute('marker-end')){
+								line.setAttribute('marker-end', 'url(#' + id + ')');
+							}
+						});
+					}
+					index++;
+				}
+				jsSetGoodsDataToCanvas();			
+			}else if(editorMode === 1){
+				const cover = Number(pricecardEditor.dataset.cover);
+				const target = childList[cover];
+				target.innerHTML = pricecardEditor.innerHTML.replaceAll('ai_crt_layer selected', 'ai_crt_layer');
+				//marker가 있는지 찾는다.
+				const markerList = target.querySelectorAll("marker");
+				if(markerList){
+					markerList.forEach(marker => {
+						const id = marker.id + '__' + cover;
+						const dataMarker = id.replace('arrow_', '');
+						const line = marker.parentElement.nextElementSibling;
+						marker.id = id;
+						line.dataset.marker = dataMarker;
+						if(line.getAttribute('marker-end')){
+							line.setAttribute('marker-end', 'url(#' + id + ')');
+						}
+					});
+				}
+			}
+			
+			if(pricecardSelectedLayer){
+				document.getElementById('pricecardTop').value = pricecardSelectedLayer.style.top.replace('px','');
+				document.getElementById('pricecardLeft').value = pricecardSelectedLayer.style.left.replace('px',''); 	
+				document.getElementById('pricecardWidth').value = pricecardSelectedLayer.style.width.replace('px',''); 
+				document.getElementById('pricecardHeight').value = pricecardSelectedLayer.style.height.replace('px','');
+				document.getElementById('pricecardAngle').value = pricecardSelectedLayer.querySelector('.ai_crt_layer_rotate').dataset.angle;
+			}
+		}
+		
+		function jsSetGoodsDataToCanvas(dataIndex=-1, key='', value=''){
+			//에디터에도 데이터를 할당한다.
+			const cover = Number(pricecardEditor.dataset.cover);
+
+			if(dataIndex == -1){
+				//canvas에서 TEXT 노드를 찾아서 데이터를 입력한다.
+				const childList = pricecardCanvas.children;
+				
+				for(let i = 0; i < childList.length; i++){
+					if(excelGoodsMap.has(i)){
+						const child = childList[i];
+						const textLayers = child.querySelectorAll('[data-shape="text"]');
+						const obj = excelGoodsMap.get(i);
+						textLayers.forEach((layer, index) => {
+							const target = layer.firstElementChild.firstElementChild;
+							const column = target.dataset.goods;
+							if(column === 'name'){
+								target.innerHTML = obj.Name == '' ? '상품명' : obj.Name;
+								if(i == cover){
+									pricecardEditor.querySelector('div[data-goods="name"]').innerHTML = obj.Name == '' ? '상품명' : obj.Name;
+								}
+							}else if(column === 'dcprice'){
+								const dcprice = obj.DCPrice == '' ? '가격' : jsAddComma(obj.DCPrice);
+								if(priceUnit !== ''){
+									const spanClone = target.querySelector('span').cloneNode(true);
+									target.innerHTML = '';
+									if(priceUnit == 'back'){
+										target.append(dcprice);
+										target.append(spanClone);
+									}else{
+										target.append(spanClone);
+										target.append(dcprice);
+									}
+								
+									if(i == cover){
+										pricecardEditor.querySelector('div[data-goods="dcprice"]').innerHTML = target.innerHTML;
+									}
+								}else{
+									target.innerHTML = dcprice;
+									if(i == cover){
+										pricecardEditor.querySelector('div[data-goods="dcprice"]').innerHTML = dcprice;
+									}
+								}
+							}else if(column === 'spec'){
+								target.innerHTML = obj.Spec == '' ? '규격' : obj.Spec;
+								if(i == cover){
+									pricecardEditor.querySelector('div[data-goods="spec"]').innerHTML = obj.Spec == '' ? '규격' : obj.Spec;
+								}
+							}else if(column === 'sprice'){
+								const sprice = obj.SPrice == '' ? '정상가격' : jsAddComma(obj.SPrice);
+								if(priceUnit !== ''){
+									const spanClone = target.querySelector('span').cloneNode(true);
+									target.innerHTML = '';
+									if(priceUnit == 'back'){
+										target.append(sprice);
+										target.append(spanClone);
+									}else{
+										target.append(spanClone);
+										target.append(sprice);
+									}
+								
+									if(i == cover){
+										pricecardEditor.querySelector('div[data-goods="sprice"]').innerHTML = target.innerHTML;
+									}
+								}else{
+									target.innerHTML = sprice;
+									if(i == cover){
+										pricecardEditor.querySelector('div[data-goods="sprice"]').innerHTML = sprice;
+									}
+								}
+							}else if(column === 'dcrate'){
+								const dcrate = obj.DCRate == '' ? '할인율' : obj.DCRate;
+								const spanClone = target.querySelector('span').cloneNode(true);
+								target.innerHTML = '';
+								target.append(dcrate);
+								target.append(spanClone);
+								if(i == cover){
+									pricecardEditor.querySelector('div[data-goods="dcrate"]').innerHTML = target.innerHTML;
+								}
+							}
+						});
+					}
+				}
+			}else{ //1개만 바꿀 경우
+				const child = pricecardCanvas.children[dataIndex];
+			
+				if(key === 'Name'){
+					child.querySelector('div[data-goods="name"]').innerHTML = value == '' ? '상품명' : value;
+					if(dataIndex == cover){
+						pricecardEditor.querySelector('div[data-goods="name"]').innerHTML = value == '' ? '상품명' : value;
+					}
+				}else if(key === 'DCPrice'){
+					const dcprice = value == '' ? '가격' : jsAddComma(value);
+					const target = child.querySelector('div[data-goods="dcprice"]');
+					if(target.querySelector('span')){
+						const spanClone = target.querySelector('span').cloneNode(true);
+						target.innerHTML = '';
+						if(priceUnit == 'back'){
+							target.append(dcprice);
+							target.append(spanClone);
+						}else{
+							target.append(spanClone);
+							target.append(dcprice);
+						}
+					}else{
+						target.innerHTML = dcprice;
+					}
+										
+					if(dataIndex == cover){
+						const editorTarget = pricecardEditor.querySelector('div[data-goods="dcprice"]');
+						editorTarget.innerHTML = target.innerHTML;
+					}
+				}else if(key === 'Spec'){
+					child.querySelector('div[data-goods="spec"]').innerHTML = value == '' ? '규격' : value;
+					if(dataIndex == cover){
+						pricecardEditor.querySelector('div[data-goods="spec"]').innerHTML = value == '' ? '규격' : value;
+					}
+				}else if(key === 'SPrice'){
+					const sprice = value == '' ? '정상가격' : jsAddComma(value);
+					const target = child.querySelector('div[data-goods="sprice"]');
+					if(target.querySelector('span')){
+						const spanClone = target.querySelector('span').cloneNode(true);
+						target.innerHTML = '';
+						if(priceUnit == 'back'){
+							target.append(sprice);
+							target.append(spanClone);
+						}else{
+							target.append(spanClone);
+							target.append(sprice);
+						}
+					}else{
+						target.innerHTML = sprice;
+					}
+					
+					if(dataIndex == cover){
+						const editorTarget = pricecardEditor.querySelector('div[data-goods="sprice"]');
+						editorTarget.innerHTML = target.innerHTML;
+					}
+				}else if(key === 'DCRate'){
+					const dcrate = value == '' ? '할인율' : (value + '%');
+					const target = child.querySelector('div[data-goods="dcrate"]');
+					const spanClone = target.querySelector('span').cloneNode(true);
+					target.innterHTML = '';
+					target.append(dcrate);
+					target.append(spanClone);
+					
+					if(dataIndex == cover){
+						const editorTarget = pricecardEditor.querySelector('div[data-goods="dcrate"]');
+						editorTarget.innerHTML = target.innerHTML;
+					}
+				}
+			}
+		}
+		
+		function jsSaveImage(){
+			document.getElementById('loading').classList.remove('hidden');
+			
+			const canvasClone = pricecardCanvas.cloneNode(true);
+	    	const printArea = document.getElementById('printArea');
+	    	printArea.innerHTML = '';
+	    	printArea.append(canvasClone);
+	    	const child = printArea.firstElementChild;
+	    	child.style.top = "0";
+	    	child.style.left = "0";
+
+	        //htmlToImage.toJpeg(child, {pixelRatio: 2, quality: 0.85})
+	        htmlToImage.toPng(child, {pixelRatio: 2})
+            .then(function (dataUrl) {
+                //window.saveAs(blob, 'table_image.png');
+            
+                const printImg = document.createElement('img');
+                printImg.src = dataUrl;
+                printArea.innerHTML = '';
+                printArea.append(printImg);
+                
+                jsSaveImage2(dataUrl);
+            })
+            .catch(function (error) {
+                console.log('이미지 생성 중 오류 발생:', error);
+                alert('이미지 생성에 실패했습니다. 인터넷 상태를 확인해 주세요.');
+                document.getElementById('loading').classList.add('hidden');
+                return false;
+            });
+	    }
+		
+		function jsSaveImage2(dataUrl){	    	
+	    	const selectedTemplate = document.getElementById('selPricecardTemplate').querySelector('.selected');
+	    	let templateCode = '0';
+	    	if(selectedTemplate){ 
+	    		templateCode = selectedTemplate.dataset.template;
+    		}
+    		
+    		const dir = document.getElementById('selPricecardDirection').dataset.direction;
+    		const row = document.getElementById('pricecardRowCount').dataset.row;
+    		const col = document.getElementById('pricecardColCount').dataset.col;
+    		const layout = ((dir == 'portrait' ? '세로' : '가로') + '×' + row + '×' + col);
+    		
+	    	$.ajax({
+				url : "ajax/savePricecardImage.json",
+				type : 'POST',
+				dataType : "json",
+				data : {
+					requestService : 3,
+					layout : layout,
+					promptHidden : templateCode,
+					dataUrl : dataUrl
+				}
+			}).done(function(data) {
+				const result = data.msg;
+				if(result === 'NO SESSION'){
+					alert('세션이 만료되었습니다.');
+				}else{
+					if(result === 'SUCCESS'){
+						alert('이미지를 생성하고 저장하였습니다.\n센터 보관기간은 7일입니다.(' + data.expDate + ' 만료)');
+					}else{
+						alert('이미지 생성에는 성공했지만 ' + result + '\n해당 이미지는 센터에 저장되지 않았으니 꼭 다운로드 받으시기 바랍니다.');
+					}
+					
+					const resultImg = document.getElementById('pricecardImage');
+	                resultImg.src = dataUrl;
+	                resultImg.style.width = document.getElementById('selPricecardDirection').dataset.direction == 'portrait' ? '566px' : '800px';
+	                document.getElementById('loading').classList.add('hidden');
+	                document.getElementById('popupLayer').classList.remove('hidden');
+	                resultImg.parentElement.classList.remove('hidden');
+				}
+			}).fail(function(xhr, status, error) {
+				alert('이미지 저장 중 에러가 발생했습니다.');
+			}).always(function() {
+				document.getElementById('loading').classList.add('hidden');
+			});
+	    }
+		
+	    function jsPrint(){
+	    	window.print();
+	    }
+	    
+	    function jsDownload(){
+	    	const link = document.createElement('a');
+	    	
+	    	link.href = document.getElementById('printArea').querySelector('img').getAttribute('src');
+	    	link.download = '프라이스카드_테스트.png';
+	    	
+	    	document.body.appendChild(link);
+	    	
+	    	link.click();
+	    	
+	    	document.body.removeChild(link);
+	    }
+	    
+	    function jsSaveTemplate(){
+	    	const goodsCount = document.getElementById('pricecardExcel').dataset.count;
+	    	if(goodsCount == '' || isNaN(goodsCount) || goodsCount == '0'){
+	    		alert('템플릿으로 저장할 작업물이 없습니다.');
+	    		return false;
+	    	}
+	    	
+	    	if(!confirm('현재 활성화된 편집창의 레이어들을 템플릿으로 저장하시겠습니까?')){
+	    		return false;
+	    	}
+	    	
+	    	const selectedTemplate = document.getElementById('selPricecardTemplate').querySelector('button.selected');
+	    	const button = document.getElementById('btnTemplateUpdate');
+	    	if(selectedTemplate){
+	    		const templateMart = Number(selectedTemplate.dataset.mart);
+	    		
+	    		if(templateMart > 0){
+	    			const templateCode = Number(selectedTemplate.dataset.template);
+	    			const templateTitle = selectedTemplate.firstElementChild.innerHTML.split('<br')[0];
+	    			
+	    			button.setAttribute('onclick', 'jsSaveTemplate2(' + templateCode + ')');
+	    			document.getElementById('pricecardTemplateTitle').value = templateTitle;
+	    			button.style.display = '';
+	    		}else{
+	    			document.getElementById('pricecardTemplateTitle').value = '';
+	    			button.style.display = 'none';
+	    		}    		
+	    	}else{
+	    		document.getElementById('pricecardTemplateTitle').value = '';
+	    		button.style.display = 'none';
+	    	}
+	  
+	    	document.getElementById('popupLayer').classList.remove('hidden');
+	    	document.getElementById('pricecardTemplate').classList.remove('hidden');
+	    }
+	    
+	    function jsSaveTemplate2(templateCode){	    	
+	    	const templateTitle = document.getElementById('pricecardTemplateTitle').value.trim();
+    		if(templateTitle.length == 0){
+   				alert("템플릿명을 입력해 주십시오.");
+   				document.getElementById('pricecardTemplateTitle').focus();
+   				return false;
+    		}
+    		
+    		document.getElementById('popupLayer').classList.add('hidden');
+    		document.getElementById('pricecardTemplate').classList.add('hidden');
+    		document.getElementById('pricecardTemplateTitle').value = '';
+    		document.getElementById('loading').classList.remove('hidden');
+    		
+    		const dir = document.getElementById('selPricecardDirection').dataset.direction;
+    		const row = document.getElementById('pricecardRowCount').dataset.row;
+    		const col = document.getElementById('pricecardColCount').dataset.col;
+    		const clone = pricecardEditor.cloneNode(true);
+    		const childList = clone.children;
+    		for(const child of childList){
+				child.classList.remove('selected');
+				if(child.dataset.shape === 'text' && child.dataset.column !== 'etc'){
+					const target = child.firstElementChild.firstElementChild;
+					if(child.dataset.column === 'name'){
+						target.innerHTML = '상품';
+					}else if(child.dataset.column === 'dcprice'){
+						if(target.querySelector('span')){
+							const spanClone = target.querySelector('span').cloneNode(true);
+							target.innerHTML = '가격';
+							if(spanClone.innerHTML === '￦'){
+								target.prepend(spanClone);
+							}else{
+								target.append(spanClone);
+							}
+						}else{
+							target.innerHTML = '가격';
+						}
+					}else if(child.dataset.column === 'spec'){
+						target.innerHTML = '규격';
+					}else if(child.dataset.column === 'sprice'){
+						if(target.querySelector('span')){
+							const spanClone = target.querySelector('span').cloneNode(true);
+							target.innerHTML = '정상가격';
+							if(spanClone.innerHTML === '￦'){
+								target.prepend(spanClone);
+							}else{
+								target.append(spanClone);
+							}
+						}else{
+							target.innerHTML = '정상가격';
+						}
+					}else if(child.dataset.column === 'dcrate'){
+						const spanClone = target.querySelector('span').cloneNode(true);
+						target.innerHTML = '할인율';
+						target.append(spanClone);
+					}
+				}
+			}
+    		
+    		const template = clone.innerHTML;
+    		const goodsCols = arrExcelColumn.join(',').replaceAll('pricecardGoods','');
+    		const layout = ((dir == 'portrait' ? '세로' : '가로') + '×' + row + '×' + col);
+    		
+	    	$.ajax({
+				url : "ajax/savePricecardTemplate.json",
+				type : 'POST',
+				dataType : "json",
+				data : {
+					requestCode : templateCode,
+					requestService : 3,
+					layout : layout,
+					imageSamba : goodsCols,
+					promptInput : templateTitle,
+					promptHidden : template
+				}
+			}).done(function(data) {
+				const result = data.msg;
+				if(result === 'SUCCESS'){
+					const selTemplate = document.getElementById('selPricecardTemplate');
+					
+					//템플릿 추가
+					if(templateCode == 0){
+						if(selTemplate.querySelector('.selected')){
+							selTemplate.querySelector('.selected').classList.remove('selected');
+						}
+						const button = document.createElement('button');
+						button.className = 'ai_crt_box_btn selected';
+						button.dataset.template = data.template;
+						button.dataset.mart = '1001';
+						button.setAttribute('onclick', 'jsSelectTemplate(this)');
+						const div = document.createElement('div');
+						div.className = 'ai_crt_info--small';
+						div.style.fontSize = '13px';
+						div.innerHTML = templateTitle + '<br/>(' + layout.replace('×', '형,') + ')';
+						button.append(div);
+						const input = document.createElement('input');
+						input.type = 'hidden';
+						input.dataset.template = data.template;
+						input.dataset.goodscol = goodsCols;
+						input.value = template;
+						selTemplate.append(button);
+						selTemplate.append(input);
+						
+						alert('템플릿이 추가되었습니다.');
+					}else{
+						const input = selTemplate.querySelector('input[data-template="' + templateCode + '"]');
+						input.dataset.goodscol = goodsCols;
+						input.value = template;
+						
+						alert('템플릿이 수정되었습니다.');
+					}
+				}else if(result === 'NO SESSION'){
+					alert('세션이 만료되었습니다.');
+				}else{
+					alert('템플릿 저장에 실패했습니다.');
+				}
+			}).fail(function(xhr, status, error) {
+				alert('템플릿 저장 중 에러가 발생했습니다.');
+			}).always(function() {
+				document.getElementById('loading').classList.add('hidden');
+			});
+	    }
+	    
+	    function jsCloseLayer(){
+	    	const popupLayer = document.getElementById('popupLayer');
+	    	popupLayer.classList.add('hidden');
+	    	const childList = popupLayer.querySelector('.popup_content').children;
+	    	for(const child of childList){
+	    		child.classList.add('hidden');
+	    	}
+	    }
+	    
+		pricecardFrame.addEventListener('keydown', (e) => {
+			if((e.key === 'Delete' || e.key === 'Backspace') && pricecardSelectedLayer && e.target.dataset.goods !== 'etc'){
+				if(currentShape == "text"){
+					const column = pricecardSelectedLayer.dataset.column;
+					if(column == "name"){
+						alert("상품명은 제거할 수 없습니다.");
+						return false;
+					}else if(column == "dcprice"){
+						alert("가격은 제거할 수 없습니다.");
+						return false;
+					}else if(column != ""){
+						alert("컬럼 선택을 해제하시면 제거됩니다. 컬럼 버튼을 클릭하세요.");
+						return false;
+					}
+				}
+				pricecardEditor.removeChild(pricecardSelectedLayer);
+				pricecardSelectedLayer = null;
+				
+				jsMakePreview();
+		    }else if(e.key === 'ArrowUp'){
+		    	e.preventDefault();
+				if(pricecardSelectedLayer){
+					const top = Number(pricecardSelectedLayer.style.top.replace('px', ''));
+					pricecardSelectedLayer.style.top = (top - 1) + 'px';
+					document.getElementById('pricecardTop').value = (top - 1);
+					jsMakePreview();
+				}
+			}else if(e.key === 'ArrowDown'){
+				e.preventDefault();
+				if(pricecardSelectedLayer){
+					const top = Number(pricecardSelectedLayer.style.top.replace('px', ''));
+					pricecardSelectedLayer.style.top = (top + 1) + 'px';
+					document.getElementById('pricecardTop').value = (top + 1);
+					jsMakePreview();
+				}
+			}else if(e.key === 'ArrowLeft'){
+				e.preventDefault();
+				if(pricecardSelectedLayer){
+					const left = Number(pricecardSelectedLayer.style.left.replace('px', ''));
+					pricecardSelectedLayer.style.left = (left - 1) + 'px';
+					document.getElementById('pricecardLeft').value = (left - 1);
+					jsMakePreview();
+				}
+			}else if(e.key === 'ArrowRight'){
+				e.preventDefault();
+				if(pricecardSelectedLayer){
+					const left = Number(pricecardSelectedLayer.style.left.replace('px', ''));
+					pricecardSelectedLayer.style.left = (left + 1) + 'px';
+					document.getElementById('pricecardLeft').value = (left + 1);
+					jsMakePreview();
+				}
+			}else if(e.ctrlKey && (e.key === '+' || e.kye === '=')){
+				e.preventDefault();
+				let scale = Number(document.getElementById('pricecardScale').innerHTML);
+				scale = parseInt(scale*10 + 2)/10;
+				//확대하기
+				pricecardFrame.style.transform = 'scale(' + scale + ')';
+				document.getElementById('pricecardScale').innerHTML = scale;
+			}else if(e.ctrlKey && (e.key === '-')){
+				e.preventDefault();
+				let scale = Number(document.getElementById('pricecardScale').innerHTML);
+				if(scale === 1) return false;
+				scale = parseInt(scale*10 - 2)/10;
+				
+				//축소하기
+				if(scale === 1){
+					pricecardFrame.style.removeProperty('transform');
+				}else{
+					pricecardFrame.style.transform = 'scale(' + scale + ')';
+				}
+				document.getElementById('pricecardScale').innerHTML = scale;
+			}
+		});
+		
+		pricecardFrame.addEventListener('mouseleave', (e) => { //'mouseout'
+			if(e.target === pricecardEditor) jsSelectLayer(null);
+		});
+
+		pricecardFrame.addEventListener('mousedown', (e) => {
+			if(e.target.className == 'ai_crt_layer_rotate'){
+				const rotate = e.target.closest('.ai_crt_layer_rotate');
+				const layerTarget = e.target.closest('.ai_crt_layer');
+				
+				if (!layerTarget) return;
+				jsSelectLayer(layerTarget);
+
+				isRotating = true;
+				activeLayer = layerTarget;
+				layerTarget.style.transformOrigin = 'center';
+				jsInitPositions(e);
+				e.stopPropagation();
+				e.preventDefault();
+			}else{
+				const handle = e.target.closest('.ai_crt_layer_handle');
+				const layerTarget = e.target.closest('.ai_crt_layer'); 
+			    
+			    if (!layerTarget || layerTarget.parentElement.className == '') return;
+				jsSelectLayer(layerTarget);
+		
+			    if(handle){
+			    	isResizing = true;
+					activeLayer = layerTarget;
+					currentDirection = handle.dataset.dir;
+					jsInitPositions(e);
+					e.stopPropagation();
+					e.preventDefault(); 
+			    }else if(layerTarget) {
+			    	isDragging = true;
+					activeLayer = layerTarget;
+					//pricecardEditor.appendChild(activeLayer); // 맨 앞으로 가져오기
+					jsInitPositions(e);
+					e.stopPropagation();
+			    }
+			}
+		});
+
+		function jsInitPositions(e){
+			startX = e.clientX;   
+			startY = e.clientY;
+		    startWidth = activeLayer.offsetWidth; 
+		    startHeight = activeLayer.offsetHeight;
+		    startLeft = activeLayer.offsetLeft;
+		    startTop = activeLayer.offsetTop;
+		}
+
+		pricecardFrame.addEventListener('mousemove', (e) => {
+			if(!activeLayer) return;
+
+			let deltaX = e.clientX - startX;
+		    let deltaY = e.clientY - startY;
+		    const minSize = 30;
+			
+		    if(isDragging){
+		    	let newLeft = Math.max((minSize - activeLayer.clientWidth), Math.min((startLeft + deltaX), (pricecardEditor.clientWidth - minSize)));
+		        let newTop = Math.max((minSize - activeLayer.clientHeight), Math.min((startTop + deltaY), (pricecardEditor.clientHeight - minSize)));
+				activeLayer.style.left = newLeft + "px";
+				activeLayer.style.top = newTop + "px";
+		    }
+	
+		    if(isResizing){
+		    	const angle = activeLayer.querySelector('.ai_crt_layer_rotate').dataset.angle;
+		    	
+		    	console.log(currentDirection);
+		    	if(angle != "0"){
+		    		const rad = (angle * Math.PI) / 180;
+		    		const rotatedDeltaX = deltaX * Math.cos(rad) + deltaY * Math.sin(rad);
+		    		const rotatedDeltaY = deltaY * Math.cos(rad) - deltaX * Math.sin(rad);
+		    		deltaX = rotatedDeltaX;
+		    		deltaY = rotatedDeltaY;
+		    	}
+				
+		    	if(currentDirection === 'e'){
+		    		console.log('저기요');
+		    		const newWidth = Math.max(minSize, (startWidth + deltaX));
+		    		activeLayer.style.width = newWidth + 'px';
+		    	}
+		    	
+		    	if(currentDirection === 's'){
+		    		console.log('거기요');
+		    		const newHeight = Math.max(minSize, (startHeight + deltaY));
+		    		activeLayer.style.height = newHeight + 'px';
+		    	}
+		    	
+		    	if(currentDirection === 'w'){
+		    		console.log('여기요');
+		    		const newWidth = Math.max(minSize, (startWidth - deltaX));
+		    		activeLayer.style.width = newWidth + 'px';
+		    		activeLayer.style.left = (startLeft + deltaX) + 'px';
+		    	}
+				
+				//테두리가 있을 때 사이즈 보정이 필요.
+				if(currentStroke > 0 && currentShape !== 'text'){
+					jsCorrection(newWidth, newHeight);
+				}
+		    }
+		    
+		    if(isRotating){
+		    	const rect = activeLayer.getBoundingClientRect();
+		    	const centerX = rect.left + rect.width / 2;
+		    	const centerY = rect.top + rect.height / 2;
+		    	const radians = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+		    	let angle = Math.round(radians * (180 / Math.PI) + 90); // 핸들이 상단에 있으므로 90도 보정
+
+		    	// 💡 핵심: 부모 div 자체를 CSS 스타일로 회전시킵니다.
+		    	activeLayer.style.transform = 'rotate(' + angle + 'deg)';
+		    	activeLayer.querySelector('.ai_crt_layer_rotate').dataset.angle = angle;
+		    }
+		});
+
+		pricecardFrame.addEventListener('mouseup', (e) => {
+			isDragging = false;   
+			isResizing = false;
+			isRotating = false;
+			//activeLayer = null;
+			
+			const index = [...pricecardEditor.children].indexOf(activeLayer);
+			if(index != -1){
+				jsMakePreview();
+			}
+		});
+		
+		// 1. 우클릭(contextmenu) 이벤트 가로채기
+	    /*pricecardFrame.addEventListener('contextmenu', function(event) {
+	    	console.log('contextmenu');
+	    	console.log(event);
+	    	if(pricecardSelectedLayer){
+	    		console.log('진입');
+	    		// 브라우저 기본 우클릭 메뉴가 뜨는 것을 차단
+				event.preventDefault();
+	
+				// 마우스가 클릭된 현재 절대 좌표(X, Y) 가져오기
+				const mouseX = event.pageX;
+				const mouseY = event.pageY;
+				console.log(mouseX);
+				console.log(mouseY);
+				// 메뉴를 마우스 위치로 이동시키고 화면에 노출
+				pricecardMenu.style.left = mouseX + 'px';
+				pricecardMenu.style.top = mouseY + 'px';
+				pricecardMenu.classList.remove("hidden");
+			}
+	    });*/
+
+	    
+	    pricecardFrame.addEventListener('click', function(e) {
+			// 캔버스 밖을 클릭하면 selectedLayer 해제
+			if(!pricecardEditor.contains(event.target)){
+				//모두 초기화
+				isDragging = false;   
+				isResizing = false;
+				isRotating = false;
+				activeLayer = null;
+				jsSelectLayer(null);
+				startX = 0;
+				startY = 0;
+				startWidth = 0;
+				startHeight = 0; 
+				startLeft = 0; 
+				startTop = 0;
+				currentShape = '';
+				currentStroke = 0;
+			}
+	    });
+	    
+	    document.getElementById('pricecardColorSelector').addEventListener('input', function(e){
+	    	const color = e.target.value;
+	    	document.getElementById('pricecardColor').value = color;
+			if(currentShape === 'text'){
+				const target = pricecardSelectedLayer.firstElementChild.firstElementChild;
+				target.style.color = color;
+				if(target.style.textDecoration){
+					target.style.textDecoration = 'line-through ' + color;
+				}
+			}else if(currentShape === 'line'){
+				pricecardSelectedLayer.querySelector('svg').querySelector('line').setAttribute('stroke', color);
+			}else{
+				pricecardSelectedLayer.querySelector('svg').firstElementChild.setAttribute('fill', color);
+			}
+			
+			jsMakePreview();
+	    });
+	    
+	    window.addEventListener('beforeprint', () => {
+			console.log('인쇄 창이 열립니다. 임시 스타일을 적용합니다.');
+	    	  
+	    	document.getElementById('printArea').removeAttribute('style');
+		});
+
+    	window.addEventListener('afterprint', () => {
+			console.log('인쇄가 완료되었거나 취소되어 창이 닫혔습니다.');
+	    	  
+			// 예: 스타일 원상 복구 및 스크롤 풀기
+			document.getElementById('printArea').style.width = '0px';
+			document.getElementById('printArea').style.height = '0px';
+    	});
+	</script>
+</body>
+</html>

@@ -84,8 +84,6 @@ html,body {
 }
 
 
-
-
 .container {
   @apply flex-1 bg-white;
 }
