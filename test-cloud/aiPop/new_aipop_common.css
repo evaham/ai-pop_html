@@ -693,7 +693,6 @@ img.ai_crt_attach {
   border-bottom-width: 1px;
   border-color: var(--color-gray-300);
   background-color: var(--color-white);
-  padding: calc(var(--spacing) * 4);
 }
 .ai_crt_preview_paper {
   margin-block: calc(var(--spacing) * 2);

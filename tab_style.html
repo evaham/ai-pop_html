@@ -12,75 +12,88 @@
     href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
     rel="stylesheet"
   />
+<style>
+/* 2. 작은 화면일 때 (예: 창 너비가 768px 이하로 줄어들 때) */
+@media (max-width: 768px) {
+  .inner-scroll-box {
+    max-height: none;   /* 높이 제한을 없애서 내용을 아래로 쭉 펼침 */
+    overflow-y: visible; /* 내부 스크롤바를 없앰 */
+  }
+}
+
+
+
+</style>
+
+
+
 </head>
 <body>
-  <div id="tabMenu2" class="tab_menu2 shadow-sm bg-white">
-    <div class="tabouter">
-      <ul id="ulTopMenu2">
-          <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="general"><i class="ri-chat-2-line"></i>일반문자</a></li>
-          <li><a class="tab_menu2__link" data-tab-target="rcs"><i class="ri-discuss-line"></i>RCS</a></li>
-          <li><a class="tab_menu2__link" data-tab-target="friendtalk"><i class="ri-kakao-talk-line"></i>친구톡</a></li>
-          <li><a class="tab_menu2__link" data-tab-target="alerttalk"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
-          <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="push"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
+  <div class="h-full overflow-hidden min-w-7xl">
+    <div id="tabMenu2" class="tab_menu2 shadow-sm bg-white h-12">
+      <div class="tabouter">
+        <ul id="ulTopMenu2">
+            <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="general"><i class="ri-chat-2-line"></i>일반문자</a></li>
+            <li><a class="tab_menu2__link" data-tab-target="rcs"><i class="ri-discuss-line"></i>RCS</a></li>
+            <li><a class="tab_menu2__link" data-tab-target="friendtalk"><i class="ri-kakao-talk-line"></i>친구톡</a></li>
+            <li><a class="tab_menu2__link" data-tab-target="alerttalk"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
+            <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="push"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
 
-          <li class="active"><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
-          <li><a class="tab_menu2__link" data-tab-target="ai-pop"><i class="ri-file-list-3-line"></i>AI POP</a></li>
-          <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="image-cloud"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
+            <li class="active"><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
+            <li><a class="tab_menu2__link" data-tab-target="ai-pop"><i class="ri-file-list-3-line"></i>AI POP</a></li>
+            <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="image-cloud"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
 
-          <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="order"><i class="ri-list-check-3"></i>주문기능</a></li>
-          <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="groupbuy"><i class="ri-team-line"></i>공동구매</a></li>
-      </ul>
+            <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="order"><i class="ri-list-check-3"></i>주문기능</a></li>
+            <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="groupbuy"><i class="ri-team-line"></i>공동구매</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu2__side flex items-center">
+        <ul class="flex items-center">
+            <li><a class="border rounded border-slate-300 text-sm text-gray-600 px-2 py-2">온라인매뉴얼</a></li>
+            <li><a class="border rounded border-slate-300 text-sm text-gray-600 px-2 py-2">충전안내</a></li>
+            <li><a class="border rounded border-slate-300 text-sm text-gray-600 px-2 py-2">레포트</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="tab_menu2__side">
-      <ul>
-          <li><a class="tab_menu2__side-btn">온라인매뉴얼</a></li>
-          <li><a class="tab_menu2__side-btn">충전안내</a></li>
-          <li><a class="tab_menu2__side-btn">레포트</a></li>
-      </ul>
+    <div class="wrap_top" style="margin-top: 0;">
+      <div class="tabcontents">
+        <div data-tab-content="general" style=" margin-bottom: 40px; display: none;">
+          <img src="./img/일반문자.png" alt="탭 스타일 예시" />
+        </div>
+        <div data-tab-content="rcs" style=" margin-bottom: 40px; display: none;">
+          <img src="./img/RCS.png" alt="탭 스타일 예시" />
+        </div>
+        <div data-tab-content="friendtalk" style="margin-bottom: 40px; display: none;">
+          <img src="./img/친구톡.png" alt="탭 스타일 예시" />
+        </div>
+        <div data-tab-content="alerttalk" style="margin-bottom: 40px; display: none;">
+          <img src="./img/알림톡.png" alt="탭 스타일 예시" />
+        </div>
+        <div data-tab-content="push" style="margin-bottom: 40px; display: none;">
+          <img src="./img/푸시메시지.png" alt="탭 스타일 예시" />
+        </div>
+        <div data-tab-content="flyer" style="display: none;">
+          <iframe src="./test-cloud/aiPop/airequest.html" class="w-full h-full max-h-[calc(100dvh-(var(--spacing)*12))]" title="AI-POP 페이지">
+            ai-pop
+          </iframe>        
+        </div>
+        <div data-tab-content="ai-pop">
+          <iframe src="./test-cloud/aiPop/airequest.html" class="h-full max-h-[calc(100dvh-(var(--spacing)*16))]" title="AI-POP 페이지" style="width:100%; height: 100%; overflow: hidden;">
+            ai-pop
+          </iframe>    
+        </div>
+        <div data-tab-content="image-cloud" style="margin-bottom: 40px; display: none;">
+          <img src="./img/이미지클라우드.png" alt="탭 스타일 예시" />
+        </div>
+        <div data-tab-content="order" style="margin-bottom: 40px; display: none;">
+          <img src="./img/주문기능.png" alt="탭 스타일 예시" />
+        </div>
+        <div data-tab-content="groupbuy" style="margin-bottom: 40px; display: none;">
+          <img src="./img/공동구매.png" alt="탭 스타일 예시" />
+        </div>
+      </div>
     </div>
   </div>
-
-
-  <div class="wrap_top" style="margin-top: 0;">
-    <div class="tabcontents">
-      <div data-tab-content="general" style=" margin-bottom: 40px; display: none;">
-        <img src="./img/일반문자.png" alt="탭 스타일 예시" />
-      </div>
-      <div data-tab-content="rcs" style=" margin-bottom: 40px; display: none;">
-        <img src="./img/RCS.png" alt="탭 스타일 예시" />
-      </div>
-      <div data-tab-content="friendtalk" style="margin-bottom: 40px; display: none;">
-        <img src="./img/친구톡.png" alt="탭 스타일 예시" />
-      </div>
-      <div data-tab-content="alerttalk" style="margin-bottom: 40px; display: none;">
-        <img src="./img/알림톡.png" alt="탭 스타일 예시" />
-      </div>
-      <div data-tab-content="push" style="margin-bottom: 40px; display: none;">
-        <img src="./img/푸시메시지.png" alt="탭 스타일 예시" />
-      </div>
-      <div data-tab-content="flyer" style="position: relative; min-width: 1520px; display: none;">
-        <iframe src="./test-cloud/aiPop/airequest.html" class="w-full h-full max-h-[calc(100dvh-(var(--spacing)*16))]" title="AI-POP 페이지">
-          ai-pop
-        </iframe>        
-      </div>
-      <div data-tab-content="ai-pop">
-        <iframe src="./test-cloud/aiPop/airequest.html" class="h-full max-h-[calc(100dvh-(var(--spacing)*16))]" title="AI-POP 페이지" style="width:100%; height: 100%; overflow: hidden;">
-          ai-pop
-        </iframe>    
-      </div>
-      <div data-tab-content="image-cloud" style="margin-bottom: 40px; display: none;">
-        <img src="./img/이미지클라우드.png" alt="탭 스타일 예시" />
-      </div>
-      <div data-tab-content="order" style="margin-bottom: 40px; display: none;">
-        <img src="./img/주문기능.png" alt="탭 스타일 예시" />
-      </div>
-      <div data-tab-content="groupbuy" style="margin-bottom: 40px; display: none;">
-        <img src="./img/공동구매.png" alt="탭 스타일 예시" />
-      </div>
-    </div>
-  </div>
-
-
 </body>
 <script>
   const topMenu = document.getElementById("ulTopMenu2");

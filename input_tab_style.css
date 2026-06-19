@@ -67,52 +67,11 @@ html,body {
 
 .btn_style2:hover { border-color: #adadad; background-color: #e6e6e6; } */
 
-/* tab_menu style1 */
-.tab_menu {
-    @apply flex min-w-380 px-1 py-1.5 border-b border-gray-300;
-}
-.tab_menu .tabouter {
-    @apply relative;
-}
-.tab_menu .tabouter ul {
-    @apply flex gap-1;
-}
-
-/* tab_menu button */
-.tab_menu__link {
-    @apply flex items-center justify-center h-8 px-2.5 text-gray-600 cursor-pointer transition-all duration-200 ease-out transform;
-}
-.tab_menu__link:hover {
-    @apply bg-gray-200 text-gray-800 rounded;
-}
-
-.tab_menu__link i {
-    @apply mr-1 text-base;
-}
-
-.tab_menu .tabouter ul > li.active a {
-    @apply border-b-2 bg-(--tab-primary) text-white rounded; 
-}
-
-/* tab_menu side 버튼 그룹 */
-.tab_menu__side {
-    @apply ml-auto;
-}
-.tab_menu__side ul {
-    @apply flex gap-1;
-}
-
-.tab_menu__side-btn {
-    @apply flex items-center justify-center h-8 px-4 text-sm text-gray-500 cursor-pointer border border-gray-300 rounded;
-}
-.tab_menu__side-btn:hover {
-    @apply bg-gray-200 text-gray-800;
-}
 
 /* 탭메뉴 스타일2 ----------------------------------------------------------------------------------- */
 /* tab_menu2 style2 */
 .tab_menu2 {
-    @apply flex min-w-380 p-1; 
+    @apply flex p-1; 
 }
 .tab_menu2 .tabouter {
     @apply relative;
