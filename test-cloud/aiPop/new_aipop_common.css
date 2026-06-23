@@ -9,11 +9,12 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-green-200: oklch(92.5% 0.084 155.995);
+    --color-amber-200: oklch(92.4% 0.12 95.746);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-500: oklch(55.1% 0.027 264.364);
-    --color-gray-700: oklch(37.3% 0.034 259.733);
+    --color-gray-600: oklch(44.6% 0.03 256.802);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -208,20 +209,26 @@
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
   .my-2 {
     margin-block: calc(var(--spacing) * 2);
   }
   .mr-1 {
     margin-right: calc(var(--spacing) * 1);
   }
+  .mr-4 {
+    margin-right: calc(var(--spacing) * 4);
+  }
+  .mb-5 {
+    margin-bottom: calc(var(--spacing) * 5);
+  }
   .ml-4 {
     margin-left: calc(var(--spacing) * 4);
   }
   .flex {
     display: flex;
-  }
-  .grid {
-    display: grid;
   }
   .hidden {
     display: none;
@@ -244,23 +251,8 @@
   .h-screen {
     height: 100vh;
   }
-  .max-h-\[calc\(100dvh-\(var\(--spacing\)\*11\)\)\] {
-    max-height: calc(100dvh - (var(--spacing) * 11));
-  }
-  .max-h-\[calc\(100dvh-\(var\(--spacing\)\*12\)\)\] {
-    max-height: calc(100dvh - (var(--spacing) * 12));
-  }
   .max-h-\[calc\(100dvh-\(var\(--spacing\)\*14\)\)\] {
     max-height: calc(100dvh - (var(--spacing) * 14));
-  }
-  .max-h-\[calc\(100dvh-\(var\(--spacing\)\*30\)\)\] {
-    max-height: calc(100dvh - (var(--spacing) * 30));
-  }
-  .max-h-\[calc\(100dvh-200px\)\] {
-    max-height: calc(100dvh - 200px);
-  }
-  .max-h-\[calc\(100vh-4rem\)\] {
-    max-height: calc(100vh - 4rem);
   }
   .max-h-dvh {
     max-height: 100dvh;
@@ -268,8 +260,11 @@
   .min-h-0 {
     min-height: calc(var(--spacing) * 0);
   }
-  .min-h-dvh {
-    min-height: 100dvh;
+  .w-1 {
+    width: calc(var(--spacing) * 1);
+  }
+  .w-1\/2 {
+    width: calc(1 / 2 * 100%);
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
@@ -280,8 +275,38 @@
   .w-40 {
     width: calc(var(--spacing) * 40);
   }
+  .w-90 {
+    width: calc(var(--spacing) * 90);
+  }
+  .w-96 {
+    width: calc(var(--spacing) * 96);
+  }
+  .w-100 {
+    width: calc(var(--spacing) * 100);
+  }
+  .w-110 {
+    width: calc(var(--spacing) * 110);
+  }
+  .w-118 {
+    width: calc(var(--spacing) * 118);
+  }
+  .w-120 {
+    width: calc(var(--spacing) * 120);
+  }
+  .w-150 {
+    width: calc(var(--spacing) * 150);
+  }
+  .w-300 {
+    width: calc(var(--spacing) * 300);
+  }
+  .w-auto {
+    width: auto;
+  }
   .w-full {
     width: 100%;
+  }
+  .max-w-7xl {
+    max-width: var(--container-7xl);
   }
   .min-w-7xl {
     min-width: var(--container-7xl);
@@ -300,24 +325,6 @@
   }
   .resize {
     resize: both;
-  }
-  .grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .grid-cols-\[1fr_1fr\] {
-    grid-template-columns: 1fr 1fr;
-  }
-  .grid-cols-\[700px_1fr\] {
-    grid-template-columns: 700px 1fr;
-  }
-  .grid-cols-\[auto_1fr\] {
-    grid-template-columns: auto 1fr;
-  }
-  .grid-rows-2 {
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-  }
-  .grid-rows-\[auto_1fr\] {
-    grid-template-rows: auto 1fr;
   }
   .flex-col {
     flex-direction: column;
@@ -342,9 +349,6 @@
   }
   .overflow-hidden {
     overflow: hidden;
-  }
-  .overflow-x-auto {
-    overflow-x: auto;
   }
   .overflow-y-auto {
     overflow-y: auto;
@@ -408,17 +412,17 @@
   .bg-\[yellow\] {
     background-color: yellow;
   }
+  .bg-amber-200 {
+    background-color: var(--color-amber-200);
+  }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
   }
-  .bg-gray-700 {
-    background-color: var(--color-gray-700);
+  .bg-gray-600 {
+    background-color: var(--color-gray-600);
   }
-  .bg-green-200 {
-    background-color: var(--color-green-200);
-  }
-  .bg-red-500 {
-    background-color: var(--color-red-500);
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -426,8 +430,14 @@
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
   .p-4 {
     padding: calc(var(--spacing) * 4);
+  }
+  .p-6 {
+    padding: calc(var(--spacing) * 6);
   }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
@@ -438,29 +448,26 @@
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
+  .px-8 {
+    padding-inline: calc(var(--spacing) * 8);
+  }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
-  .pt-0 {
-    padding-top: calc(var(--spacing) * 0);
+  .py-4 {
+    padding-block: calc(var(--spacing) * 4);
   }
-  .pt-1 {
-    padding-top: calc(var(--spacing) * 1);
+  .py-6 {
+    padding-block: calc(var(--spacing) * 6);
   }
   .pt-2 {
     padding-top: calc(var(--spacing) * 2);
   }
   .pb-1 {
     padding-bottom: calc(var(--spacing) * 1);
-  }
-  .pb-6 {
-    padding-bottom: calc(var(--spacing) * 6);
-  }
-  .text-center {
-    text-align: center;
   }
   .text-left {
     text-align: left;
@@ -494,6 +501,10 @@
   }
   .underline {
     text-decoration-line: underline;
+  }
+  .shadow {
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .inset-shadow-2xs {
     --tw-inset-shadow: inset 0 1px var(--tw-inset-shadow-color, rgb(0 0 0 / 0.05));
@@ -757,6 +768,19 @@ img.ai_crt_attach {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.ai_crd_goods_grid .chk_comm {
+  width: 13px;
+  height: 13px;
+  margin-right: 3px;
+}
+.ai_crd_goods_grid .tf_comm_excel {
+  padding: 3px 5px;
+  width: 100%;
+  border: none;
+  color: #333;
+  background: #fff;
+  box-sizing: border-box;
 }
 .ai_crt_info {
   font-size: var(--text-lg);

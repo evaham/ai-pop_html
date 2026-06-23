@@ -100,11 +100,11 @@
     </div>
   </div> -->
   <!--// wrap_top -->
-  <div class="relative w-full h-dvh max-h-dvh bg-green-200">
-    <div class="absolute inset-0 overflow-hidden">
+  <div class="relative w-full h-dvh max-h-dvh bg-gray-100">
+    <div class="absolute inset-0">
       <div class="flex flex-col">
         <!-- 메뉴 탭 -->
-        <div class="tab_submenu border">
+        <div class="tab_submenu">
           <div class="tabs px-4" id="menuTab">
             <ul class="level1 static flex" tabindex="0" role="menubar">
               <li role="menuitem" class="static">
@@ -122,23 +122,23 @@
             </ul>
           </div>
         </div>
-        <!-- 컨텐츠 영역 -->
-        <div class="relative flex gap-4 max-h-[calc(100dvh-(var(--spacing)*11))] p-4 border">
+        <!-- 프라이스카드 컨텐츠 영역 -->
+        <div class="relative flex gap-4 max-h-[calc(100dvh-(var(--spacing)*14))] p-4">
           <!-- 입력 영역 -->
           <div class="flex flex-col p-4 rounded-xl bg-white">
             <div class="overflow-y-auto">
               <!-- 용도 선택 -->
-              <div class="ai_crt_fieldset">
+              <div class="ai_crt_fieldset mb-5">
                 <div class="text-lg font-bold">어떤 홍보물을 만드시겠어요?</div>
                 <div class="text-sm text-gray-500">용도에 맞는 템플릿을 선택하시면 최적화된 이미지가 생성됩니다.</div>
-                <div id="selObject" class="flex gap-2 my-2">
-                  <button type="button" class="w-40 px-3 py-2 border border-gray-300 rounded-lg text-left cursor-pointer" onclick="jsSelectObject(2)">
+                <div id="selObject" class="flex flex-wrap gap-2 my-2">
+                  <button type="button" class="w-40 px-3 py-2 border border-gray-300 rounded-lg text-left cursor-pointer" onclick="location.href='airequest_pop.html'">
                     <div class="text-lg font-bold">POP이미지</div>
                     <div class="text-sm text-gray-500">
                       자유형식 이미지 생성<br>홍보 및 안내용
                     </div>
                   </button>
-                  <button type="button" class="w-40 px-3 py-2 border rounded-lg text-left selected border-[#26499d] bg-[#26499d] text-white cursor-pointer" onclick="jsSelectObject(3)">
+                  <button type="button" class="w-40 px-3 py-2 border rounded-lg text-left selected border-[#26499d] bg-[#26499d] text-white cursor-pointer" onclick="location.href='airequest.html'">
                     <div class="text-lg font-bold">프라이스 카드</div>
                     <div class="text-sm">
                       매대 부착용<br>상품명·가격 강조
@@ -250,8 +250,8 @@
                     <span class="text-red-500">*</span>상품 데이터를 입력하세요.
                   </div>
                   <div class="text-sm text-gray-500">입력하실 엑셀 데이터를 복사하신 후 노란색 칸에 붙여넣기 하면 미리보기에 나타납니다. (데이터 순서를 꼭 지켜주세요!)</div>
-                  <div class="ai_crt_functionbox_row flex items-center gap-1 my-2">
-                    <div id="selPricecardColumn" class="flex items-center gap-1">
+                  <div class="ai_crt_functionbox_row flex flex-wrap items-center gap-1 my-2">
+                    <div id="selPricecardColumn" class="flex items-center gap-1 mr-4">
                       <button type="button" class="flex items-center border border-[#26499d] px-2 py-1 rounded bg-[#26499d] text-white cursor-pointer selected" data-field="pricecard" data-column="name">
                         <div class="text-sm" style="font-size: 13px">
                           <span class="text-red-500" style="margin-left: -3px">*</span>상품명
@@ -274,9 +274,9 @@
                         <div class="text-sm">할인율</div>
                       </button>
                     </div>
-                    <div class="text-sm ml-4">가격 단위 :
-                    </div>
                     <div id="selPricecardPriceUnit" class="flex items-center gap-1">
+                      <div class="text-sm">가격단위 :
+                      </div>
                       <button type="button" class="flex items-center border border-[#26499d] px-2 py-1 rounded bg-[#26499d] text-white cursor-pointer" onclick="jsSelectPriceUnit(this)">
                         <div class="text-sm">없음</div>
                       </button>
@@ -291,256 +291,257 @@
                       <div class="text-sm">행 비우기</div>
                     </button>
                   </div>
-                  <div id="pricecardExcel" data-count="0" class="ai_crd_goods_grid"></div>
+                  <div id="pricecardExcel" data-count="0" class="ai_crd_goods_grid text-sm"></div>
                 </div>
               </div>
             </div>
 
           </div>
-
-
-          <div class="sticky top-4 bottom-0 left-0 h-full max-h-[calc(100dvh-(var(--spacing)*30))] rounded-xl p-4 bg-white overflow-hidden">
-            <div class="w-full h-full overflow-y-auto">
-              <div class="ai_crt_preview">
-                <div id="pricecardPreview" class="">
-                  <div style="display: flex; gap: 10px">
-                    <div style="height: 840px; overflow:auto">
-                      <div id="pricecardFrame" class="ai_crt_preview_frame" tabindex="0">
-                        <div id="pricecardCanvas" class="ai_crt_canvas"
-                          style="width: 566px; height: 800px; top: 20px; left: 137px; transform-origin: top left;"></div>
-                        <div id="pricecardEditor" class="ai_crt_canvas_editor"
-                          style="width: 566px; height: 800px; transform-origin: top left;"></div>
+          <!-- 미리보기 영역 -->
+          <div class="sticky top-4 bottom-0 left-0 flex max-w-7xl overflow-hidden">
+            <div class="flex flex-col w-full h-full max-h-[calc(100dvh-(var(--spacing)*14))] rounded-xl p-4 bg-white">
+              <div class="w-full h-full overflow-y-auto">
+                <div class="ai_crt_preview">
+                  <div id="pricecardPreview" class="">
+                    <div style="display: flex; gap: 10px">
+                      <div style="height: 840px; overflow:auto">
+                        <div id="pricecardFrame" class="ai_crt_preview_frame" tabindex="0">
+                          <div id="pricecardCanvas" class="ai_crt_canvas"
+                            style="width: 566px; height: 800px; top: 20px; left: 137px; transform-origin: top left;"></div>
+                          <div id="pricecardEditor" class="ai_crt_canvas_editor"
+                            style="width: 566px; height: 800px; transform-origin: top left;"></div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="ai_crt_functionbox_col" style="justify-content: flex-start; margin-top: 0">
-                      <div class="ai_crt_info"
-                        style="width: 100%; font-size: 14px; margin-left: 2px; border-bottom: 1px solid #aaa;">레이어 추가</div>
-                      <div class="ai_crt_functionbox_row" style="gap: 5px;">
-                        <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('line', null)">
-                          <div class="ai_crt_info--small" style="font-size: 13px">선</div>
-                        </button>
-                        <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('rectangle', null)">
-                          <div class="ai_crt_info--small" style="font-size: 13px">사각형</div>
-                        </button>
-                        <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('ellipse', null)">
-                          <div class="ai_crt_info--small" style="font-size: 13px">타원형</div>
-                        </button>
-                        <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('triangle', null)">
-                          <div class="ai_crt_info--small" style="font-size: 13px">삼각형</div>
-                        </button>
-                      </div>
-                      <div class="ai_crt_functionbox_row" style="gap: 5px; margin-top: 6px">
-                        <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('text', '')">
-                          <div class="ai_crt_info--small" style="font-size: 13px">텍스트</div>
-                        </button>
-                        <button type="button" class="ai_crt_box_btn" onclick="jsCopyShape()">
-                          <div class="ai_crt_info--small" style="font-size: 13px">복사하기</div>
-                        </button>
-                      </div>
-                      <div class="ai_crt_info"
-                        style="width: 100%; font-size: 14px; margin-top: 15px; margin-left: 2px; border-bottom: 1px solid #aaa;">
-                        레이어 순서</div>
-                      <div style="display:flex; gap:5px">
-                        <div class="ai_crt_functionbox_col" style="gap: 5px;">
-                          <button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('front')" style="width:66px">
-                            <div class="ai_crt_info--small" style="font-size: 13px">맨위로</div>
+                      <div class="ai_crt_functionbox_col" style="justify-content: flex-start; margin-top: 0">
+                        <div class="ai_crt_info"
+                          style="width: 100%; font-size: 14px; margin-left: 2px; border-bottom: 1px solid #aaa;">레이어 추가</div>
+                        <div class="ai_crt_functionbox_row" style="gap: 5px;">
+                          <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('line', null)">
+                            <div class="ai_crt_info--small" style="font-size: 13px">선</div>
                           </button>
-                          <button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('forward')" style="width:66px">
-                            <div class="ai_crt_info--small" style="font-size: 13px">위로</div>
+                          <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('rectangle', null)">
+                            <div class="ai_crt_info--small" style="font-size: 13px">사각형</div>
                           </button>
-                          <button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('backward')" style="width:66px">
-                            <div class="ai_crt_info--small" style="font-size: 13px">밑으로</div>
+                          <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('ellipse', null)">
+                            <div class="ai_crt_info--small" style="font-size: 13px">타원형</div>
                           </button>
-                          <button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('back')" style="width:66px">
-                            <div class="ai_crt_info--small" style="font-size: 13px">맨밑으로</div>
+                          <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('triangle', null)">
+                            <div class="ai_crt_info--small" style="font-size: 13px">삼각형</div>
                           </button>
                         </div>
-                        <div id="pricecardLayerOrder" class="ai_crt_layerbox_col"></div>
-                      </div>
-                      <div class="ai_crt_info"
-                        style="width: 100%; font-size: 14px; margin: 15px 0 8px 2px; border-bottom: 1px solid #aaa;">레이어 편집
-                      </div>
-                      <div id="pricecardEditBox" style="display: grid; gap: 7px 10px; grid-template-columns: 60px auto;">
-                        <!-- 편집모드 -->
-                        <div class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">편집모드</div>
-                        <div style="display:flex; gap:5px; align-items:center; font-size:13px">
-                          일괄모드
-                          <label class="switch_comm">
-                            <input type="checkbox" id="pricecardAllMode" checked="" onchange="jsSelectMode(this)">
-                            <span class="switch_slider"></span>
-                          </label>
-                          개별모드
-                        </div>
-                        <!-- 배율 -->
-                        <div class="ai_crt_info--small"
-                          style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px">배율</div>
-                        <div style="display: flex; align-items:center; font-size:13px; line-height: 23px">
-                          <div id="pricecardScale" style="display: inline-block">1</div>
-                          배
-                          <button type="button" class="ai_crt_box_btn" data-scale="1" onclick="jsSelectScale(this)"
-                            style="width: 35px; height:19px; padding:0; margin-left:10px;">
-                            <div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x1</div>
+                        <div class="ai_crt_functionbox_row" style="gap: 5px; margin-top: 6px">
+                          <button type="button" class="ai_crt_box_btn" onclick="jsCreateShape('text', '')">
+                            <div class="ai_crt_info--small" style="font-size: 13px">텍스트</div>
                           </button>
-                          <button type="button" class="ai_crt_box_btn" data-scale="2" onclick="jsSelectScale(this)"
-                            style="width: 35px; height:19px; padding:0; margin-left:3px;">
-                            <div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x2</div>
-                          </button>
-                          <button type="button" class="ai_crt_box_btn" data-scale="3" onclick="jsSelectScale(this)"
-                            style="width: 35px; height:19px; padding:0; margin-left:3px;">
-                            <div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x3</div>
+                          <button type="button" class="ai_crt_box_btn" onclick="jsCopyShape()">
+                            <div class="ai_crt_info--small" style="font-size: 13px">복사하기</div>
                           </button>
                         </div>
-                        <!-- 크기정보 -->
-                        <div class="ai_crt_info--small"
-                          style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px">크기</div>
-                        <div>
-                          <div style="font-size:13px; line-height: 23px">
-                            가로 <input type="text" id="pricecardWidth" class="tf_comm"
-                              style="width: 50px; text-align: right; height: 23px;" value="0"
-                              oninput="jsMakeLocation(this)">
-                            <div class="ai_crt_info--small" style="display: inline-block">px</div>
+                        <div class="ai_crt_info"
+                          style="width: 100%; font-size: 14px; margin-top: 15px; margin-left: 2px; border-bottom: 1px solid #aaa;">
+                          레이어 순서</div>
+                        <div style="display:flex; gap:5px">
+                          <div class="ai_crt_functionbox_col" style="gap: 5px;">
+                            <button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('front')" style="width:66px">
+                              <div class="ai_crt_info--small" style="font-size: 13px">맨위로</div>
+                            </button>
+                            <button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('forward')" style="width:66px">
+                              <div class="ai_crt_info--small" style="font-size: 13px">위로</div>
+                            </button>
+                            <button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('backward')" style="width:66px">
+                              <div class="ai_crt_info--small" style="font-size: 13px">밑으로</div>
+                            </button>
+                            <button type="button" class="ai_crt_box_btn" onclick="jsSendLayer('back')" style="width:66px">
+                              <div class="ai_crt_info--small" style="font-size: 13px">맨밑으로</div>
+                            </button>
                           </div>
-                          <div style="font-size:13px; line-height: 23px">
-                            세로 <input type="text" id="pricecardHeight" class="tf_comm"
-                              style="width: 50px; text-align: right; height: 23px;" value="0"
-                              oninput="jsMakeLocation(this)">
-                            <div class="ai_crt_info--small" style="display: inline-block">px</div>
+                          <div id="pricecardLayerOrder" class="ai_crt_layerbox_col"></div>
+                        </div>
+                        <div class="ai_crt_info"
+                          style="width: 100%; font-size: 14px; margin: 15px 0 8px 2px; border-bottom: 1px solid #aaa;">레이어 편집
+                        </div>
+                        <div id="pricecardEditBox" style="display: grid; gap: 7px 10px; grid-template-columns: 60px auto;">
+                          <!-- 편집모드 -->
+                          <div class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">편집모드</div>
+                          <div style="display:flex; gap:5px; align-items:center; font-size:13px">
+                            일괄모드
+                            <label class="switch_comm">
+                              <input type="checkbox" id="pricecardAllMode" checked="" onchange="jsSelectMode(this)">
+                              <span class="switch_slider"></span>
+                            </label>
+                            개별모드
+                          </div>
+                          <!-- 배율 -->
+                          <div class="ai_crt_info--small"
+                            style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px">배율</div>
+                          <div style="display: flex; align-items:center; font-size:13px; line-height: 23px">
+                            <div id="pricecardScale" style="display: inline-block">1</div>
+                            배
+                            <button type="button" class="ai_crt_box_btn" data-scale="1" onclick="jsSelectScale(this)"
+                              style="width: 35px; height:19px; padding:0; margin-left:10px;">
+                              <div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x1</div>
+                            </button>
+                            <button type="button" class="ai_crt_box_btn" data-scale="2" onclick="jsSelectScale(this)"
+                              style="width: 35px; height:19px; padding:0; margin-left:3px;">
+                              <div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x2</div>
+                            </button>
+                            <button type="button" class="ai_crt_box_btn" data-scale="3" onclick="jsSelectScale(this)"
+                              style="width: 35px; height:19px; padding:0; margin-left:3px;">
+                              <div class="ai_crt_info--small" style="font-size: 13px; letter-spacing: 0;">x3</div>
+                            </button>
+                          </div>
+                          <!-- 크기정보 -->
+                          <div class="ai_crt_info--small"
+                            style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px">크기</div>
+                          <div>
+                            <div style="font-size:13px; line-height: 23px">
+                              가로 <input type="text" id="pricecardWidth" class="tf_comm"
+                                style="width: 50px; text-align: right; height: 23px;" value="0"
+                                oninput="jsMakeLocation(this)">
+                              <div class="ai_crt_info--small" style="display: inline-block">px</div>
+                            </div>
+                            <div style="font-size:13px; line-height: 23px">
+                              세로 <input type="text" id="pricecardHeight" class="tf_comm"
+                                style="width: 50px; text-align: right; height: 23px;" value="0"
+                                oninput="jsMakeLocation(this)">
+                              <div class="ai_crt_info--small" style="display: inline-block">px</div>
+                            </div>
+                          </div>
+                          <!-- 위치정보 -->
+                          <div class="ai_crt_info--small"
+                            style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px">위치</div>
+                          <div>
+                            <div style="font-size:13px; line-height: 23px">
+                              왼쪽에서 <input type="text" id="pricecardLeft" class="tf_comm"
+                                style="width: 50px; text-align: right; height: 23px;" value="0"
+                                oninput="jsMakeLocation(this)">
+                              <div class="ai_crt_info--small" style="display: inline-block">px</div>
+                            </div>
+                            <div style="font-size:13px; line-height: 23px">
+                              위쪽에서 <input type="text" id="pricecardTop" class="tf_comm"
+                                style="width: 50px; text-align: right; height: 23px;" value="0"
+                                oninput="jsMakeLocation(this)">
+                              <div class="ai_crt_info--small" style="display: inline-block">px</div>
+                            </div>
+                          </div>
+                          <div class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px;">회전각
+                          </div>
+                          <div>
+                            <input type="text" id="pricecardAngle" class="tf_comm"
+                              style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLocation(this)">
+                            <div class="ai_crt_info--small" style="font-size: 16px; display: inline-block">˚</div>
+                          </div>
+                          <!-- 색상 -->
+                          <div class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">색상</div>
+                          <div style="display: flex; align-items: center; height: 25px">
+                            <input type="color" id="pricecardColorSelector"
+                              style="background:transparent; border:none; width: 54px; height: 30px; margin: -4px -2px;">
+                            <input type="text" id="pricecardColor" readonly="readonly" tabindex="-1"
+                              style="display: inline-block; margin-left: 5px; width: 95px; height: 23px; color: #333; line-height: 1.4; border: none; pointer-events: none;"
+                              value="#000000">
+                          </div>
+                          <!-- 선 굵기 -->
+                          <div data-edit="line" class="ai_crt_info--small hidden"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">선 굵기</div>
+                          <div data-edit="line" class="hidden">
+                            <input type="text" id="pricecardLineWidth" class="tf_comm"
+                              style="width:50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLine(this)">
+                            <div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
+                          </div>
+                          <!-- 선 끝모양 -->
+                          <div data-edit="line" class="ai_crt_info--small hidden"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">선 끝모양</div>
+                          <select id="pricecardLineCap" data-edit="line" class="opt_comm hidden"
+                            style="width: 150px; height: auto; font-size:13px" onchange="jsMakeLine(this)">
+                            <option value="square">사각 모양</option>
+                            <option value="round">둥근 모양</option>
+                            <option value="arrow">화살표</option>
+                          </select>
+                          <!-- 테두리 색상 -->
+                          <div data-edit="border" class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">테두리 색상</div>
+                          <div data-edit="border" style="display: flex; align-items: center; height: 25px">
+                            <div id="pricecardBorderColorless"
+                              style="width: 47px; height: 18px; border: 1px solid #777; display: inline-block; background: linear-gradient(to top left, transparent 46%, red 49%, transparent 52%) white;"
+                              onclick="jsToggleBorderColor('click')"></div>
+                            <input type="color" id="pricecardBorderColorSelector"
+                              style="visibility: hidden; background:transparent; border:none; width: 54px; height: 30px; margin: -4px -2px;"
+                              oninput="jsMakeBorder(this)">
+                            <input type="text" id="pricecardBorderColor" class="tf_comm"
+                              style="margin-left: -45px; width: 95px; height: 23px" value="" oninput="jsMakeBorder(this)">
+                          </div>
+                          <!-- 테두리 굵기 -->
+                          <div data-edit="border" class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">테두리 굵기</div>
+                          <div data-edit="border">
+                            <input type="text" id="pricecardBorderWidth" class="tf_comm"
+                              style="width:50px; text-align: right; height: 23px;" value="0" oninput="jsMakeBorder(this)">
+                            <div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
+                          </div>
+                          <!-- 글꼴 -->
+                          <div data-edit="font" class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글꼴</div>
+                          <select id="pricecardFont" data-edit="font" class="opt_comm"
+                            style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
+                            <option value="" selected="">기본(나눔고딕)</option>
+                            <option value="web_font_1">여기어때잘난체</option>
+                            <option value="web_font_2">페이퍼로지</option>
+                            <option value="web_font_3">학교안심둥근미소</option>
+                            <option value="web_font_4">경기천년제목체</option>
+                            <option value="web_font_5">가나초콜릿체</option>
+                          </select>
+                          <!-- 글씨 굵기 -->
+                          <div data-edit="font" class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 굵기</div>
+                          <select id="pricecardFontWeight" data-edit="font" class="opt_comm"
+                            style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
+                            <option value="normal">보통</option>
+                            <option value="bold">굵게</option>
+                          </select>
+                          <!-- 글씨 스타일 -->
+                          <div data-edit="font" class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 스타일</div>
+                          <select id="pricecardFontStyle" data-edit="font" class="opt_comm"
+                            style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
+                            <option value="normal">보통</option>
+                            <option value="italic">이탤릭</option>
+                          </select>
+                          <!-- 글씨 크기 -->
+                          <div data-edit="font" class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 크기</div>
+                          <div data-edit="font">
+                            <input type="text" id="pricecardFontSize" class="tf_comm"
+                              style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeFont(this)">
+                            <div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
+                          </div>
+                          <!-- 글자 정렬 -->
+                          <div data-edit="font" class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글자 정렬</div>
+                          <select id="pricecardFontAlign" data-edit="font" class="opt_comm"
+                            style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
+                            <option value="left">왼쪽 정렬</option>
+                            <option value="center">가운데 정렬</option>
+                            <option value="right">오른쪽 정렬</option>
+                          </select>
+                          <!-- 단위 크기 -->
+                          <div data-edit="unit" class="ai_crt_info--small"
+                            style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">단위 크기</div>
+                          <div data-edit="unit">
+                            <input type="text" id="pricecardUnitSize" class="tf_comm"
+                              style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeFont(this)">
+                            <div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
                           </div>
                         </div>
-                        <!-- 위치정보 -->
-                        <div class="ai_crt_info--small"
-                          style="justify-self:right; align-self:flex-start; font-size:13px; padding-top:4px">위치</div>
-                        <div>
-                          <div style="font-size:13px; line-height: 23px">
-                            왼쪽에서 <input type="text" id="pricecardLeft" class="tf_comm"
-                              style="width: 50px; text-align: right; height: 23px;" value="0"
-                              oninput="jsMakeLocation(this)">
-                            <div class="ai_crt_info--small" style="display: inline-block">px</div>
-                          </div>
-                          <div style="font-size:13px; line-height: 23px">
-                            위쪽에서 <input type="text" id="pricecardTop" class="tf_comm"
-                              style="width: 50px; text-align: right; height: 23px;" value="0"
-                              oninput="jsMakeLocation(this)">
-                            <div class="ai_crt_info--small" style="display: inline-block">px</div>
-                          </div>
+                        <div class="ai_crt_functionbox_row" style="margin-top:30px; gap:5px;">
+                          <button type="button" class="ai_crt_box_btn selected" onclick="jsSaveImage()">
+                            <div class="ai_crt_info" style="font-size:14px">이미지 생성하기</div>
+                          </button>
+                          <button type="button" class="ai_crt_box_btn selected" onclick="jsSaveTemplate()">
+                            <div class="ai_crt_info" style="font-size:14px">템플릿으로 저장</div>
+                          </button>
                         </div>
-                        <div class="ai_crt_info--small" style="justify-self:right; align-self:center; font-size: 13px;">회전각
-                        </div>
-                        <div>
-                          <input type="text" id="pricecardAngle" class="tf_comm"
-                            style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLocation(this)">
-                          <div class="ai_crt_info--small" style="font-size: 16px; display: inline-block">˚</div>
-                        </div>
-                        <!-- 색상 -->
-                        <div class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">색상</div>
-                        <div style="display: flex; align-items: center; height: 25px">
-                          <input type="color" id="pricecardColorSelector"
-                            style="background:transparent; border:none; width: 54px; height: 30px; margin: -4px -2px;">
-                          <input type="text" id="pricecardColor" readonly="readonly" tabindex="-1"
-                            style="display: inline-block; margin-left: 5px; width: 95px; height: 23px; color: #333; line-height: 1.4; border: none; pointer-events: none;"
-                            value="#000000">
-                        </div>
-                        <!-- 선 굵기 -->
-                        <div data-edit="line" class="ai_crt_info--small hidden"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">선 굵기</div>
-                        <div data-edit="line" class="hidden">
-                          <input type="text" id="pricecardLineWidth" class="tf_comm"
-                            style="width:50px; text-align: right; height: 23px;" value="0" oninput="jsMakeLine(this)">
-                          <div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
-                        </div>
-                        <!-- 선 끝모양 -->
-                        <div data-edit="line" class="ai_crt_info--small hidden"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">선 끝모양</div>
-                        <select id="pricecardLineCap" data-edit="line" class="opt_comm hidden"
-                          style="width: 150px; height: auto; font-size:13px" onchange="jsMakeLine(this)">
-                          <option value="square">사각 모양</option>
-                          <option value="round">둥근 모양</option>
-                          <option value="arrow">화살표</option>
-                        </select>
-                        <!-- 테두리 색상 -->
-                        <div data-edit="border" class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">테두리 색상</div>
-                        <div data-edit="border" style="display: flex; align-items: center; height: 25px">
-                          <div id="pricecardBorderColorless"
-                            style="width: 47px; height: 18px; border: 1px solid #777; display: inline-block; background: linear-gradient(to top left, transparent 46%, red 49%, transparent 52%) white;"
-                            onclick="jsToggleBorderColor('click')"></div>
-                          <input type="color" id="pricecardBorderColorSelector"
-                            style="visibility: hidden; background:transparent; border:none; width: 54px; height: 30px; margin: -4px -2px;"
-                            oninput="jsMakeBorder(this)">
-                          <input type="text" id="pricecardBorderColor" class="tf_comm"
-                            style="margin-left: -45px; width: 95px; height: 23px" value="" oninput="jsMakeBorder(this)">
-                        </div>
-                        <!-- 테두리 굵기 -->
-                        <div data-edit="border" class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">테두리 굵기</div>
-                        <div data-edit="border">
-                          <input type="text" id="pricecardBorderWidth" class="tf_comm"
-                            style="width:50px; text-align: right; height: 23px;" value="0" oninput="jsMakeBorder(this)">
-                          <div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
-                        </div>
-                        <!-- 글꼴 -->
-                        <div data-edit="font" class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글꼴</div>
-                        <select id="pricecardFont" data-edit="font" class="opt_comm"
-                          style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
-                          <option value="" selected="">기본(나눔고딕)</option>
-                          <option value="web_font_1">여기어때잘난체</option>
-                          <option value="web_font_2">페이퍼로지</option>
-                          <option value="web_font_3">학교안심둥근미소</option>
-                          <option value="web_font_4">경기천년제목체</option>
-                          <option value="web_font_5">가나초콜릿체</option>
-                        </select>
-                        <!-- 글씨 굵기 -->
-                        <div data-edit="font" class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 굵기</div>
-                        <select id="pricecardFontWeight" data-edit="font" class="opt_comm"
-                          style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
-                          <option value="normal">보통</option>
-                          <option value="bold">굵게</option>
-                        </select>
-                        <!-- 글씨 스타일 -->
-                        <div data-edit="font" class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 스타일</div>
-                        <select id="pricecardFontStyle" data-edit="font" class="opt_comm"
-                          style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
-                          <option value="normal">보통</option>
-                          <option value="italic">이탤릭</option>
-                        </select>
-                        <!-- 글씨 크기 -->
-                        <div data-edit="font" class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글씨 크기</div>
-                        <div data-edit="font">
-                          <input type="text" id="pricecardFontSize" class="tf_comm"
-                            style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeFont(this)">
-                          <div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
-                        </div>
-                        <!-- 글자 정렬 -->
-                        <div data-edit="font" class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">글자 정렬</div>
-                        <select id="pricecardFontAlign" data-edit="font" class="opt_comm"
-                          style="width: 150px; height: auto; font-size:13px" onchange="jsMakeFont(this)">
-                          <option value="left">왼쪽 정렬</option>
-                          <option value="center">가운데 정렬</option>
-                          <option value="right">오른쪽 정렬</option>
-                        </select>
-                        <!-- 단위 크기 -->
-                        <div data-edit="unit" class="ai_crt_info--small"
-                          style="justify-self:right; align-self:center; font-size: 13px; display: inline-block">단위 크기</div>
-                        <div data-edit="unit">
-                          <input type="text" id="pricecardUnitSize" class="tf_comm"
-                            style="width: 50px; text-align: right; height: 23px;" value="0" oninput="jsMakeFont(this)">
-                          <div class="ai_crt_info--small" style="font-size: 13px; display: inline-block">px</div>
-                        </div>
-                      </div>
-                      <div class="ai_crt_functionbox_row" style="margin-top:30px; gap:5px;">
-                        <button type="button" class="ai_crt_box_btn selected" onclick="jsSaveImage()">
-                          <div class="ai_crt_info" style="font-size:14px">이미지 생성하기</div>
-                        </button>
-                        <button type="button" class="ai_crt_box_btn selected" onclick="jsSaveTemplate()">
-                          <div class="ai_crt_info" style="font-size:14px">템플릿으로 저장</div>
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -548,7 +549,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

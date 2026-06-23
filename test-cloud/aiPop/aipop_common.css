@@ -23,7 +23,6 @@ html, body { }
 .clearfix:after, .linkadmin__listbox:after, .kakaotemplate:after { content: " "; display: table; clear: both; }
 
 .tf_comm { display: inline-block; height: 30px; padding: 3px 5px; border: 1px solid #ccc; border-radius: 5px; color: #333; line-height: 1.4; box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075); box-sizing: border-box; }
-.tf_comm_excel { padding: 3px 5px; width: 100%; border: none; color: #333; box-sizing: border-box; }
 
 .opt_comm { display: inline-block; width: 100%; height: 30px; padding: 3px 5px; border: 1px solid #aaa; border-radius: 5px; color: #333; line-height: 1.4; box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075); box-sizing: border-box; }
 
@@ -192,6 +191,12 @@ img.ai_crt_attach { border: 1px solid #ccc; border-radius: 5px;}
 
 .ai_crd_goods_grid { display: inline-grid; background: #ccc; gap: 1px; border: 1px solid #ccc;}
 .ai_crd_goods_grid > div { width: 100%; height: 100%; background: #fff; display: flex; justify-content: center; align-items: center; }
+
+.ai_crd_goods_grid .chk_comm { width: 13px; height: 13px; margin-right: 3px }
+.ai_crd_goods_grid .tf_comm_excel { padding: 3px 5px; width: 100%; border: none; color: #333; background: #fff; box-sizing: border-box; }
+
+
+
 
 .ai_crt_info { @apply text-lg font-bold }
 .ai_crt_info--small { @apply text-sm text-gray-500;}
