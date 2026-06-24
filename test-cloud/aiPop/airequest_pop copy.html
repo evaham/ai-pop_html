@@ -12,7 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
   <style>
     /* 인쇄 시 다른 UI 숨기기 */
-    @media print {
+    /* @media print {
       body {
         margin: 0;
         padding: 0;
@@ -52,7 +52,7 @@
       position: relative;
       display: flex;
       overflow: hidden;
-    }
+    } */
   </style>
 </head>
 <body class="h-full">
@@ -100,11 +100,11 @@
     </div>
   </div> -->
   <!--// wrap_top -->
-  <div class="w-full h-full bg-gray-100">
+  <div class="w-full h-full">
     <div class="h-full">
       <div class="flex flex-col h-full">
         <!-- 메뉴 탭 -->
-        <div class="tab_submenu shadow bg-white fixed top-0 z-10 w-full">
+        <div class="tab_submenu shadow bg-white w-full">
           <div class="tabs flex mt-auto px-4" id="menuTab">
             <ul class="level1 static flex gap-1" tabindex="0" role="menubar">
               <li role="menuitem" class="static">
@@ -123,11 +123,11 @@
           </div>
         </div>
         <!-- 입력 폼 컨텐츠 -->
-        <div class="relative grid grid-rows-1 grid-cols-[480px_30px_1fr_30px_300px_30px] pt-11 max-h-[calc(100dvh-(var(--spacing)*16))]">
+        <div class="relative grid grid-rows-1 grid-cols-[500px_30px_1fr_30px] h-full">
           <!-- 입력 영역 -->
-          <div class="relative">
+          <div class="relative bg-amber-100">
             <div class="absolute inset-0">
-              <div class="sticky left-0 top-11 right-0 bottom-0 flex flex-col max-h-[calc(100dvh-(var(--spacing)*11))] p-6 border-r border-gray-300 bg-white overflow-y-auto">
+              <div class="sticky top-11 flex flex-col max-h-[calc(100dvh-(var(--spacing)*11))] p-6 border-r border-gray-300 bg-white overflow-y-auto">
                 <div class="">
                   <!-- 용도 선택 -->
                   <div class="flex mb-5 mx-auto">
@@ -303,83 +303,84 @@
           </div>
           <div class="bg-red-100">여백</div>
           <!-- 미리보기 영역 -->
-           <div class="relative">
-            <div class="flex-1 flex flex-col p-6 overflow-y-auto bg-amber-100">
-              <div class="flex flex-col w-full h-full rounded-xl p-4 bg-white">
-                <div class="w-full h-full">
+           <div class="relative bg-amber-100">
+            <div class="flex p-6 overflow-y-auto">
+              <div class="flex flex-col rounded-xl p-4 bg-white">
+                <div class="">
+                  미리보기<br />미리보기<br />미리보기<br />미리보기<br />미리보기<br />
                 </div>
               </div>
             </div>
           </div>
           <div class="bg-red-100">여백</div>
-          <!-- TS머니 영역 -->
-          <div class="relative">
-            <div class="sticky top-4 left-0 right-0 flex flex-col gap-4">
-              <!-- <div class="flex flex-col gap-1 rounded-xl p-6 bg-white">
-                <div class="flex">
-                  현재잔액
-                </div>
-                <div class="flex justify-between">
-                  <div>TS머니</div>
-                  <div>475,081<span>.0</span></div>
-                </div>
-                <div class="flex justify-between">
-                  <div>TS포인트</div>
-                  <div>30,000<span>.0</span></div>
-                </div>
-                <hr class="my-2 border-0" />
-                <div class="flex justify-between">
-                  <div>AI이미지 생성단가<span>(부가세포함)</span></div>
-                  <div>500<span>.0</span></div>
-                </div>
-                <hr class="my-2 border-0" />
-                <div class="flex justify-between">
-                  <div>총 차감액</div>
-                  <div>500<span>.0</span></div>
-                </div>
-                <div class="flex justify-between">
-                  <div>TS머니</div>
-                  <div>500<span>.0</span></div>
-                </div>
-                <div class="flex justify-between">
-                  <div>TS포인트</div>
-                  <div>500<span>.0</span></div>
-                </div>
-                <hr class="my-2 border-0" />
 
-                <div class="flex justify-between">
-                  <div>차감 후 잔액</div>
-                  <div>474,581<span>.0</span></div>
-                </div>
-                <div class="flex justify-between">
-                  <div>TS머니</div>
-                  <div>474,581<span>.0</span></div>
-                </div>
-                <div class="flex justify-between">
-                  <div>TS포인트</div>
-                  <div>474,581<span>.0</span></div>
-                </div>
-                <hr class="my-2 border-0" />
-                <div class="flex flex-col">
-                  <div>TS머니 전용계좌</div>
-                  <div>기업은행 123-456-7890</div>
-                  <div>예금주 : <span>테스트그룹</span></div>
-                </div>
-              </div>
-              <div class="flex flex-col gap-1 rounded-xl p-6 bg-white">
-                <div>고객센터 1577-4550</div>
-                <div>팩스 1577-4550</div>
-                <hr class="my-2 border-0" />
-                <div>Copyright(C) TOGETHERs co. All Rights Reserved.</div>
-              </div> -->
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
-  <div id="printArea" style="width: 0px; height: 0px;"></div>
-
 </body>
 
 </html>
+
+                <!-- TS머니 영역 -->
+                <!-- <div class="relative bg-amber-100">
+                  <div class="sticky top-4 left-0 right-0 flex flex-col gap-4">
+                    <div class="flex flex-col gap-1 rounded-xl p-6 bg-white">
+                      <div class="flex">
+                        현재잔액
+                      </div>
+                      <div class="flex justify-between">
+                        <div>TS머니</div>
+                        <div>475,081<span>.0</span></div>
+                      </div>
+                      <div class="flex justify-between">
+                        <div>TS포인트</div>
+                        <div>30,000<span>.0</span></div>
+                      </div>
+                      <hr class="my-2 border-0" />
+                      <div class="flex justify-between">
+                        <div>AI이미지 생성단가<span>(부가세포함)</span></div>
+                        <div>500<span>.0</span></div>
+                      </div>
+                      <hr class="my-2 border-0" />
+                      <div class="flex justify-between">
+                        <div>총 차감액</div>
+                        <div>500<span>.0</span></div>
+                      </div>
+                      <div class="flex justify-between">
+                        <div>TS머니</div>
+                        <div>500<span>.0</span></div>
+                      </div>
+                      <div class="flex justify-between">
+                        <div>TS포인트</div>
+                        <div>500<span>.0</span></div>
+                      </div>
+                      <hr class="my-2 border-0" />
+
+                      <div class="flex justify-between">
+                        <div>차감 후 잔액</div>
+                        <div>474,581<span>.0</span></div>
+                      </div>
+                      <div class="flex justify-between">
+                        <div>TS머니</div>
+                        <div>474,581<span>.0</span></div>
+                      </div>
+                      <div class="flex justify-between">
+                        <div>TS포인트</div>
+                        <div>474,581<span>.0</span></div>
+                      </div>
+                      <hr class="my-2 border-0" />
+                      <div class="flex flex-col">
+                        <div>TS머니 전용계좌</div>
+                        <div>기업은행 123-456-7890</div>
+                        <div>예금주 : <span>테스트그룹</span></div>
+                      </div>
+                    </div>
+                    <div class="flex flex-col gap-1 rounded-xl p-6 bg-white">
+                      <div>고객센터 1577-4550</div>
+                      <div>팩스 1577-4550</div>
+                      <hr class="my-2 border-0" />
+                      <div>Copyright(C) TOGETHERs co. All Rights Reserved.</div>
+                    </div>
+                  </div>
+                </div> -->
