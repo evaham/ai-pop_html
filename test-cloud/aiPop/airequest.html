@@ -127,173 +127,176 @@
           <!-- 입력 영역 -->
           <div class="flex flex-col p-4 rounded-xl bg-white">
             <div class="overflow-y-auto">
-              <!-- 용도 선택 -->
-              <div class="ai_crt_fieldset mb-5">
-                <div class="text-lg font-bold">어떤 홍보물을 만드시겠어요?</div>
-                <div class="text-sm text-gray-500">용도에 맞는 템플릿을 선택하시면 최적화된 이미지가 생성됩니다.</div>
-                <div id="selObject" class="flex flex-wrap gap-2 my-2">
-                  <button type="button" class="w-40 px-3 py-2 border border-gray-300 rounded-lg text-left cursor-pointer" onclick="location.href='airequest_pop.html'">
-                    <div class="text-lg font-bold">POP이미지</div>
-                    <div class="text-sm text-gray-500">
-                      자유형식 이미지 생성<br>홍보 및 안내용
-                    </div>
-                  </button>
-                  <button type="button" class="w-40 px-3 py-2 border rounded-lg text-left selected border-[#26499d] bg-[#26499d] text-white cursor-pointer" onclick="location.href='airequest.html'">
-                    <div class="text-lg font-bold">프라이스 카드</div>
-                    <div class="text-sm">
-                      매대 부착용<br>상품명·가격 강조
-                    </div>
-                  </button>
-                  <button type="button" class="w-40 px-3 py-2 border border-gray-300 rounded-lg text-left cursor-pointer" onclick="jsSelectObject(1)">
-                    <div class="text-lg font-bold">전단지형</div>
-                    <div class="text-sm text-gray-500">
-                      A4 사이즈 상품 전단<br>모바일 발송 및 출력용
-                    </div>
-                  </button>
-                  <button type="button" class="w-40 px-3 py-2 border border-gray-300 rounded-lg text-left cursor-pointer" data-field="signage" onclick="jsSelectObject(4)">
-                    <div class="text-lg font-bold">디지털 사이니지</div>
-                    <div class="text-sm text-gray-500">
-                      매장 내 모니터<br>홍보용 배너 형태
-                    </div>
-                  </button>
+          <div class="">
+            <!-- 용도 선택 -->
+            <div class="flex mb-5 mx-auto">
+              <div id="selObject" class="flex gap-1 mx-auto border border-gray-300 p-1 rounded-full tracking-tight bg-gray-100">
+                <button type="button" class="px-3 py-2 shadow rounded-full text-left selected bg-gray-800 font-bold text-white cursor-pointer" onclick="location.href='airequest_pop.html'">
+                  <div class="font-bold">POP이미지</div>
+                </button>
+                <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest.html'">
+                  <div class="font-bold">프라이스카드</div>
+                </button>
+                <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest_flyer.html'">
+                  <div class="font-bold">전단지</div>
+                </button>
+                <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest_signage.html'">
+                  <div class="font-bold">디지털사이니지</div>
+                </button>
+              </div>
+            </div>
+            <!-- POP이미지 설정 -->
+            <div id="pricecardBox" class="flex flex-col gap-5">
+              <!-- POP이미지 레이아웃 -->
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">
+                  <span class="text-red-500">*</span>유형
                 </div>
+                <div class="ai_crt_functionbox_row flex items-center gap-1 my-2">
+                  <select class="w-full border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
+                    <option value="product">상품 홍보형</option>
+                    <option value="notice" selected>안내/공지형</option>
+                  </select>
+                  <select class="w-full border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
+                    <option value="simple" selected>가로형</option>
+                    <option value="detail">세로형</option>
+                  </select>
+                </div>
+
               </div>
 
-              <!-- 프라이스카드형 설정 -->
-              <div id="pricecardBox" class="flex flex-col gap-5">
-                <!-- 프라이스카드 레이아웃 -->
-                <div class="ai_crt_fieldset">
-                  <div class="text-lg font-bold">
-                    <span class="text-red-500">*</span>레이아웃을 선택하세요.
-                  </div>
-                  <div class="text-sm text-gray-500">등록할 상품 수에 맞는 레이아웃을 선택하세요. 최대 24개까지 가능합니다.</div>
-                  <div id="selPricecardDirection" class="ai_crt_functionbox_row flex items-center gap-1 my-2" data-direction="portrait">
-                    <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded cursor-pointer" data-field="pricecard" data-direction="landscape"
-                      onclick="jsSelectLayout(this)">
-                      <div class="text-sm">가로형</div>
-                    </button>
-                    <button type="button" class="flex items-center border border-[#26499d] px-2 py-1 rounded bg-[#26499d] text-white cursor-pointer selected" data-field="pricecard" data-direction="portrait"
-                      onclick="jsSelectLayout(this)">
-                      <div class="text-sm">세로형</div>
-                    </button>
-                    <div class="flex items-center gap-2 ml-4">
-                      <input type="text" id="pricecardRowCount" data-row=""
-                        class="tf_comm flex items-center w-10 text-sm border border-gray-300 rounded p-1 inset-shadow-2xs" onkeyup="jsSetLayout()"
-                      >
-                      행
-                      <input type="text" id="pricecardColCount" data-col="" 
-                        class="tf_comm flex items-center w-10 text-sm border border-gray-300 rounded p-1 inset-shadow-2xs" onkeyup="jsSetLayout()"
-                      >
-                      열
-                    </div>
-                  </div>
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">
+                  <span class="text-red-500">*</span>표시 데이터
                 </div>
-                <!-- 프라이스카드 템플릿 선택 -->
-                <div class="ai_crt_fieldset">
-                  <div class="text-lg font-bold">템플릿을 선택하세요.</div>
-                  <div class="text-sm text-gray-500">템플릿에서 직접 변형/다른 이름으로 저장이 가능합니다.</div>
-                  <div id="selPricecardTemplate" class="flex items-center gap-1 my-2">
-                    <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded cursor-pointer" data-template="1" data-mart="0" data-direction="portrait"
-                      data-row="4" data-col="1" onclick="jsSelectTemplate(this)">
-                      <div class="ai_crt_info--small text-sm">센터템플릿1<br>(세로형, 4×1)</div>
-                    </button>
-                    <input type="hidden" data-template="1" data-goodscol="Name,Spec,DCPrice,SPrice"
-                      value="&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;rectangle&quot; style=&quot;width: 289px; height: 145px; top: -22px; left: 376px; transform-origin: center center; transform: rotate(45deg);&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 100 100&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;rect width=&quot;100&quot; height=&quot;100&quot; fill=&quot;#ff0000&quot; stroke=&quot;transparent&quot; stroke-width=&quot;0&quot;&gt;&lt;/rect&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;45&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;text&quot; data-column=&quot;name&quot; style=&quot;width: 382px; height: 122px; top: 15px; left: 18px;&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;div data-goods=&quot;name&quot; data-size=&quot;30&quot; style=&quot;color: rgb(51, 51, 51); font-weight: bold; font-size: 40px; line-height: 45px; font-style: normal; text-align: left; paint-order: stroke; padding: 3px;&quot; class=&quot;web_font_3&quot;&gt;상품&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;0&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;text&quot; data-column=&quot;dcprice&quot; style=&quot;width: 225px; height: 75px; top: 121px; left: 248px;&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;div data-goods=&quot;dcprice&quot; data-size=&quot;30&quot; style=&quot;color: rgb(255, 0, 0); font-weight: bold; font-size: 60px; line-height: 65px; font-style: normal; text-align: right; paint-order: stroke; padding: 3px;&quot; class=&quot;web_font_2&quot;&gt;&lt;span style=&quot;display: inline-block; font-size: 30px;&quot;&gt;￦&lt;/span&gt;가격&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;0&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;text&quot; data-column=&quot;&quot; style=&quot;width: 138px; height: 100px; top: 3px; left: 421px;&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;div data-goods=&quot;etc&quot; data-size=&quot;30&quot; style=&quot;color: rgb(255, 255, 255); font-weight: normal; font-size: 40px; line-height: 45px; font-style: italic; text-align: right; paint-order: stroke; padding: 3px 10px 3px 3px;&quot; ondblclick=&quot;jsEditableText(this)&quot; class=&quot;web_font_5&quot;&gt;이주의 특가!&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;0&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;text&quot; data-column=&quot;spec&quot; style=&quot;width: 100px; height: 35px; top: 116px; left: 20px;&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;div data-goods=&quot;spec&quot; data-size=&quot;20&quot; style=&quot;color: rgb(51, 51, 51); font-weight: bold; font-size: 30px; line-height: 35px; font-style: normal; text-align: left; paint-order: stroke; padding: 3px;&quot; class=&quot;web_font_3&quot;&gt;규격&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;0&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;text&quot; data-column=&quot;sprice&quot; style=&quot;width: 100px; height: 35px; top: 152px; left: 159px;&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;div data-goods=&quot;sprice&quot; data-size=&quot;20&quot; style=&quot;color:#333333; font-weight:normal; font-size:20px; line-height:25px; font-style:normal; text-align: right; -webkit-text-stroke-width:0px, -webkit-text-stroke-color:transparent; paint-order:stroke fill markers; padding:3px; text-decoration:line-through #333333;&quot; class=&quot;web_font_2&quot;&gt;&lt;span style=&quot;display:inline-block;font-size:20px&quot;&gt;￦&lt;/span&gt;정상가격&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;0&quot;&gt;&lt;/div&gt;&lt;/div&gt;">
-                    <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded cursor-pointer" data-template="2" data-mart="1001"
-                      data-direction="portrait" data-row="8" data-col="2" onclick="jsSelectTemplate(this)">
-                      <div class="ai_crt_info--small text-sm">센터템플릿2<br>(세로형, 8×2)</div>
-                    </button>
-                    <input type="hidden" data-template="2" data-goodscol="Name,DCPrice"
-                      value="&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;ellipse&quot; style=&quot;width: 383px; height: 140px; top: -67px; left: -107px;&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 100 100&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;ellipse cx=&quot;50&quot; cy=&quot;50&quot; rx=&quot;50&quot; ry=&quot;50&quot; fill=&quot;#ffff00&quot; stroke=&quot;transparent&quot; stroke-width=&quot;0&quot;&gt;&lt;/ellipse&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-nw&quot; data-dir=&quot;nw&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-sw&quot; data-dir=&quot;sw&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-ne&quot; data-dir=&quot;ne&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-se&quot; data-dir=&quot;se&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;0&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;text&quot; data-column=&quot;name&quot; style=&quot;width: 254px; height: 67px; top: 2px; left: 3px;&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;div data-goods=&quot;name&quot; data-size=&quot;30&quot; style=&quot;color: rgb(51, 51, 51); font-weight: normal; font-size: 23px; line-height: 28px; font-style: normal; text-align: left; paint-order: stroke; padding: 3px;&quot; class=&quot;web_font_1&quot;&gt;상품&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-nw&quot; data-dir=&quot;nw&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-sw&quot; data-dir=&quot;sw&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-ne&quot; data-dir=&quot;ne&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-se&quot; data-dir=&quot;se&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;0&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer&quot; data-shape=&quot;text&quot; data-column=&quot;dcprice&quot; style=&quot;width: 229px; height: 51px; top: 49px; left: 46px;&quot;&gt;&lt;div class=&quot;ai_crt_layer_content&quot;&gt;&lt;div data-goods=&quot;dcprice&quot; data-size=&quot;30&quot; style=&quot;color: rgb(255, 0, 0); font-weight: bold; font-size: 40px; line-height: 45px; font-style: normal; text-align: right; paint-order: stroke; padding: 3px;&quot; class=&quot;web_font_2&quot;&gt;가격&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-w&quot; data-dir=&quot;w&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-s&quot; data-dir=&quot;s&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-e&quot; data-dir=&quot;e&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-nw&quot; data-dir=&quot;nw&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-sw&quot; data-dir=&quot;sw&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-ne&quot; data-dir=&quot;ne&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_handle h-se&quot; data-dir=&quot;se&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ai_crt_layer_rotate&quot; data-dir=&quot;rotate&quot; data-angle=&quot;0&quot;&gt;&lt;/div&gt;&lt;/div&gt;">
-                  </div>
-                </div>
-                <!-- 프라이스카드 색상테마 -->
-                <div class="ai_crt_fieldset">
-                  <div class="text-lg font-bold">색상테마를 선택하세요.</div>
-                  <div class="text-sm text-gray-500">색상 선택이 고민되시면 색상테마를 적용해 보세요.</div>
-                  <div id="selPricecardTheme" class="ai_crt_functionbox_row flex items-center gap-1 my-2" data-theme="">
-                    <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('yellow')">
-                      <div class="flex items-center text-sm">
-                        <div class="w-4 h-4 bg-[yellow] rounded-full border border-black/20 mr-1"></div>
-                        노랑
+                <div class="ai_crt_functionbox_row flex flex-col gap-2 my-2">
+                  <div id="selPricecardColumn" class="flex items-center gap-1 mr-4">
+                    <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer selected" data-field="pricecard" data-column="name">
+                      <div class="text-sm">
+                        <span class="text-red-500" style="margin-left: -3px">*</span>상품명
                       </div>
                     </button>
-                    <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('red')">
-                      <div class="flex items-center text-sm">
-                        <div class="w-4 h-4 bg-[red] rounded-full border border-black/20 mr-1"></div>
-                        빨강
+                    <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer selected" data-field="pricecard" data-column="dcprice">
+                      <div class="text-sm">
+                        <span class="text-red-500" style="margin-left: -3px">*</span>판매가
                       </div>
                     </button>
-                    <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('green')">
-                      <div class="flex items-center text-sm">
-                        <div class="w-4 h-4 bg-[green] rounded-full border border-black/20 mr-1"></div>
-                        초록
-                      </div>
+
+                    <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded bg-gray-50 cursor-pointer" data-field="pricecard" data-column="spec"
+                      onclick="jsSelectColumn(this)"
+                    >
+                      <div class="text-sm">규격</div>
                     </button>
-                    <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('blue')">
-                      <div class="flex items-center text-sm">
-                        <div class="w-4 h-4 bg-[blue] rounded-full border border-black/20 mr-1"></div>
-                        파랑
-                      </div>
+
+                    <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer" data-field="pricecard" data-column="sprice">
+                      <div class="text-sm">바코드</div>
                     </button>
-                    <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('white')">
-                      <div class="flex items-center text-sm">
-                        <div class="w-4 h-4 bg-[white] rounded-full border border-black/20 mr-1"></div>
-                        흰색
-                      </div>
+                    <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer" data-field="pricecard" data-column="dcrate" onclick="jsSelectColumn(this)">
+                      <div class="text-sm">정상판매가</div>
                     </button>
                   </div>
-                </div>
-                <!-- 프라이스카드 상품등록 -->
-                <div class="ai_crt_fieldset">
-                  <div class="text-lg font-bold">
-                    <span class="text-red-500">*</span>상품 데이터를 입력하세요.
+                  <div class="">
+                    <input type="text" class=" flex items-center w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs" placeholder="엑셀에서 데이터를 복사한 후 여기에 붙여넣기 해주세요." oninput="jsMakeExcelData(this)">
                   </div>
-                  <div class="text-sm text-gray-500">입력하실 엑셀 데이터를 복사하신 후 노란색 칸에 붙여넣기 하면 미리보기에 나타납니다. (데이터 순서를 꼭 지켜주세요!)</div>
-                  <div class="ai_crt_functionbox_row flex flex-wrap items-center gap-1 my-2">
-                    <div id="selPricecardColumn" class="flex items-center gap-1 mr-4">
-                      <button type="button" class="flex items-center border border-[#26499d] px-2 py-1 rounded bg-[#26499d] text-white cursor-pointer selected" data-field="pricecard" data-column="name">
-                        <div class="text-sm" style="font-size: 13px">
-                          <span class="text-red-500" style="margin-left: -3px">*</span>상품명
-                        </div>
-                      </button>
-                      <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded bg-white cursor-pointer" data-field="pricecard" data-column="spec"
-                        onclick="jsSelectColumn(this)"
-                      >
-                        <div class="text-sm">규격</div>
-                      </button>
-                      <button type="button" class="flex items-center border border-[#26499d] px-2 py-1 rounded bg-[#26499d] text-white cursor-pointer selected" data-field="pricecard" data-column="dcprice">
-                        <div class="text-sm">
-                          <span class="text-red-500" style="margin-left: -3px">*</span>가격
-                        </div>
-                      </button>
-                      <button type="button" class="flex items-center border border-[#26499d] px-2 py-1 rounded bg-[#26499d] text-white cursor-pointer" data-field="pricecard" data-column="sprice">
-                        <div class="text-sm">정상가격</div>
-                      </button>
-                      <button type="button" class="flex items-center border border-[#26499d] px-2 py-1 rounded bg-[#26499d] text-white cursor-pointer" data-field="pricecard" data-column="dcrate" onclick="jsSelectColumn(this)">
-                        <div class="text-sm">할인율</div>
-                      </button>
-                    </div>
-                    <div id="selPricecardPriceUnit" class="flex items-center gap-1">
-                      <div class="text-sm">가격단위 :
-                      </div>
-                      <button type="button" class="flex items-center border border-[#26499d] px-2 py-1 rounded bg-[#26499d] text-white cursor-pointer" onclick="jsSelectPriceUnit(this)">
-                        <div class="text-sm">없음</div>
-                      </button>
-                      <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded cursor-pointer" data-unit="front" onclick="jsSelectPriceUnit(this)">
-                        <div class="text-sm">￦(앞)</div>
-                      </button>
-                      <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded cursor-pointer" data-unit="back" onclick="jsSelectPriceUnit(this)">
-                        <div class="text-sm">원(뒤)</div>
-                      </button>
-                    </div>
-                    <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded cursor-pointer" onclick="jsRemoveExcelRow()">
-                      <div class="text-sm">행 비우기</div>
-                    </button>
-                  </div>
-                  <div id="pricecardExcel" data-count="0" class="ai_crd_goods_grid text-sm"></div>
                 </div>
               </div>
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">
+                  <span class="text-red-500">*</span>가격표시단위
+                </div>
+                <div class="ai_crt_functionbox_row flex items-center gap-1 my-2">
+                  <select class="w-1/2 border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
+                    <option value="product" selected>없음</option>
+                    <option value="notice">￦(앞)</option>
+                    <option value="notice">원(뒤)</option>
+                    <option value="notice">￦(앞)</option>
+                    <option value="notice">￦(앞)</option>
+                  </select>
+                </div>
+
+              </div>
+              <!-- POP이미지 테마 -->
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">테마</div>
+                <div class="text-sm text-gray-500">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex flex-wrap items-center gap-1 my-2" data-theme="">
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('yellow')">
+                    <div class="flex items-center text-sm">
+                      자동
+                    </div>
+                  </button>
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('red')">
+                    <div class="flex items-center text-sm">
+                      산뜻한 / 자연적
+                    </div>
+                  </button>
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('green')">
+                    <div class="flex items-center text-sm">
+                      따뜻한 / 감성
+                    </div>
+                  </button>
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('blue')">
+                    <div class="flex items-center text-sm">
+                      강렬한 / 원색
+                    </div>
+                  </button>
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('white')">
+                    <div class="flex items-center text-sm">
+                      모던 / 심플
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <!-- POP이미지 강조라벨 -->
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">강조라벨</div>
+                <div class="text-sm text-gray-500">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex items-center gap-1 my-2" data-theme="">
+                  <select class="w-1/2 border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
+                    <option value="product" selected>없음</option>
+                    <option value="notice">폭탄세일</option>
+                    <option value="notice">한정수량</option>
+                    <option value="notice">주말특가</option>
+                    <option value="notice">인기상품</option>
+                    <option value="notice">점장추천</option>
+                    <option value="notice">고당도</option>
+                    <option value="notice">산지직송</option>
+                    <option value="notice">당일도축</option>
+                    <option value="notice">오늘수확</option>
+                    <option value="notice">국내산</option>
+                  </select>
+                </div>
+              </div>
+              <!-- POP이미지 추가설명 -->
+
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">추가설명</div>
+                <div class="text-sm text-gray-500">강조할 내용이나 추가 사항을 입력하면 이미지 생성에 반영됩니다.</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex items-center gap-1 my-2">
+                  <textarea class="flex items-center w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs" placeholder="추가 설명을 입력해주세요."></textarea>
+                </div>
+              </div>
+              <!-- POP이미지 참조 -->
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">참조 이미지</div>
+                <div class="text-sm text-gray-500">입력 내용을 반영하여 AI 이미지가 생성됩니다.</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex gap-1 my-2">
+                  <button type="button" class="flex items-center p-6 border border-gray-300 rounded-xl" onclick="jsSelectTheme('yellow')">
+                    <div class="flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-7 fill-gray-500">
+                        <path d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z"></path>
+                      </svg>
+                    </div>
+                  </button>
+                  <div class="flex flex-col w-full text-sm text-gray-500 p-2 border border-gray-300 rounded-xl text-center">
+                    파일선택 버튼을 눌러 이미지를 업로드 하세요. <br />
+                    (권장 이미지 사이즈 : 1MB 이하, JPG/PNG)
+                    <button type="button" class="flex items-center mx-auto px-2 py-1 border border-gray-300 rounded" onclick="jsSelectFile()">파일선택</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
             </div>
 
           </div>

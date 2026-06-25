@@ -100,211 +100,207 @@
     </div>
   </div> -->
   <!--// wrap_top -->
-  <div class="w-full h-full">
-    <div class="h-full">
-      <div class="flex flex-col h-full">
-        <!-- 메뉴 탭 -->
-        <div class="tab_submenu shadow bg-white w-full">
-          <div class="tabs flex mt-auto px-4" id="menuTab">
-            <ul class="level1 static flex gap-1" tabindex="0" role="menubar">
-              <li role="menuitem" class="static">
-                <a class="level1 tab selected static flex px-1 pt-2 pb-1 border-b-6 font-bold" href="#" onclick="jsAIPopMenu(0)"
-                  tabindex="-1">AI POP 만들기</a>
-              </li>
-              <li role="menuitem" class="static">
-                <a class="level1 tab static flex px-4 pt-2 pb-1 border-b-6 border-transparent" href="_blank"
-                  onclick="jsAIPopMenu(0)" tabindex="-1">AI 이미지 관리</a>
-              </li>
-              <li role="menuitem" class="static">
-                <a class="level1 tab static flex px-4 pt-2 pb-1 border-b-6 border-transparent" href="#" onclick="jsAIPopMenu(0)"
-                  tabindex="-1">이용현황</a>
-              </li>
-            </ul>
-          </div>
+  <div class="flex flex-col w-full h-full">
+    <div class="flex flex-col h-full">
+      <!-- 메뉴 탭 -->
+      <div class="tab_submenu sticky top-0 shadow bg-white w-full z-10">
+        <div class="tabs flex mt-auto px-4" id="menuTab">
+          <ul class="level1 static flex gap-1" tabindex="0" role="menubar">
+            <li role="menuitem" class="static">
+              <a class="level1 tab selected static flex px-1 pt-2 pb-1 border-b-6 font-bold" href="#" onclick="jsAIPopMenu(0)"
+                tabindex="-1">AI POP 만들기</a>
+            </li>
+            <li role="menuitem" class="static">
+              <a class="level1 tab static flex px-4 pt-2 pb-1 border-b-6 border-transparent" href="_blank"
+                onclick="jsAIPopMenu(0)" tabindex="-1">AI 이미지 관리</a>
+            </li>
+            <li role="menuitem" class="static">
+              <a class="level1 tab static flex px-4 pt-2 pb-1 border-b-6 border-transparent" href="#" onclick="jsAIPopMenu(0)"
+                tabindex="-1">이용현황</a>
+            </li>
+          </ul>
         </div>
-        <!-- 입력 폼 컨텐츠 -->
-        <div class="relative grid grid-rows-1 grid-cols-[500px_30px_1fr_30px] h-full">
-          <!-- 입력 영역 -->
-          <div class="relative bg-amber-100">
-            <div class="absolute inset-0">
-              <div class="sticky top-11 flex flex-col max-h-[calc(100dvh-(var(--spacing)*11))] p-6 border-r border-gray-300 bg-white overflow-y-auto">
-                <div class="">
-                  <!-- 용도 선택 -->
-                  <div class="flex mb-5 mx-auto">
-                    <div id="selObject" class="flex gap-1 mx-auto border border-gray-300 p-1 rounded-full tracking-tight bg-gray-100">
-                      <button type="button" class="px-3 py-2 shadow rounded-full text-left selected bg-gray-800 font-bold text-white cursor-pointer" onclick="location.href='airequest_pop.html'">
-                        <div class="font-bold">POP이미지</div>
-                      </button>
-                      <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest.html'">
-                        <div class="font-bold">프라이스카드</div>
-                      </button>
-                      <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest_flyer.html'">
-                        <div class="font-bold">전단지</div>
-                      </button>
-                      <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest_signage.html'">
-                        <div class="font-bold">디지털사이니지</div>
-                      </button>
-                    </div>
+      </div>
+      <!-- 입력 폼 컨텐츠 -->
+      <div class="relative flex h-full min-h-0">
+        <!-- 입력 영역 -->
+        <div class="flex flex-col w-200 max-h-[calc(100dvh-(var(--spacing)*11))] p-6 bg-white">
+          <div class="">
+            <!-- 용도 선택 -->
+            <div class="flex mb-5 mx-auto">
+              <div id="selObject" class="flex gap-1 mx-auto border border-gray-300 p-1 rounded-full tracking-tight bg-gray-100">
+                <button type="button" class="px-3 py-2 shadow rounded-full text-left selected bg-gray-800 font-bold text-white cursor-pointer" onclick="location.href='airequest_pop.html'">
+                  <div class="font-bold">POP이미지</div>
+                </button>
+                <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest.html'">
+                  <div class="font-bold">프라이스카드</div>
+                </button>
+                <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest_flyer.html'">
+                  <div class="font-bold">전단지</div>
+                </button>
+                <button type="button" class="px-3 py-2 border-gray-300 rounded-full text-left cursor-pointer" onclick="location.href='airequest_signage.html'">
+                  <div class="font-bold">디지털사이니지</div>
+                </button>
+              </div>
+            </div>
+            <!-- POP이미지 설정 -->
+            <div id="pricecardBox" class="flex flex-col gap-5">
+              <!-- POP이미지 레이아웃 -->
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">
+                  <span class="text-red-500">*</span>유형
+                </div>
+                <div class="ai_crt_functionbox_row flex items-center gap-1 my-2">
+                  <select class="w-full border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
+                    <option value="product">상품 홍보형</option>
+                    <option value="notice" selected>안내/공지형</option>
+                  </select>
+                  <select class="w-full border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
+                    <option value="simple" selected>가로형</option>
+                    <option value="detail">세로형</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">
+                  <span class="text-red-500">*</span>표시 데이터
+                </div>
+                <div class="ai_crt_functionbox_row flex flex-col gap-2 my-2">
+                  <div id="selPricecardColumn" class="flex items-center gap-1 mr-4">
+                    <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer selected" data-field="pricecard" data-column="name">
+                      <div class="text-sm">
+                        <span class="text-red-500" style="margin-left: -3px">*</span>상품명
+                      </div>
+                    </button>
+                    <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer selected" data-field="pricecard" data-column="dcprice">
+                      <div class="text-sm">
+                        <span class="text-red-500" style="margin-left: -3px">*</span>판매가
+                      </div>
+                    </button>
+
+                    <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded bg-gray-50 cursor-pointer" data-field="pricecard" data-column="spec"
+                      onclick="jsSelectColumn(this)"
+                    >
+                      <div class="text-sm">규격</div>
+                    </button>
+
+                    <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer" data-field="pricecard" data-column="sprice">
+                      <div class="text-sm">바코드</div>
+                    </button>
+                    <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer" data-field="pricecard" data-column="dcrate" onclick="jsSelectColumn(this)">
+                      <div class="text-sm">정상판매가</div>
+                    </button>
                   </div>
-                  <!-- POP이미지 설정 -->
-                  <div id="pricecardBox" class="flex flex-col gap-5">
-                    <!-- POP이미지 레이아웃 -->
-                    <div class="ai_crt_fieldset">
-                      <div class="text-sm font-bold">
-                        <span class="text-red-500">*</span>유형
-                      </div>
-                      <div class="ai_crt_functionbox_row flex items-center gap-1 my-2">
-                        <select class="w-full border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
-                          <option value="product">상품 홍보형</option>
-                          <option value="notice" selected>안내/공지형</option>
-                        </select>
-                        <select class="w-full border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
-                          <option value="simple" selected>가로형</option>
-                          <option value="detail">세로형</option>
-                        </select>
-                      </div>
+                  <div class="">
+                    <input type="text" class=" flex items-center w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs" placeholder="엑셀에서 데이터를 복사한 후 여기에 붙여넣기 해주세요." oninput="jsMakeExcelData(this)">
+                  </div>
+                </div>
+              </div>
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">
+                  <span class="text-red-500">*</span>가격표시단위
+                </div>
+                <div class="ai_crt_functionbox_row flex items-center gap-1 my-2">
+                  <select class="w-1/2 border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
+                    <option value="product" selected>없음</option>
+                    <option value="notice">￦(앞)</option>
+                    <option value="notice">원(뒤)</option>
+                    <option value="notice">￦(앞)</option>
+                    <option value="notice">￦(앞)</option>
+                  </select>
+                </div>
 
+              </div>
+              <!-- POP이미지 테마 -->
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">테마</div>
+                <div class="text-sm text-gray-500">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex flex-wrap items-center gap-1 my-2" data-theme="">
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('yellow')">
+                    <div class="flex items-center text-sm">
+                      자동
                     </div>
+                  </button>
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('red')">
+                    <div class="flex items-center text-sm">
+                      산뜻한 / 자연적
+                    </div>
+                  </button>
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('green')">
+                    <div class="flex items-center text-sm">
+                      따뜻한 / 감성
+                    </div>
+                  </button>
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('blue')">
+                    <div class="flex items-center text-sm">
+                      강렬한 / 원색
+                    </div>
+                  </button>
+                  <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('white')">
+                    <div class="flex items-center text-sm">
+                      모던 / 심플
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <!-- POP이미지 강조라벨 -->
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">강조라벨</div>
+                <div class="text-sm text-gray-500">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex items-center gap-1 my-2" data-theme="">
+                  <select class="w-1/2 border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
+                    <option value="product" selected>없음</option>
+                    <option value="notice">폭탄세일</option>
+                    <option value="notice">한정수량</option>
+                    <option value="notice">주말특가</option>
+                    <option value="notice">인기상품</option>
+                    <option value="notice">점장추천</option>
+                    <option value="notice">고당도</option>
+                    <option value="notice">산지직송</option>
+                    <option value="notice">당일도축</option>
+                    <option value="notice">오늘수확</option>
+                    <option value="notice">국내산</option>
+                  </select>
+                </div>
+              </div>
+              <!-- POP이미지 추가설명 -->
 
-                    <div class="ai_crt_fieldset">
-                      <div class="text-sm font-bold">
-                        <span class="text-red-500">*</span>표시 데이터
-                      </div>
-                      <div class="ai_crt_functionbox_row flex flex-col gap-2 my-2">
-                        <div id="selPricecardColumn" class="flex items-center gap-1 mr-4">
-                          <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer selected" data-field="pricecard" data-column="name">
-                            <div class="text-sm">
-                              <span class="text-red-500" style="margin-left: -3px">*</span>상품명
-                            </div>
-                          </button>
-                          <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer selected" data-field="pricecard" data-column="dcprice">
-                            <div class="text-sm">
-                              <span class="text-red-500" style="margin-left: -3px">*</span>판매가
-                            </div>
-                          </button>
-
-                          <button type="button" class="flex items-center border border-gray-300 px-2 py-1 rounded bg-gray-50 cursor-pointer" data-field="pricecard" data-column="spec"
-                            onclick="jsSelectColumn(this)"
-                          >
-                            <div class="text-sm">규격</div>
-                          </button>
-
-                          <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer" data-field="pricecard" data-column="sprice">
-                            <div class="text-sm">바코드</div>
-                          </button>
-                          <button type="button" class="flex items-center border border-gray-600 px-2 py-1 rounded bg-gray-600 text-white cursor-pointer" data-field="pricecard" data-column="dcrate" onclick="jsSelectColumn(this)">
-                            <div class="text-sm">정상판매가</div>
-                          </button>
-                        </div>
-                        <div class="">
-                          <input type="text" class=" flex items-center w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs" placeholder="엑셀에서 데이터를 복사한 후 여기에 붙여넣기 해주세요." oninput="jsMakeExcelData(this)">
-                        </div>
-                      </div>
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">추가설명</div>
+                <div class="text-sm text-gray-500">강조할 내용이나 추가 사항을 입력하면 이미지 생성에 반영됩니다.</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex items-center gap-1 my-2">
+                  <textarea class="flex items-center w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs" placeholder="추가 설명을 입력해주세요."></textarea>
+                </div>
+              </div>
+              <!-- POP이미지 참조 -->
+              <div class="ai_crt_fieldset">
+                <div class="text-sm font-bold">참조 이미지</div>
+                <div class="text-sm text-gray-500">입력 내용을 반영하여 AI 이미지가 생성됩니다.</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex gap-1 my-2">
+                  <button type="button" class="flex items-center p-6 border border-gray-300 rounded-xl" onclick="jsSelectTheme('yellow')">
+                    <div class="flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-7 fill-gray-500">
+                        <path d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z"></path>
+                      </svg>
                     </div>
-                    <div class="ai_crt_fieldset">
-                      <div class="text-sm font-bold">
-                        <span class="text-red-500">*</span>가격표시단위
-                      </div>
-                      <div class="ai_crt_functionbox_row flex items-center gap-1 my-2">
-                        <select class="w-1/2 border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
-                          <option value="product" selected>없음</option>
-                          <option value="notice">￦(앞)</option>
-                          <option value="notice">원(뒤)</option>
-                          <option value="notice">￦(앞)</option>
-                          <option value="notice">￦(앞)</option>
-                        </select>
-                      </div>
-
-                    </div>
-                    <!-- POP이미지 테마 -->
-                    <div class="ai_crt_fieldset">
-                      <div class="text-sm font-bold">테마</div>
-                      <div class="text-sm text-gray-500">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
-                      <div id="selPricecardTheme" class="ai_crt_functionbox_row flex flex-wrap items-center gap-1 my-2" data-theme="">
-                        <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('yellow')">
-                          <div class="flex items-center text-sm">
-                            자동
-                          </div>
-                        </button>
-                        <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('red')">
-                          <div class="flex items-center text-sm">
-                            산뜻한 / 자연적
-                          </div>
-                        </button>
-                        <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('green')">
-                          <div class="flex items-center text-sm">
-                            따뜻한 / 감성
-                          </div>
-                        </button>
-                        <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('blue')">
-                          <div class="flex items-center text-sm">
-                            강렬한 / 원색
-                          </div>
-                        </button>
-                        <button type="button" class="flex items-center px-2 py-1 border border-gray-300 rounded" onclick="jsSelectTheme('white')">
-                          <div class="flex items-center text-sm">
-                            모던 / 심플
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                    <!-- POP이미지 강조라벨 -->
-                    <div class="ai_crt_fieldset">
-                      <div class="text-sm font-bold">강조라벨</div>
-                      <div class="text-sm text-gray-500">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
-                      <div id="selPricecardTheme" class="ai_crt_functionbox_row flex items-center gap-1 my-2" data-theme="">
-                        <select class="w-1/2 border border-gray-300 rounded p-2 bg-gray-50" onchange="jsSelectLayout(this)">
-                          <option value="product" selected>없음</option>
-                          <option value="notice">폭탄세일</option>
-                          <option value="notice">한정수량</option>
-                          <option value="notice">주말특가</option>
-                          <option value="notice">인기상품</option>
-                          <option value="notice">점장추천</option>
-                          <option value="notice">고당도</option>
-                          <option value="notice">산지직송</option>
-                          <option value="notice">당일도축</option>
-                          <option value="notice">오늘수확</option>
-                          <option value="notice">국내산</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- POP이미지 추가설명 -->
-
-                    <div class="ai_crt_fieldset">
-                      <div class="text-sm font-bold">추가설명</div>
-                      <div class="text-sm text-gray-500">강조할 내용이나 추가 사항을 입력하면 이미지 생성에 반영됩니다.</div>
-                      <div id="selPricecardTheme" class="ai_crt_functionbox_row flex items-center gap-1 my-2">
-                        <textarea class="flex items-center w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs" placeholder="추가 설명을 입력해주세요."></textarea>
-                      </div>
-                    </div>
-                    <!-- POP이미지 참조 -->
-                    <div class="ai_crt_fieldset">
-                      <div class="text-sm font-bold">참조 이미지</div>
-                      <div class="text-sm text-gray-500">입력 내용을 반영하여 AI 이미지가 생성됩니다.</div>
-                      <div id="selPricecardTheme" class="ai_crt_functionbox_row flex gap-1 my-2">
-                        <button type="button" class="flex items-center p-6 border border-gray-300 rounded-xl" onclick="jsSelectTheme('yellow')">
-                          <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-7 fill-gray-500">
-                              <path d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z"></path>
-                            </svg>
-                          </div>
-                        </button>
-                        <div class="flex flex-col w-full text-sm text-gray-500 p-2 border border-gray-300 rounded-xl text-center">
-                          파일선택 버튼을 눌러 이미지를 업로드 하세요. <br />
-                          (권장 이미지 사이즈 : 1MB 이하, JPG/PNG)
-                          <button type="button" class="flex items-center mx-auto px-2 py-1 border border-gray-300 rounded" onclick="jsSelectFile()">파일선택</button>
-                        </div>
-                      </div>
-                    </div>
+                  </button>
+                  <div class="flex flex-col w-full text-sm text-gray-500 p-2 border border-gray-300 rounded-xl text-center">
+                    파일선택 버튼을 눌러 이미지를 업로드 하세요. <br />
+                    (권장 이미지 사이즈 : 1MB 이하, JPG/PNG)
+                    <button type="button" class="flex items-center mx-auto px-2 py-1 border border-gray-300 rounded" onclick="jsSelectFile()">파일선택</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="bg-red-100">여백</div>
+        </div>
+        <!-- 고정 위치 영역 -->
+        <div class="w-[460px] shrink-0">
           <!-- 미리보기 영역 -->
-           <div class="relative bg-amber-100">
-            <div class="flex p-6 overflow-y-auto">
+          <div class="fixed top-11 left-200 z-10 h-[calc(100dvh-(var(--spacing)*11))] w-[460px] bg-amber-100">
+            <div class="flex h-full p-6 overflow-y-auto">
               <div class="flex flex-col rounded-xl p-4 bg-white">
                 <div class="">
                   미리보기<br />미리보기<br />미리보기<br />미리보기<br />미리보기<br />
@@ -312,8 +308,6 @@
               </div>
             </div>
           </div>
-          <div class="bg-red-100">여백</div>
-
         </div>
       </div>
     </div>
