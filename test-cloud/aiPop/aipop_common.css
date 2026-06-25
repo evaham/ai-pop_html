@@ -150,6 +150,121 @@ input:checked + .switch_slider:before {
 
 .panel_box { @apply relative flex flex-col p-4 rounded-xl bg-white overflow-y-auto;}
 
+/* AI POP 화면 공통 레이아웃/버튼 묶음 */
+.page-shell {
+  @apply flex flex-col w-full h-full bg-gray-50;
+  min-width: calc(1550px - (100vw - 100%));
+}
+
+.page-content {
+  @apply flex-1 flex flex-col;
+}
+
+.top-tab-bar {
+  @apply sticky top-0 z-10 w-full h-11 bg-white shadow;
+}
+
+.top-tab-inner {
+  @apply flex mt-auto px-4;
+}
+
+.top-tab-list {
+  @apply static flex gap-1;
+}
+
+.app-tab-link {
+  @apply static flex px-4 pt-2 pb-1 border-b-6 border-transparent;
+}
+
+.app-tab-link.selected {
+  @apply px-1 font-bold;
+}
+
+.main-layout {
+  @apply flex-1 flex min-h-0;
+}
+
+.input-sidebar {
+  @apply sticky top-11 self-start flex shrink-0 flex-col w-160 p-6 border-r border-gray-300 bg-white overflow-y-auto;
+  height: calc(100dvh - (var(--spacing) * 11));
+}
+
+.preview-wrap {
+  @apply relative flex flex-col w-full;
+}
+
+.preview-panel {
+  @apply flex-1 flex flex-col bg-gray-50 p-6 min-h-0;
+}
+
+.preview-card {
+  @apply flex h-full flex-col overflow-y-auto rounded-xl border border-gray-200 bg-white p-6 shadow-sm;
+}
+
+.balance-wrap {
+  @apply w-80 shrink-0 mt-6 pr-6 bg-gray-50;
+}
+
+.balance-sticky {
+  @apply sticky top-4 flex flex-col gap-4;
+}
+
+.surface-card {
+  @apply flex flex-col gap-2 rounded-xl border border-gray-200 bg-white p-6 shadow-sm text-sm text-gray-700;
+}
+
+.object-btn {
+  @apply px-3 py-2 rounded-full text-left cursor-pointer;
+}
+
+.object-btn.is-active {
+  @apply shadow bg-gray-800 font-bold text-white border-gray-800;
+}
+
+.chip-btn {
+  @apply flex items-center px-2 py-1 border border-gray-300 rounded bg-white cursor-pointer;
+}
+
+.chip-btn-center {
+  @apply mx-auto;
+}
+
+.object-switch-group {
+  @apply flex gap-1 mx-auto border border-gray-300 p-1 rounded-full tracking-tight bg-gray-100;
+}
+
+.form-select {
+  @apply w-full border border-gray-300 rounded p-2 bg-gray-50;
+}
+
+.form-select-half {
+  @apply w-1/2 border border-gray-300 rounded p-2 bg-gray-50;
+}
+
+.form-input {
+  @apply flex items-center w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs;
+}
+
+.form-textarea {
+  @apply w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs;
+}
+
+.col-toggle-btn {
+  @apply flex items-center border border-gray-300 px-2 py-1 rounded bg-gray-50 cursor-pointer;
+}
+
+.col-toggle-btn.selected {
+  @apply border-gray-600 bg-gray-600 text-white;
+}
+
+.upload-drop-btn {
+  @apply flex items-center p-6 border border-gray-300 rounded-xl;
+}
+
+.upload-hint-box {
+  @apply flex flex-col w-full text-sm text-gray-500 p-2 border border-gray-300 rounded-xl text-center;
+}
+
 
 
 
@@ -174,8 +289,8 @@ img.ai_crt_attach { border: 1px solid #ccc; border-radius: 5px;}
 
 .ai_crt_fieldset { position: relative;}
 
-/* .ai_crt_functionbox_row { position: relative; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; margin-top:8px; gap: 10px;} */
-.ai_crt_functionbox_col { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; margin-top:5px;}
+.ai_crt_functionbox_row { @apply flex items-center gap-1 my-2}
+.ai_crt_functionbox_col { @apply flex flex-col gap-1 my-2}
 
 .ai_crt_layerbox_col { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; gap: 1px; background: #a8a8a8; width:165px; height: 123px; overflow-x: hidden; overflow-y: auto; margin-top:5px; padding: 1px; }
 .ai_crt_layerbox_btn { width: 100%; padding: 0; border: none; background: #fff;}
@@ -198,7 +313,7 @@ img.ai_crt_attach { border: 1px solid #ccc; border-radius: 5px;}
 
 
 
-.ai_crt_info { @apply text-lg font-bold }
+.ai_crt_info { @apply text-sm font-bold }
 .ai_crt_info--small { @apply text-sm text-gray-500;}
 
 .ai_crt_preview {@apply flex-1 overflow-hidden;}
@@ -245,7 +360,11 @@ img.ai_crt_attach { border: 1px solid #ccc; border-radius: 5px;}
 .popup_layer div.popup_background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #333; opacity: 0.3; }
 .popup_layer div.popup_content { position: absolute; background: #fff; z-index: 4; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 15px; border-radius: 5px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); }
 
+.tf_comm_excel { padding: 3px 5px; width: 100%; border: none; color: #333; box-sizing: border-box; }
 
+
+.ai_crt_goods_grid { display: inline-grid; background: #ccc; gap: 1px; border: 1px solid #ccc;}
+.ai_crt_goods_grid > div { width: 100%; height: 100%; background: #fff; display: flex; justify-content: center; align-items: center; }
 
 /*.wrap_left .tf_lmstitle { display: inline-block; width: 100%; height: 30px; padding: 3px 5px; line-height: 1.4; border: 1px solid #ccc; color: #333; box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075); box-sizing: border-box; }
 
