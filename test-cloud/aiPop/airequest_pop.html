@@ -8,7 +8,7 @@
   <title>AI POP</title>
   <link rel="stylesheet" href="web_font.css?20260102" />
   <link rel="stylesheet" href="new_aipop_common.css?20260709" />
-  <link rel="stylesheet" href="aipop_common.css?20260625" />
+  <!-- <link rel="stylesheet" href="aipop_common.css?20260625" /> -->
   <script type="text/javascript" src="/test-cloud/resources/js/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
   <style>
@@ -111,19 +111,19 @@
   <div class="page-shell">
     <div class="page-content">
       <!-- 메뉴 탭 -->
-      <div class="top-tab-bar">
-        <div class="tabs top-tab-inner" id="menuTab">
-          <ul class="level1 static top-tab-list" tabindex="0" role="menubar">
-            <li role="menuitem" class="static">
-              <a class="level1 tab app-tab-link selected" href="#" onclick="jsAIPopMenu(0)"
+      <div class="page-tabs">
+        <div class="tabs page-tab-inner" id="menuTab">
+          <ul class="level1 static" tabindex="0" role="menubar">
+            <li role="menuitem" class="">
+              <a class="level1 tab selected" href="#" onclick="jsAIPopMenu(0)"
                 tabindex="-1">AI POP 만들기</a>
             </li>
-            <li role="menuitem" class="static">
-              <a class="level1 tab app-tab-link" href="_blank"
+            <li role="menuitem" class="">
+              <a class="level1 tab" href="_blank"
                 onclick="jsAIPopMenu(0)" tabindex="-1">AI 이미지 관리</a>
             </li>
-            <li role="menuitem" class="static">
-              <a class="level1 tab app-tab-link" href="#" onclick="jsAIPopMenu(0)"
+            <li role="menuitem" class="">
+              <a class="level1 tab" href="#" onclick="jsAIPopMenu(0)"
                 tabindex="-1">이용현황</a>
             </li>
           </ul>
@@ -135,9 +135,9 @@
         <div class="input-sidebar">
           <div class="">
             <!-- 용도 선택 -->
-            <div class="flex mb-5 mx-auto">
+            <div class="object-tab">
               <div id="selObject" class="object-switch-group">
-                <button type="button" class="object-btn is-active" onclick="location.href='airequest_pop.html'">
+                <button type="button" class="object-btn selected" onclick="location.href='airequest_pop.html'">
                   <div class="font-bold">POP이미지</div>
                 </button>
                 <button type="button" class="object-btn" onclick="location.href='airequest.html'">
@@ -151,8 +151,9 @@
                 </button>
               </div>
             </div>
+
             <!-- POP이미지 설정 -->
-            <div id="pricecardBox" class="flex flex-col gap-5">
+            <div id="pricecardBox" class="setting-group">
               <!-- POP이미지 레이아웃 -->
               <div class="ai_crt_fieldset">
                 <div class="ai_crt_info">
@@ -175,17 +176,15 @@
                   <span class="text-red-500">*</span>상품 데이터
                 </div>
                 <div class="ai_crt_info--small">입력하실 데이터를 선택하신 후 엑셀 데이터를 붙여넣기 하면 미리보기에 나타납니다.</div>
-                <div class="ai_crt_functionbox_col">
-                  <div id="selPopGoods" class="ai_crt_goods_grid" style="grid-template-rows: repeat(2, 1fr); grid-template-columns: 300px 90px 90px 90px; place-items: center;">
-                    <div>상품명</div>
-                    <div>규격</div>
-                    <div>정상판매가</div>
-                    <div>할인판매가</div>
-                    <input type="text" class="tf_comm_excel" id="popGoodsName" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
-                    <input type="text" class="tf_comm_excel" id="popGoodsSpec" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
-                    <input type="text" class="tf_comm_excel" id="popGoodsSprice" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
-                    <input type="text" class="tf_comm_excel" id="popGoodsDCPrice" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
-                  </div>
+                <div id="selPopGoods" class="grid-table" style="grid-template-rows: repeat(2, 1fr); grid-template-columns: 1fr 90px 90px 90px; place-items: center;">
+                  <div class="grid-table-th">상품명</div>
+                  <div class="grid-table-th">규격</div>
+                  <div class="grid-table-th">정상판매가</div>
+                  <div class="grid-table-th">할인판매가</div>
+                  <input type="text" class="tf_comm_excel" id="popGoodsName" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
+                  <input type="text" class="tf_comm_excel" id="popGoodsSpec" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
+                  <input type="text" class="tf_comm_excel" id="popGoodsSprice" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
+                  <input type="text" class="tf_comm_excel" id="popGoodsDCPrice" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
                 </div>
               </div>
               <div class="ai_crt_fieldset">
@@ -193,7 +192,7 @@
                   <span class="text-red-500">*</span>가격표시단위
                 </div>
                 <div class="ai_crt_functionbox_row">
-                  <select class="form-select-half" onchange="jsSelectLayout(this)">
+                  <select class="form-select" onchange="jsSelectLayout(this)">
                     <option value="product" selected>없음</option>
                     <option value="notice">￦(앞)</option>
                     <option value="notice">원(뒤)</option>
@@ -202,33 +201,44 @@
                   </select>
                 </div>
               </div>
+              <!-- POP이미지 홍보라벨 -->
+              <div class="ai_crt_fieldset">
+                <div class="ai_crt_info">홍보 내용</div>
+                <div id="selPricecardTheme" class="ai_crt_functionbox_col">
+                  <input class="form-input" style="width: 100%;" placeholder="입력하신 내용을 반영하여 AI 이미지가 생성됩니다." />
+                  <div class="form-text-byte">
+                    <span id="popTitleByte">0</span> / 100 Bytes
+                  </div>
+                </div>
+              </div>
+
               <!-- POP이미지 테마 -->
               <div class="ai_crt_fieldset">
                 <div class="ai_crt_info">테마</div>
                 <div class="ai_crt_info--small">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
                 <div id="selPricecardTheme" class="ai_crt_functionbox_row" data-theme="">
-                  <button type="button" class="chip-btn" onclick="jsSelectTheme('yellow')">
-                    <div class="flex items-center text-sm">
+                  <button type="button" class="chip-btn selected" onclick="jsSelectTheme('yellow')">
+                    <div>
                       자동
                     </div>
                   </button>
                   <button type="button" class="chip-btn" onclick="jsSelectTheme('red')">
-                    <div class="flex items-center text-sm">
+                    <div class="chip-btn-name">
                       산뜻한 / 자연적
                     </div>
                   </button>
                   <button type="button" class="chip-btn" onclick="jsSelectTheme('green')">
-                    <div class="flex items-center text-sm">
+                    <div class="chip-btn-name">
                       따뜻한 / 감성
                     </div>
                   </button>
                   <button type="button" class="chip-btn" onclick="jsSelectTheme('blue')">
-                    <div class="flex items-center text-sm">
+                    <div class="chip-btn-name">
                       강렬한 / 원색
                     </div>
                   </button>
                   <button type="button" class="chip-btn" onclick="jsSelectTheme('white')">
-                    <div class="flex items-center text-sm">
+                    <div class="chip-btn-name">
                       모던 / 심플
                     </div>
                   </button>
@@ -239,7 +249,7 @@
                 <div class="ai_crt_info">강조라벨</div>
                 <div class="ai_crt_info--small">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
                 <div id="selPricecardTheme" class="ai_crt_functionbox_row" data-theme="">
-                  <select class="form-select-half" onchange="jsSelectLayout(this)">
+                  <select class="form-select" onchange="jsSelectLayout(this)">
                     <option value="product" selected>없음</option>
                     <option value="notice">폭탄세일</option>
                     <option value="notice">한정수량</option>
@@ -266,7 +276,7 @@
               <!-- POP이미지 참조 -->
               <div class="ai_crt_fieldset">
                 <div class="text-sm font-bold">참조 이미지</div>
-                <div class="text-sm text-gray-500">입력 내용을 반영하여 AI 이미지가 생성됩니다.</div>
+                <div class="ai_crt_info--small">입력 내용을 반영하여 AI 이미지가 생성됩니다.</div>
                 <div id="selPricecardTheme" class="ai_crt_functionbox_row flex gap-1 my-2">
                   <button type="button" class="upload-drop-btn" onclick="jsSelectTheme('yellow')">
                     <div class="flex items-center">
@@ -278,7 +288,7 @@
                   <div class="upload-hint-box">
                     파일선택 버튼을 눌러 이미지를 업로드 하세요. <br />
                     (권장 이미지 사이즈 : 1MB 이하, JPG/PNG)
-                    <button type="button" class="chip-btn chip-btn-center" onclick="jsSelectFile()">파일선택</button>
+                    <button type="button" class="chip-btn mx-auto" onclick="jsSelectFile()">파일선택</button>
                   </div>
                 </div>
               </div>
@@ -309,60 +319,65 @@
         <!-- TS머니 영역 -->
         <div class="ts-wrap">
           <div class="ts-sticky">
-            <div class="surface-card">
-              <div class="text-base font-bold text-gray-900">현재잔액</div>
-              <div class="flex justify-between">
-                <div>TS머니</div>
-                <div class="font-semibold text-gray-900">475,081<span class="text-gray-500">.0</span></div>
-              </div>
-              <div class="flex justify-between">
-                <div>TS포인트</div>
-                <div class="font-semibold text-gray-900">30,000<span class="text-gray-500">.0</span></div>
-              </div>
-              <hr class="my-1 border-0 border-t border-gray-100" />
-              <div class="flex justify-between">
-                <div>AI이미지 생성단가<span class="ml-1 text-gray-500">(부가세포함)</span></div>
-                <div class="font-semibold text-gray-900">500<span class="text-gray-500">.0</span></div>
-              </div>
-              <hr class="my-1 border-0 border-t border-gray-100" />
-              <div class="flex justify-between font-semibold text-gray-900">
-                <div>총 차감액</div>
-                <div>500<span class="text-gray-500">.0</span></div>
-              </div>
-              <div class="flex justify-between">
-                <div>TS머니</div>
-                <div class="font-semibold text-gray-900">500<span class="text-gray-500">.0</span></div>
-              </div>
-              <div class="flex justify-between">
-                <div>TS포인트</div>
-                <div class="font-semibold text-gray-900">500<span class="text-gray-500">.0</span></div>
-              </div>
-              <hr class="my-1 border-0 border-t border-gray-100" />
+            <div class="ts-card">
+              <div class="ts-title">현재잔액 <button class="ts-button">새로고침</button></div>
+              <div class="ts-info-box">
+                <dl>
+                  <dt>TS머니</dt>
+                  <dd>475,081<span>.0</span></dd>
+                </dl>
+                <dl>
+                  <dt>TS포인트</dt>
+                  <dd>30,000<span>.0</span></dd>
+                </dl>
+                <hr class="ts-hr" />
+                <dl>
+                  <dt class="ts-title">AI이미지 생성단가<span class="ts-text-small">(부가세포함)</span></dt>
+                  <dd>500<span>.0</span></dd>
+                </dl>
+                <hr class="ts-hr" />
+                <dl>
+                  <dt class="ts-title">총 차감액</dt>
+                  <dd>500<span>.0</span></dd>
+                </dl>
+                <dl>
+                  <dt>TS머니</dt>
+                  <dd>500<span>.0</span></dd>
+                </dl>
+                <dl>
+                  <dt>TS포인트</dt>
+                  <dd>500<span>.0</span></dd>
+                </dl>
+                <hr class="ts-hr" />
 
-              <div class="flex justify-between font-semibold text-gray-900">
-                <div>차감 후 잔액</div>
-                <div>474,581<span class="text-gray-500">.0</span></div>
-              </div>
-              <div class="flex justify-between">
-                <div>TS머니</div>
-                <div class="font-semibold text-gray-900">474,581<span class="text-gray-500">.0</span></div>
-              </div>
-              <div class="flex justify-between">
-                <div>TS포인트</div>
-                <div class="font-semibold text-gray-900">474,581<span class="text-gray-500">.0</span></div>
-              </div>
-              <hr class="my-1 border-0 border-t border-gray-100" />
-              <div class="flex flex-col gap-1 text-gray-600">
-                <div class="font-semibold text-gray-800">TS머니 전용계좌</div>
-                <div>기업은행 123-456-7890</div>
-                <div>예금주 : <span class="font-semibold text-gray-800">테스트그룹</span></div>
+                <dl>
+                  <dt class="ts-title">차감 후 잔액</dt>
+                  <dd>474,581<span>.0</span></dd>
+                </dl>
+                <dl>
+                  <dt>TS머니</dt>
+                  <dd class="text-blue-500">474,581<span>.0</span></dd>
+                </dl>
+                <dl>
+                  <dt>TS포인트</dt>
+                  <dd class="text-red-500">474,581<span class="text-gray-400">.0</span></dd>
+                </dl>
               </div>
             </div>
-            <div class="surface-card">
-              <div class="font-semibold text-gray-900">고객센터 1577-4550</div>
-              <div>팩스 1577-4550</div>
-              <hr class="my-1 border-0 border-t border-gray-100" />
-              <div class="text-gray-500">Copyright(C) TOGETHERs co. All Rights Reserved.</div>
+            <div class="ts-card">
+              <div class="ts-title">TS머니 전용계좌</div>
+              <hr class="ts-hr" />
+              <div class="ts-bank">기업은행 <span>123-456-7890</span></div>
+              <div>예금주 : <span class="font-semibold text-gray-800">테스트그룹</span></div>
+            </div>
+
+
+
+            <div class="ts-card">
+              <div class="ts-tel">고객센터 <span>1577-4550</span></div>
+              <div class="ts-fax">팩스 <span>032-363-4305</span></div>
+              <hr class="ts-hr" />
+              <div class="ts-copyright">Copyright(C) TOGETHERs co. All Rights Reserved.</div>
             </div>
           </div>
         </div>

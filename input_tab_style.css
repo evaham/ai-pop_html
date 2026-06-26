@@ -1,6 +1,13 @@
 @charset "UTF-8";
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-tablet: 40rem;
+  --breakpoint-laptop: 64rem;
+  --breakpoint-desktop: 480rem;
+}
+
 /* 2025-07-18 ver 1.3.2 */
 :root {
     --tab-primary: #26499d;

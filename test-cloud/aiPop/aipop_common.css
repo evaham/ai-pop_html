@@ -160,15 +160,150 @@ input:checked + .switch_slider:before {
   @apply flex-1 flex flex-col;
 }
 
-.top-tab-bar {
-  @apply sticky top-0 z-10 w-full h-11 bg-white shadow;
+.page-tabs {
+  @apply sticky top-0 z-10 w-full bg-white shadow;
+}
+.page-tab-inner {
+  @apply relative flex h-11 mt-auto px-4;
 }
 
-.top-tab-inner {
-  @apply flex mt-auto px-4;
+.page-tab-inner > ul {
+  @apply static flex;
 }
 
-.top-tab-list {
+.page-tab-inner > ul > li {
+  @apply flex;
+}
+
+.page-tab-inner > ul > li > a {
+  @apply static flex px-4 mt-auto pb-1 border-b-6 border-transparent text-gray-600 no-underline whitespace-nowrap cursor-pointer;
+}
+
+.page-tab-inner > ul > li > a:hover {
+  @apply border-gray-200 text-gray-800;
+}
+
+.page-tab-inner > ul > li > a.selected {
+  @apply px-1 font-bold border-gray-800;
+}
+
+
+
+/* 메뉴 탭 */
+.object-tab {
+  @apply flex mb-5 mx-auto;
+}
+
+.object-switch-group {
+  @apply flex gap-1 mx-auto border border-gray-300 p-1 rounded-full bg-gray-100;
+}
+
+.object-btn {
+  @apply px-3 py-2 rounded-full text-left cursor-pointer;
+}
+
+.object-btn.selected {
+  @apply shadow bg-gray-800 font-bold text-white border-gray-800;
+}
+
+
+/* 설정 그룹 */
+.setting-group {
+  @apply flex flex-col gap-5;
+}
+
+
+
+/* 입력폼 */
+.form-select {
+  @apply flex items-center min-w-30 h-8 border border-gray-300 rounded p-1 pl-1 pr-3 bg-gray-50;
+}
+
+.form-input {
+  @apply flex items-center h-8 border border-gray-300 rounded p-2 inset-shadow-2xs;
+}
+.form-text-byte {
+  @apply flex items-center ml-auto text-sm tracking-tight text-gray-400;
+}
+.form-text-byte > span {
+  @apply text-gray-600 mr-1;
+}
+
+.form-textarea {
+  @apply w-full border border-gray-300 rounded p-2 inset-shadow-2xs;
+}
+
+.chip-btn {
+  @apply flex items-center justify-center px-2 py-1 border border-gray-300 rounded bg-white text-sm cursor-pointer;
+}
+
+.chip-btn .chip-btn-name {
+  @apply flex items-center gap-1;
+}
+
+.chip-btn:hover {
+  @apply bg-gray-100;
+}
+
+.chip-btn.selected {
+  @apply border-gray-600 bg-gray-600 text-white;
+}
+
+.button-group {
+  @apply flex gap-1;
+}
+
+/* 테이블 구조 그리드 스타일만 처리 */
+
+.grid-table {
+  @apply inline-grid w-full my-2 bg-gray-200 gap-px border border-gray-300 text-sm;
+}
+.grid-table > div {
+   @apply flex w-full h-full items-center px-1 bg-gray-50;
+}
+.grid-table .grid-table-th {
+  @apply justify-center;
+}
+
+
+.tf_comm_excel {
+  @apply flex p-1 w-full h-full border-none text-gray-800 bg-white;
+}
+.grid-table .chk_comm {
+  @apply size-3 mr-1;
+}
+
+
+
+.col-toggle-btn {
+  @apply flex items-center h-9 border border-gray-300 px-2 py-1 rounded bg-gray-50 cursor-pointer;
+}
+
+.col-toggle-btn.selected {
+  @apply border-gray-600 bg-gray-600 text-white;
+}
+
+.upload-drop-btn {
+  @apply flex items-center p-6 border border-gray-300 rounded-xl;
+}
+
+.upload-hint-box {
+  @apply flex flex-col w-full text-sm text-gray-500 p-2 border border-gray-300 rounded-xl text-center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .top-tab-list {
   @apply static flex gap-1;
 }
 
@@ -178,7 +313,7 @@ input:checked + .switch_slider:before {
 
 .app-tab-link.selected {
   @apply px-1 font-bold;
-}
+} */
 
 .main-layout {
   @apply flex-1 flex min-h-0;
@@ -201,72 +336,74 @@ input:checked + .switch_slider:before {
   @apply flex h-full flex-col overflow-y-auto bg-white p-6 shadow-sm;
 }
 
-
+/* ts머니/포인트 */
 
 .ts-wrap {
-  @apply w-86 shrink-0 mt-6 p-6 bg-gray-50;
+  @apply w-86 shrink-0 p-4 bg-gray-50;
 }
 
 .ts-sticky {
-  @apply sticky top-4 flex flex-col gap-4;
+  @apply sticky top-11 flex flex-col gap-4;
 }
 
-.surface-card {
-  @apply flex flex-col gap-2 rounded-xl border border-gray-200 bg-white p-6 shadow-sm text-sm text-gray-700;
+.ts-card {
+  @apply flex flex-col gap-1 rounded-lg border border-gray-200 bg-white p-4 shadow-xs;
 }
 
-.object-btn {
-  @apply px-3 py-2 rounded-full text-left cursor-pointer;
+.ts-title {
+  @apply flex items-center gap-2 text-gray-900 text-base font-bold;
+}
+.ts-text-small {
+  @apply text-sm font-medium;
+}
+.ts-button {
+  @apply flex items-center justify-center ml-2 p-1 border text-xs font-medium border-gray-300 rounded bg-gray-50;
 }
 
-.object-btn.is-active {
-  @apply shadow bg-gray-800 font-bold text-white border-gray-800;
+.ts-info-box {
+  @apply flex flex-col gap-1;
+}
+.ts-info-box > dl {
+  @apply flex justify-between items-center text-sm;
+}
+.ts-info-box > dt {
+  @apply font-semibold;
+}
+.ts-info-box > dd {
+  @apply text-gray-200;
+}
+.ts-info-box > dd > span {
+  @apply text-gray-300;
+}
+.ts-inner-box {
+  @apply bg-blue-700 text-white p-2;
+} 
+
+
+
+
+
+
+.ts-hr {
+  @apply my-2 border-0 border-t border-gray-100;
+}
+.ts-hr-dashed {
+  @apply my-2 border-0 border-t border-dashed border-gray-100;
 }
 
-.chip-btn {
-  @apply flex items-center px-2 py-1 border border-gray-300 rounded bg-white cursor-pointer;
+.ts-bank{
+  @apply flex items-center gap-2 text-lg font-bold text-[#26499d];
 }
 
-.chip-btn-center {
-  @apply mx-auto;
+.ts-tel,.ts-fax {
+  @apply flex ;
 }
-
-.object-switch-group {
-  @apply flex gap-1 mx-auto border border-gray-300 p-1 rounded-full tracking-tight bg-gray-100;
+.ts-tel > span,.ts-fax > span {
+  @apply ml-auto text-gray-500;
 }
-
-.form-select {
-  @apply w-full border border-gray-300 rounded p-2 bg-gray-50;
+.ts-copyright {
+  @apply text-gray-500 text-sm;
 }
-
-.form-select-half {
-  @apply w-1/2 border border-gray-300 rounded p-2 bg-gray-50;
-}
-
-.form-input {
-  @apply flex items-center w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs;
-}
-
-.form-textarea {
-  @apply w-full text-sm border border-gray-300 rounded p-2 inset-shadow-2xs;
-}
-
-.col-toggle-btn {
-  @apply flex items-center border border-gray-300 px-2 py-1 rounded bg-gray-50 cursor-pointer;
-}
-
-.col-toggle-btn.selected {
-  @apply border-gray-600 bg-gray-600 text-white;
-}
-
-.upload-drop-btn {
-  @apply flex items-center p-6 border border-gray-300 rounded-xl;
-}
-
-.upload-hint-box {
-  @apply flex flex-col w-full text-sm text-gray-500 p-2 border border-gray-300 rounded-xl text-center;
-}
-
 
 
 
@@ -306,11 +443,20 @@ img.ai_crt_attach { border: 1px solid #ccc; border-radius: 5px;}
 .ai_crt_grid42 {grid-template-rows: repeat(4, 1fr); grid-template-columns: repeat(2, 1fr);}
 .ai_crt_grid_item {background: #ddd; border-radius:3px;}
 
-.ai_crd_goods_grid { display: inline-grid; background: #ccc; gap: 1px; border: 1px solid #ccc;}
-.ai_crd_goods_grid > div { width: 100%; height: 100%; background: #fff; display: flex; justify-content: center; align-items: center; }
 
-.ai_crd_goods_grid .chk_comm { width: 13px; height: 13px; margin-right: 3px }
-.ai_crd_goods_grid .tf_comm_excel { padding: 3px 5px; width: 100%; border: none; color: #333; background: #fff; box-sizing: border-box; }
+/* 상품데이터 테이블 */
+.ai_crd_goods_grid {
+  @apply text-sm inline-grid bg-gray-300 gap-[1px] border border-gray-300;
+   /* display: inline-grid; background: #ccc; gap: 1px; border: 1px solid #ccc; */
+}
+.ai_crd_goods_grid > div { 
+  @apply w-full h-full bg-white flex justify-center items-center;
+  /* width: 100%; height: 100%; background: #fff; display: flex; justify-content: center; align-items: center;  */
+}
+
+.ai_crd_goods_grid .chk_comm { 
+  @apply size-3 mr-1;
+}
 
 
 
@@ -362,11 +508,10 @@ img.ai_crt_attach { border: 1px solid #ccc; border-radius: 5px;}
 .popup_layer div.popup_background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #333; opacity: 0.3; }
 .popup_layer div.popup_content { position: absolute; background: #fff; z-index: 4; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 15px; border-radius: 5px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); }
 
-.tf_comm_excel { padding: 3px 5px; width: 100%; border: none; color: #333; box-sizing: border-box; }
+/* .tf_comm_excel { padding: 3px 5px; width: 100%; border: none; color: #333; box-sizing: border-box; } */
 
 
-.ai_crt_goods_grid { display: inline-grid; background: #ccc; gap: 1px; border: 1px solid #ccc;}
-.ai_crt_goods_grid > div { width: 100%; height: 100%; background: #fff; display: flex; justify-content: center; align-items: center; }
+
 
 /*.wrap_left .tf_lmstitle { display: inline-block; width: 100%; height: 30px; padding: 3px 5px; line-height: 1.4; border: 1px solid #ccc; color: #333; box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075); box-sizing: border-box; }
 
