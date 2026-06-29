@@ -8,60 +8,9 @@
   <title>AI POP</title>
   <link rel="stylesheet" href="web_font.css?20260102" />
   <link rel="stylesheet" href="new_aipop_common.css?20260709" />
-  <!-- <link rel="stylesheet" href="aipop_common.css?20260625" /> -->
   <script type="text/javascript" src="/test-cloud/resources/js/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
-  <style>
-    html,
-    body {
-      background-color: #f9fafb;
-      margin: 0;
-      padding: 0;
-    }
 
-    /* 인쇄 시 다른 UI 숨기기 */
-    @media print {
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      #loading {
-        display: none;
-      }
-
-      #popupLayer {
-        display: none;
-      }
-
-      .wrap_top {
-        display: none !important;
-        margin: 0;
-      }
-
-      #printArea {
-        position: relative;
-        display: block;
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        page-break-before: avoid;
-        break-before: avoid;
-        box-sizing: border-box
-      }
-
-      #printArea img {
-        margin: 0;
-      }
-    }
-
-    #printArea {
-      position: relative;
-      display: flex;
-      overflow: hidden;
-    }
-  </style>
 </head>
 <body class="w-full h-full bg-gray-50">
   <!-- <div id="loading" class="divLoading hidden">
@@ -115,13 +64,13 @@
         <div class="tabs page-tab-inner" id="menuTab">
           <ul class="level1 static" tabindex="0" role="menubar">
             <li role="menuitem" class="">
-							<a class="level1 tab selected" href="airequest_pop.html" tabindex="-1">AI POP 만들기</a>
+							<a class="level1 tab" href="airequest_pop.html" tabindex="-1">AI POP 만들기</a>
             </li>
             <li role="menuitem" class="">
 							<a class="level1 tab" href="aiImage.html" tabindex="-1">AI 이미지 관리</a>
             </li>
             <li role="menuitem" class="">
-							<a class="level1 tab" href="aiStatics.html" tabindex="-1">AI 이용현황</a>
+							<a class="level1 tab selected" href="aiStatics.html" tabindex="-1">AI 이용현황</a>
             </li>
           </ul>
         </div>

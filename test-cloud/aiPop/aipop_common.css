@@ -176,7 +176,7 @@ input:checked + .switch_slider:before {
 }
 
 .page-tab-inner > ul > li > a {
-  @apply static flex px-4 mt-auto pb-1 border-b-6 border-transparent text-gray-600 no-underline whitespace-nowrap cursor-pointer;
+  @apply static flex px-3 mt-auto pb-1 border-b-6 border-transparent text-gray-600 no-underline whitespace-nowrap cursor-pointer;
 }
 
 .page-tab-inner > ul > li > a:hover {
@@ -184,7 +184,7 @@ input:checked + .switch_slider:before {
 }
 
 .page-tab-inner > ul > li > a.selected {
-  @apply px-1 font-bold border-gray-800;
+  @apply font-bold border-gray-800;
 }
 
 
@@ -252,6 +252,15 @@ input:checked + .switch_slider:before {
 .button-group {
   @apply flex gap-1;
 }
+
+.templat-view-btn {
+  @apply flex items-center justify-center px-3 py-2 border border-[#26499d] rounded bg-[#26499d] text-white cursor-pointer;
+}
+.templat-view-btn:hover {
+  @apply bg-[#1c3c7a];
+}
+
+
 
 /* 테이블 구조 그리드 스타일만 처리 */
 
@@ -339,7 +348,7 @@ input:checked + .switch_slider:before {
 /* ts머니/포인트 */
 
 .ts-wrap {
-  @apply w-86 shrink-0 p-4 bg-gray-50;
+  @apply w-80 shrink-0 p-4 bg-gray-50;
 }
 
 .ts-sticky {

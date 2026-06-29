@@ -181,17 +181,14 @@
       <div class="page-tabs">
         <div class="tabs page-tab-inner" id="menuTab">
           <ul class="level1 static" tabindex="0" role="menubar">
-            <li role="menuitem">
-              <a class="level1 tab selected" href="#" onclick="jsAIPopMenu(0)"
-                tabindex="-1">AI POP 만들기</a>
+            <li role="menuitem" class="">
+							<a class="level1 tab selected" href="airequest_pop.html" tabindex="-1">AI POP 만들기</a>
             </li>
-            <li role="menuitem">
-              <a class="level1 tab" href="_blank"
-                onclick="jsAIPopMenu(0)" tabindex="-1">AI 이미지 관리</a>
+            <li role="menuitem" class="">
+							<a class="level1 tab" href="aiImage.html" tabindex="-1">AI 이미지 관리</a>
             </li>
-            <li role="menuitem">
-              <a class="level1 tab" href="#" onclick="jsAIPopMenu(0)"
-                tabindex="-1">이용현황</a>
+            <li role="menuitem" class="">
+							<a class="level1 tab" href="aiStatics.html" tabindex="-1">AI 이용현황</a>
             </li>
           </ul>
         </div>
@@ -227,7 +224,7 @@
                 <div class="ai_crt_info">템플릿 디자인</div>
                 <div class="ai_crt_info--small">엑셀 데이터를 복사하신 후 노란색 칸에 붙여넣기 하세요. (데이터 순서를 꼭 지켜주세요!)</div>
 								<div class="ai_crt_functionbox_row">
-									<div class="flex border border-slate-100" onclick="jsOpenTemplateBox()">투게더 제공 템플릿 보기</div>
+									<div class="templat-view-btn" onclick="jsOpenTemplateBox()">투게더 제공 템플릿 보기</div>
 								</div>
                 <div id="selPricecardTemplate" class="ai_crt_functionbox_row" style="display:none">
                   <button type="button" class="chip-btn" data-template="1" data-mart="0" data-direction="portrait" data-row="1" data-col="1" onclick="jsSelectTemplate(this)">
