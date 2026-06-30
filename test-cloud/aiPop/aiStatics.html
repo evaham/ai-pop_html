@@ -78,745 +78,703 @@
           </ul>
         </div>
       </div>
-      <div class="main-layout">
-        <!-- 입력 영역 사이드뷰 -->
+      <!-- 전체 컨텐츠 영역 -->
+      <div class="wrap-layout">
+        <!-- 큰 화면 -->
         <div class="full-contents-layout">
           <div class="">
             <!-- 용도 선택 -->
             <div class="">
-              <div class="">
-                <div class="">
-                  <div class="">
-                    <form name="frmSearch" method="get" action="">
-                      <div class="search-content">
-                        <div class="search-opt">
-                          <input type="hidden" name="searchMartCode" value="1001">
-                          <span class="search__text text-sm text-gray-700 mr-1">생성일</span>
-                          <input name="startDate" id="startDate" class="search-input-text datepicker hasDatepicker" style="width: 100px;" value="2026-05-29" readonly="readonly">
-                          <span class="text-sm text-gray-600">~</span>
-                          <input name="endDate" id="endDate" class="search-input-text datepicker hasDatepicker" style="width: 100px;" value="2026-06-29" readonly="readonly">
-                          <button type="button" class="search-btn" onclick="jsSetDate(1)">1개월</button>
-                          <button type="button" class="search-btn" onclick="jsSetDate(3)">3개월</button>
-                          <button type="button" class="search-btn" onclick="jsSetDate(6)">6개월</button>
-                          <span class="search__text text-sm text-gray-700 ml-2">결과</span>
-                          <select class="search-select" name="searchType" id="searchType">
-                            <option value="A" selected="selected">전체</option>
-                            <option value="S">생성완료</option>
-                            <option value="F">생성실패</option>
-                          </select>
-                          <div class="flex gap-1 ml-10">
-                            <button type="button" class="search-btn-blue" onclick="jsSearch()">검색</button>
-                            <button type="button" class="search-btn" onclick="jsReset()">초기화</button>
-                          </div>
-                        </div>
-                        <div class="search-result">
-                          <span class="search__text">누적 생성건수 : </span>
-                          <span class="search__text text_bold font-semibold">13건</span>
-                          <span class="text_gray text-gray-400 mx-2">|</span>
-                          <span class="search__text">총 결제TS머니 : </span>
-                          <span class="search__text text_bold font-semibold">0.0</span>
-                          <span class="text_gray text-gray-400 mx-2">|</span>
-                          <span class="search__text">총 결제TS포인트 : </span>
-                          <span class="search__text text_bold font-semibold">2,500.0</span>
-                          <div class="ml-auto flex items-center gap-2">
-                            <select class="search-select" name="orderBy">
-                              <option value="rgstASC">이미지생성일↑</option>
-                              <option value="rgstDESC" selected="selected">이미지생성일↓</option>
-                            </select>
-                            <button type="button" class="search-btn" onclick="jsExcel()">엑셀다운로드</button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                    <div class="scrollwrap">
-                      <div class="itemlist maxviewsize">
-                        <div class="statice-tbl-wrap">
-                          <table class="statice-tbl hover">
-                            <colgroup>
-                              <col style="width:30px">
-                              <col style="width:120px">
-                              <col style="width:210px">
-                              <col style="width:80px">
-                              <col style="width:80px">
-                              <col style="width:80px">
-                            </colgroup>
-                            <thead>
-                              <tr>
-                                <th class="text_center">No.</th>
-                                <th class="text_center">이미지생성일</th>
-                                <th class="text_center">내용</th>
-                                <th class="text_center">결과</th>
-                                <th class="text_center">결제TS머니</th>
-                                <th class="text_center">결제TS포인트</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr class="default">
-                                <th class="text_right">
-                                  1
-                                </th>
-                                <td class="text_center text_gray">2026-06-29 08:18</td>
-                                <td class="text_left">
-                                  <span
-                                    title="안내/공지형 POP를 만들고 싶어.타이틀은 &quot;모바일 주문 오픈!&quot;로 해서 상단 가운데에 배치해줘.다음 내용을 안내할 거야. 「투게더마트 모바일 주문 서비스가 오픈했습니다!
-                7월 1일부터 7월 14일까지 모바일 주문을 통해 주문하신 고객님께는 키친타올을 무료로 증정합니다~!
-                많은 이용 부탁드립니다. 감사합니다~」
-                타이틀 아래에 안내 내용을 넣어 창의적으로 꾸며주고, 일정/시간 관련 내용이 잘 보이도록 라벨로 강조해줘. 깔끔하고 심플한 무채색 배경에 고급스러운 무드로 표현해 줘. 내가 첨부한 이미지와 비슷한 느낌, 포맷으로 만들어줘.&quot;투게더마트 부평점&quot;을 타이틀 위에 넣어줘.">안내/공지형
-                                    POP를 만들고 싶...</span>
-                                </td>
-                                <td class="text_center">
-                                  <span>생성성공</span>
+              <form name="frmSearch" method="get" action="">
+                <div class="search-content">
+                  <div class="search-opt">
+                    <input type="hidden" name="searchMartCode" value="1001">
+                    <span class="search__text text-sm text-gray-700 mr-1">생성일</span>
+                    <input name="startDate" id="startDate" class="search-input-text datepicker hasDatepicker" style="width: 100px;" value="2026-05-29" readonly="readonly">
+                    <span class="text-sm text-gray-600">~</span>
+                    <input name="endDate" id="endDate" class="search-input-text datepicker hasDatepicker" style="width: 100px;" value="2026-06-29" readonly="readonly">
+                    <button type="button" class="search-btn" onclick="jsSetDate(1)">1개월</button>
+                    <button type="button" class="search-btn" onclick="jsSetDate(3)">3개월</button>
+                    <button type="button" class="search-btn" onclick="jsSetDate(6)">6개월</button>
+                    <span class="search__text text-sm text-gray-700 ml-2">결과</span>
+                    <select class="search-select" name="searchType" id="searchType">
+                      <option value="A" selected="selected">전체</option>
+                      <option value="S">생성완료</option>
+                      <option value="F">생성실패</option>
+                    </select>
+                    <div class="flex gap-1 ml-10">
+                      <button type="button" class="search-btn-blue" onclick="jsSearch()">검색</button>
+                      <button type="button" class="search-btn" onclick="jsReset()">초기화</button>
+                    </div>
+                  </div>
+                  <div class="search-result">
+                    <span class="search__text">누적 생성건수 : </span>
+                    <span class="search__text text_bold font-semibold">13건</span>
+                    <span class="text_gray text-gray-400 mx-2">|</span>
+                    <span class="search__text">총 결제TS머니 : </span>
+                    <span class="search__text text_bold font-semibold">0.0</span>
+                    <span class="text_gray text-gray-400 mx-2">|</span>
+                    <span class="search__text">총 결제TS포인트 : </span>
+                    <span class="search__text text_bold font-semibold">2,500.0</span>
+                    <div class="ml-auto flex items-center gap-2">
+                      <select class="search-select" name="orderBy">
+                        <option value="rgstASC">이미지생성일↑</option>
+                        <option value="rgstDESC" selected="selected">이미지생성일↓</option>
+                      </select>
+                      <button type="button" class="search-btn" onclick="jsExcel()">엑셀다운로드</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="scrollwrap">
+                <div class="statice-itemlist maxviewsize">
+                  <div class="statice-tbl-wrap">
+                    <table class="statice-tbl hover">
+                      <colgroup>
+                        <col style="width:30px">
+                        <col style="width:120px">
+                        <col style="width:210px">
+                        <col style="width:80px">
+                        <col style="width:80px">
+                        <col style="width:80px">
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th class="text_center">No.</th>
+                          <th class="text_center">이미지생성일</th>
+                          <th class="text_center">내용</th>
+                          <th class="text_center">결과</th>
+                          <th class="text_center">결제TS머니</th>
+                          <th class="text_center">결제TS포인트</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="default">
+                          <th class="text_right">
+                            1
+                          </th>
+                          <td class="text_center text_gray">2026-06-29 08:18</td>
+                          <td class="text_left">
+                            <span
+                              title="안내/공지형 POP를 만들고 싶어.타이틀은 &quot;모바일 주문 오픈!&quot;로 해서 상단 가운데에 배치해줘.다음 내용을 안내할 거야. 「투게더마트 모바일 주문 서비스가 오픈했습니다!
+          7월 1일부터 7월 14일까지 모바일 주문을 통해 주문하신 고객님께는 키친타올을 무료로 증정합니다~!
+          많은 이용 부탁드립니다. 감사합니다~」
+          타이틀 아래에 안내 내용을 넣어 창의적으로 꾸며주고, 일정/시간 관련 내용이 잘 보이도록 라벨로 강조해줘. 깔끔하고 심플한 무채색 배경에 고급스러운 무드로 표현해 줘. 내가 첨부한 이미지와 비슷한 느낌, 포맷으로 만들어줘.&quot;투게더마트 부평점&quot;을 타이틀 위에 넣어줘.">안내/공지형
+                              POP를 만들고 싶...</span>
+                          </td>
+                          <td class="text_center">
+                            <span>생성성공</span>
 
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-      
-      
-      
-                                  <span>500.0</span>
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  2
-                                </th>
-                                <td class="text_center text_gray">2026-06-26 17:40</td>
-                                <td class="text_left">
-      
-      
-                                  <span
-                                    title="상품 홍보용 POP를 만들고 싶어. 타이틀은 적절한 내용으로 만들어서 상단 가운데에 배치해줘.홍보할 상품은 &quot;달모어25년&quot;이고, 규격은 &quot;700ml&quot;, 정상판매가는 &quot;￦3,650,000&quot;, 할인판매가는 &quot;￦3,650,000&quot;야. 하단 1/3 부분에 상품명을 잘 보이게 크고 굵은 폰트로 왼쪽 정렬로 배치하고, 규격은 상품명 밑에 보통 폰트로 역시 왼쪽 정렬로 배치하고, 정상판매가는 보통 폰트로 판매가 왼쪽에 배치하는데 취소선을 주고, 판매가가 돋보이도록 표현해줘. 판매가는 제일 하단에 오른쪽 정렬로 배치해 주고,붉은색으로 크고 굵은 폰트로 강조해줘. 알려준 상품 데이터만 넣고, &quot;상품명&quot;, &quot;할인판매가&quot; 이런 용어는 들어가지 않도록 해줘.
-                타이틀과 상품데이터 사이 공간에는 용도에 맞게 창의적으로 꾸며주고, &quot;한정수량&quot;, &quot;주말특가&quot; 라벨을 만들어서 눈에 잘 띄게 넣어줘. 시선을 잡아끌 수 있도록  원색을 적절히 사용해서 고대비, 고채도로 표현해줘. 눈에 확 띄어야 해.">상품
-                                    홍보용 POP를 만들고 싶...</span>
-      
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-                                  <span>생성성공</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-      
-      
-      
-                                  <span>500.0</span>
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  3
-                                </th>
-                                <td class="text_center text_gray">2026-06-26 09:12</td>
-                                <td class="text_left">
-      
-      
-      
-                                  <span></span>
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-      
-      
-      
-      
-                                  <span>알 수 없음</span>
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  4
-                                </th>
-                                <td class="text_center text_gray">2026-06-26 09:12</td>
-                                <td class="text_left">
-      
-      
-      
-                                  <span></span>
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-      
-      
-      
-      
-                                  <span>알 수 없음</span>
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  5
-                                </th>
-                                <td class="text_center text_gray">2026-06-25 11:45</td>
-                                <td class="text_left">
-      
-      
-      
-                                  <span></span>
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-      
-      
-      
-      
-                                  <span>알 수 없음</span>
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  6
-                                </th>
-                                <td class="text_center text_gray">2026-06-25 11:44</td>
-                                <td class="text_left">
-      
-      
-      
-                                  <span></span>
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-      
-      
-      
-      
-                                  <span>알 수 없음</span>
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  7
-                                </th>
-                                <td class="text_center text_gray">2026-06-24 12:58</td>
-                                <td class="text_left">
-      
-      
-                                  <span title="전단을 만들어줘. 타이틀은 상품을 보고 어울리는 문구로 만들어줘.
-                상품 개수는 2개이고, 가로 1칸, 세로 2칸으로 해서 다음 상품정보를 순차로 배치하고 상품의 실제 사진을 넣어줘. 판매가는 빨간색으로 표시해줘.
-                1. 풀무원)저당 리얼야채 사과비트 드레싱 ￦4,980
-                2. 풀무원)저당 리얼야채 유자당근 드레싱 ￦4,980
-                깔끔하게 흰색 바탕으로, 밝고 화사한 바탕으로, 고급스러운 백화점 느낌으로, 폰트는 둥근 고딕체로, 상품명과 판매가가 잘 보이도록 만들어줘.
-                첨부된 이미지와 비슷한 스타일로 만들어줘.첨부한 이미지를 상품이미지로 사용해줘. 첨부한 이미지는 변형하지 말고 그대로 사용해.">전단을 만들어줘. 타이틀은 상품...</span>
-      
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-                                  <span>생성성공</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-      
-      
-      
-                                  <span>500.0</span>
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  8
-                                </th>
-                                <td class="text_center text_gray">2026-06-15 15:48</td>
-                                <td class="text_left">
-      
-      
-      
-                                  <span></span>
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-      
-      
-      
-      
-                                  <span>알 수 없음</span>
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  9
-                                </th>
-                                <td class="text_center text_gray">2026-06-15 15:47</td>
-                                <td class="text_left">
-      
-      
-      
-                                  <span></span>
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-      
-      
-      
-      
-                                  <span>알 수 없음</span>
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  10
-                                </th>
-                                <td class="text_center text_gray">2026-06-15 12:58</td>
-                                <td class="text_left">
-      
-      
-      
-                                  <span></span>
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-      
-      
-      
-      
-                                  <span>알 수 없음</span>
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  11
-                                </th>
-                                <td class="text_center text_gray">2026-06-08 10:14</td>
-                                <td class="text_left">
-      
-      
-                                  <span title="전단을 만들어줘. 타이틀은 상품을 보고 어울리는 문구로 만들어줘.
-                상품 개수는 6개이고, 가로 2칸, 세로 3칸으로 해서 다음 상품정보를 순차로 배치하고 상품의 실제 사진을 넣어줘. 판매가는 빨간색으로 표시해줘.
-                1. 움트리)실장님회초장13kg (바코드 :8801558600207)￦37,900
-                2. 개아지살(키조개)16-20 900g (바코드 :8809441030759)￦19,500
-                3. 절단고등어(조림)900g (바코드 :8809543317383)￦7,450
-                4. 소가)무항생제신선란10구 (바코드 :8801114136577)￦6,500
-                5. 풀무원)소가고소하고단단한두부500g (바코드 :8801114129722)￦3,000
-                6. 풀무원)소가부침두부290g (바코드 :8801114119082)￦1,700
-                바코드 정보는 노출하지 말고, 실제 사진을 구하는 데에만 이용하기 바래.
-                상품명과 판매가가 잘 보이도록 만들어줘.
-                첨부된 이미지와 비슷한 스타일로 만들어줘.실제 상품 이미지를 찾아서 넣어줘.">전단을 만들어줘. 타이틀은 상품...</span>
-      
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-                                  <span>생성성공</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-      
-      
-      
-                                  <span>500.0</span>
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  12
-                                </th>
-                                <td class="text_center text_gray">2026-06-08 10:07</td>
-                                <td class="text_left">
-      
-      
-                                  <span title="전단을 만들어줘. 타이틀은 상품을 보고 어울리는 문구로 만들어줘.
-                상품 개수는 6개이고, 가로 2칸, 세로 3칸으로 해서 다음 상품정보를 순차로 배치하고 상품의 실제 사진을 넣어줘. 판매가는 빨간색으로 표시해줘.
-                1. 동원)보성홍차아이스티한라봉500ml (바코드 :8801047496083)￦1,580
-                2. 동원)저스트노슈가파인애플822g (바코드 :8801047150053)￦4,980
-                3. 풀무원)저당 리얼야채 참깨연근 드레싱 (바코드 :8801114182222)￦4,980
-                4. 풀무원)저당 오리엔탈드레싱 (바코드 :8801114184745)￦4,980
-                5. 풀무원)저당생쫄면2인 (바코드 :8801114185698)￦7,480
-                6. 풀무원)매콤불냉면2인 (바코드 :8801114185674)￦6,980
-                바코드 정보는 노출하지 말고, 실제 사진을 구하는 데에만 이용하기 바래.
-                시원하고, 밝고 화사한 바탕으로, 고급스러운 백화점 느낌으로, 비비드한 색감으로, 여름 느낌으로, 폰트는 깔끔한 고딕체로, 상품명과 판매가가 잘 보이도록 만들어줘.">전단을 만들어줘. 타이틀은
-                                    상품...</span>
-      
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-                                  <span>생성성공</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-      
-      
-      
-                                  <span>500.0</span>
-      
-      
-                                </td>
-                              </tr>
-      
-                              <tr class="default">
-                                <th class="text_right">
-                                  13
-                                </th>
-                                <td class="text_center text_gray">2026-06-05 16:39</td>
-                                <td class="text_left">
-      
-      
-                                  <span title="전단을 만들어줘. 타이틀은 상품을 보고 어울리는 문구로 만들어줘.
-                상품 개수는 6개이고, 가로 2칸, 세로 3칸으로 해서 다음 상품정보를 순차로 배치하고 상품의 실제 사진을 넣어줘. 판매가는 빨간색으로 표시해줘.
-                1. 움트리)실장님회초장13kg ￦37,900
-                2. 개아지살(키조개)16-20 900g ￦19,500
-                3. 절단고등어(조림)900g ￦7,450
-                4. 소가)무항생제신선란10구 ￦6,500
-                5. 야)양배추(대) ￦7,900
-                6. 동원)보성홍차아이스티한라봉500ml ￦1,580
-                시원하고, 밝고 화사한 바탕으로, 고급스러운 백화점 느낌으로, 여름 느낌으로, 폰트는 깔끔한 고딕체로, 상품명과 판매가가 잘 보이도록 만들어줘.">전단을 만들어줘. 타이틀은 상품...</span>
-      
-      
-      
-                                </td>
-                                <td class="text_center">
-      
-      
-                                  <span class="text_red">생성실패</span>
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-                                  <span class="text_gray">0.0</span>
-      
-      
-      
-      
-      
-                                </td>
-                                <td class="text_right">
-      
-      
-      
-                                  <span class="text_red" style="text-decoration:line-through">500.0</span>
-      
-      
-      
-      
-                                </td>
-                              </tr>
-      
-      
-      
-      
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+
+
+
+                            <span>500.0</span>
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            2
+                          </th>
+                          <td class="text_center text_gray">2026-06-26 17:40</td>
+                          <td class="text_left">
+
+
+                            <span
+                              title="상품 홍보용 POP를 만들고 싶어. 타이틀은 적절한 내용으로 만들어서 상단 가운데에 배치해줘.홍보할 상품은 &quot;달모어25년&quot;이고, 규격은 &quot;700ml&quot;, 정상판매가는 &quot;￦3,650,000&quot;, 할인판매가는 &quot;￦3,650,000&quot;야. 하단 1/3 부분에 상품명을 잘 보이게 크고 굵은 폰트로 왼쪽 정렬로 배치하고, 규격은 상품명 밑에 보통 폰트로 역시 왼쪽 정렬로 배치하고, 정상판매가는 보통 폰트로 판매가 왼쪽에 배치하는데 취소선을 주고, 판매가가 돋보이도록 표현해줘. 판매가는 제일 하단에 오른쪽 정렬로 배치해 주고,붉은색으로 크고 굵은 폰트로 강조해줘. 알려준 상품 데이터만 넣고, &quot;상품명&quot;, &quot;할인판매가&quot; 이런 용어는 들어가지 않도록 해줘.
+          타이틀과 상품데이터 사이 공간에는 용도에 맞게 창의적으로 꾸며주고, &quot;한정수량&quot;, &quot;주말특가&quot; 라벨을 만들어서 눈에 잘 띄게 넣어줘. 시선을 잡아끌 수 있도록  원색을 적절히 사용해서 고대비, 고채도로 표현해줘. 눈에 확 띄어야 해.">상품
+                              홍보용 POP를 만들고 싶...</span>
+
+
+
+                          </td>
+                          <td class="text_center">
+
+                            <span>생성성공</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+
+
+
+                            <span>500.0</span>
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            3
+                          </th>
+                          <td class="text_center text_gray">2026-06-26 09:12</td>
+                          <td class="text_left">
+
+
+
+                            <span></span>
+
+
+                          </td>
+                          <td class="text_center">
+
+
+
+
+
+                            <span>알 수 없음</span>
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            4
+                          </th>
+                          <td class="text_center text_gray">2026-06-26 09:12</td>
+                          <td class="text_left">
+
+
+
+                            <span></span>
+
+
+                          </td>
+                          <td class="text_center">
+
+
+
+
+
+                            <span>알 수 없음</span>
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            5
+                          </th>
+                          <td class="text_center text_gray">2026-06-25 11:45</td>
+                          <td class="text_left">
+
+
+
+                            <span></span>
+
+
+                          </td>
+                          <td class="text_center">
+
+
+
+
+
+                            <span>알 수 없음</span>
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            6
+                          </th>
+                          <td class="text_center text_gray">2026-06-25 11:44</td>
+                          <td class="text_left">
+
+
+
+                            <span></span>
+
+
+                          </td>
+                          <td class="text_center">
+
+
+
+
+
+                            <span>알 수 없음</span>
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            7
+                          </th>
+                          <td class="text_center text_gray">2026-06-24 12:58</td>
+                          <td class="text_left">
+
+
+                            <span title="전단을 만들어줘. 타이틀은 상품을 보고 어울리는 문구로 만들어줘.
+          상품 개수는 2개이고, 가로 1칸, 세로 2칸으로 해서 다음 상품정보를 순차로 배치하고 상품의 실제 사진을 넣어줘. 판매가는 빨간색으로 표시해줘.
+          1. 풀무원)저당 리얼야채 사과비트 드레싱 ￦4,980
+          2. 풀무원)저당 리얼야채 유자당근 드레싱 ￦4,980
+          깔끔하게 흰색 바탕으로, 밝고 화사한 바탕으로, 고급스러운 백화점 느낌으로, 폰트는 둥근 고딕체로, 상품명과 판매가가 잘 보이도록 만들어줘.
+          첨부된 이미지와 비슷한 스타일로 만들어줘.첨부한 이미지를 상품이미지로 사용해줘. 첨부한 이미지는 변형하지 말고 그대로 사용해.">전단을 만들어줘. 타이틀은 상품...</span>
+
+
+
+                          </td>
+                          <td class="text_center">
+
+                            <span>생성성공</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+
+
+
+                            <span>500.0</span>
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            8
+                          </th>
+                          <td class="text_center text_gray">2026-06-15 15:48</td>
+                          <td class="text_left">
+
+
+
+                            <span></span>
+
+
+                          </td>
+                          <td class="text_center">
+
+
+
+
+
+                            <span>알 수 없음</span>
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            9
+                          </th>
+                          <td class="text_center text_gray">2026-06-15 15:47</td>
+                          <td class="text_left">
+
+
+
+                            <span></span>
+
+
+                          </td>
+                          <td class="text_center">
+
+
+
+
+
+                            <span>알 수 없음</span>
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            10
+                          </th>
+                          <td class="text_center text_gray">2026-06-15 12:58</td>
+                          <td class="text_left">
+
+
+
+                            <span></span>
+
+
+                          </td>
+                          <td class="text_center">
+
+
+
+
+
+                            <span>알 수 없음</span>
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            11
+                          </th>
+                          <td class="text_center text_gray">2026-06-08 10:14</td>
+                          <td class="text_left">
+
+
+                            <span title="전단을 만들어줘. 타이틀은 상품을 보고 어울리는 문구로 만들어줘.
+          상품 개수는 6개이고, 가로 2칸, 세로 3칸으로 해서 다음 상품정보를 순차로 배치하고 상품의 실제 사진을 넣어줘. 판매가는 빨간색으로 표시해줘.
+          1. 움트리)실장님회초장13kg (바코드 :8801558600207)￦37,900
+          2. 개아지살(키조개)16-20 900g (바코드 :8809441030759)￦19,500
+          3. 절단고등어(조림)900g (바코드 :8809543317383)￦7,450
+          4. 소가)무항생제신선란10구 (바코드 :8801114136577)￦6,500
+          5. 풀무원)소가고소하고단단한두부500g (바코드 :8801114129722)￦3,000
+          6. 풀무원)소가부침두부290g (바코드 :8801114119082)￦1,700
+          바코드 정보는 노출하지 말고, 실제 사진을 구하는 데에만 이용하기 바래.
+          상품명과 판매가가 잘 보이도록 만들어줘.
+          첨부된 이미지와 비슷한 스타일로 만들어줘.실제 상품 이미지를 찾아서 넣어줘.">전단을 만들어줘. 타이틀은 상품...</span>
+
+
+
+                          </td>
+                          <td class="text_center">
+
+                            <span>생성성공</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+
+
+
+                            <span>500.0</span>
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            12
+                          </th>
+                          <td class="text_center text_gray">2026-06-08 10:07</td>
+                          <td class="text_left">
+
+
+                            <span title="전단을 만들어줘. 타이틀은 상품을 보고 어울리는 문구로 만들어줘.
+          상품 개수는 6개이고, 가로 2칸, 세로 3칸으로 해서 다음 상품정보를 순차로 배치하고 상품의 실제 사진을 넣어줘. 판매가는 빨간색으로 표시해줘.
+          1. 동원)보성홍차아이스티한라봉500ml (바코드 :8801047496083)￦1,580
+          2. 동원)저스트노슈가파인애플822g (바코드 :8801047150053)￦4,980
+          3. 풀무원)저당 리얼야채 참깨연근 드레싱 (바코드 :8801114182222)￦4,980
+          4. 풀무원)저당 오리엔탈드레싱 (바코드 :8801114184745)￦4,980
+          5. 풀무원)저당생쫄면2인 (바코드 :8801114185698)￦7,480
+          6. 풀무원)매콤불냉면2인 (바코드 :8801114185674)￦6,980
+          바코드 정보는 노출하지 말고, 실제 사진을 구하는 데에만 이용하기 바래.
+          시원하고, 밝고 화사한 바탕으로, 고급스러운 백화점 느낌으로, 비비드한 색감으로, 여름 느낌으로, 폰트는 깔끔한 고딕체로, 상품명과 판매가가 잘 보이도록 만들어줘.">전단을 만들어줘. 타이틀은
+                              상품...</span>
+
+
+
+                          </td>
+                          <td class="text_center">
+
+                            <span>생성성공</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+                            <span class="text_gray">0.0</span>
+
+
+
+
+
+                          </td>
+                          <td class="text_right">
+
+
+
+
+
+                            <span>500.0</span>
+
+
+                          </td>
+                        </tr>
+
+                        <tr class="default">
+                          <th class="text_right">
+                            13
+                          </th>
+                          <td class="text_center text_gray">2026-06-05 16:39</td>
+                          <td class="text_left">
+
+
+                            <span title="전단을 만들어줘. 타이틀은 상품을 보고 어울리는 문구로 만들어줘.
+          상품 개수는 6개이고, 가로 2칸, 세로 3칸으로 해서 다음 상품정보를 순차로 배치하고 상품의 실제 사진을 넣어줘. 판매가는 빨간색으로 표시해줘.
+          1. 움트리)실장님회초장13kg ￦37,900
+          2. 개아지살(키조개)16-20 900g ￦19,500
+          3. 절단고등어(조림)900g ￦7,450
+          4. 소가)무항생제신선란10구 ￦6,500
+          5. 야)양배추(대) ￦7,900
+          6. 동원)보성홍차아이스티한라봉500ml ￦1,580
+          시원하고, 밝고 화사한 바탕으로, 고급스러운 백화점 느낌으로, 여름 느낌으로, 폰트는 깔끔한 고딕체로, 상품명과 판매가가 잘 보이도록 만들어줘.">전단을 만들어줘. 타이틀은 상품...</span>
+
+
+
+                          </td>
+                          <td class="text_center">
+
+
+                            <span class="text_red">생성실패</span>
+
+
+
+
+                          </td>
+                          <td class="text_right">
+                            <span class="text_gray">0.0</span>
+                          </td>
+                          <td class="text_right">
+                            <span class="text_red" style="text-decoration:line-through">500.0</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <div class="pagination">
-                    <div class="pagination__list maxviewsize">
-                      <button class="disabled" data-dt-idx="1">
-                        <span>
-                          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"/></svg>
-                        </span>
-                      </button>
-                      <button class=" disabled" data-dt-idx="0">
-                        <span class="icon-arrow-left pagination__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
-                        </span>
-                      </button>
-                      <button class="active" data-dt-idx="1">1</button>
-                      <button class="active" data-dt-idx="1">2</button>
-                      <button class="active" data-dt-idx="1">3</button>
-                      <button class="active" data-dt-idx="1">4</button>
-                      <button class="disabled" data-dt-idx="2">
-                        <span class="icon-arrow-right pagination__icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
-                        </span>
-                      </button>
-                      <button class="disabled" data-dt-idx="1">
-                        <span class="icon-arrow-right2 pagination__icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M383-480 200-664l56-56 240 240-240 240-56-56 183-184Zm264 0L464-664l56-56 240 240-240 240-56-56 183-184Z"/></svg>
-                        </span>
-                      </button>
-                    </div>
-      
-                  </div>
-      
-      
-                  <form name="formPage" id="formPage" method="get">
-                    <input type="hidden" name="page" value="1">
-                    <input type="hidden" name="scale" value="20">
-                    <input type="hidden" name="pageScale" value="10">
-                  </form>
-                  <script type="text/javascript">
-                    $().ready(function (e) {
-                      $('.pagination__btn').click(function (e) {
-                        if (!$(this).hasClass('active') && !$(this).hasClass('disabled')) {
-                          $('#formPage').find('input[name="page"]').val($(this).data('dt-idx'));
-                          $('#formPage')[0].submit();
-                        }
-                      });
-                    });
-                  </script>
-      
                 </div>
               </div>
-              <div class="footer"></div>
+            </div>
+            <div class="pagination">
+              <div class="pagination__list maxviewsize">
+                <button class="disabled" data-dt-idx="1">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"/></svg>
+                  </span>
+                </button>
+                <button class=" disabled" data-dt-idx="0">
+                  <span class="icon-arrow-left pagination__icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
+                  </span>
+                </button>
+                <button class="active" data-dt-idx="1">1</button>
+                <button class="active" data-dt-idx="1">2</button>
+                <button class="active" data-dt-idx="1">3</button>
+                <button class="active" data-dt-idx="1">4</button>
+                <button class="disabled" data-dt-idx="2">
+                  <span class="icon-arrow-right pagination__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
+                  </span>
+                </button>
+                <button class="disabled" data-dt-idx="1">
+                  <span class="icon-arrow-right2 pagination__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M383-480 200-664l56-56 240 240-240 240-56-56 183-184Zm264 0L464-664l56-56 240 240-240 240-56-56 183-184Z"/></svg>
+                  </span>
+                </button>
+              </div>
+
             </div>
           </div>
         </div>
-        <!-- TS머니 영역 -->
+        <!-- TS머니 화면 sticky 적용 -->
         <div class="ts-wrap">
           <div class="ts-sticky">
             <div class="ts-card">
@@ -879,12 +837,7 @@
           </div>
         </div>
       </div>
-
-
-
-
     </div>
   </div>
 </body>
-
 </html>
