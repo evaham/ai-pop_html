@@ -36,24 +36,24 @@ html,body {
 }
 /* 첫번째 탭 그룹 형태 */
 .tab_menu2 .tabouter ul > li:first-child {
-    @apply border-r-0 rounded-l-lg;
+    @apply border-r-0 rounded-l-md;
 }
 .tab_menu2 .tabouter ul > li:nth-child(5) {
-    @apply border-l-0 rounded-r-lg mr-2;
+    @apply border-l-0 rounded-r-md mr-2;
 }
 /* 두번째 탭 그룹 형태 */
 .tab_menu2 .tabouter ul > li:nth-child(6) {
-    @apply border-r-0 rounded-l-lg;
+    @apply border-r-0 rounded-l-md;
 }
 .tab_menu2 .tabouter ul > li:nth-child(8) {
-    @apply border-l-0 rounded-r-lg mr-2;
+    @apply border-l-0 rounded-r-md mr-2;
 }
 /* 세번째 탭 그룹 형태 */
 .tab_menu2 .tabouter ul > li:nth-child(9) {
-    @apply border-r-0 rounded-l-lg;
+    @apply border-r-0 rounded-l-md;
 }
 .tab_menu2 .tabouter ul > li:last-child {
-    @apply border-l-0 rounded-r-lg mr-2;
+    @apply border-l-0 rounded-r-md mr-2;
 }
 
 
@@ -66,10 +66,13 @@ html,body {
     @apply bg-white/20;
 }
 .tab_menu2__link i {
-    @apply mr-0.5;
+    @apply mr-0.5 font-normal;
 }
 .tab_menu2 .tabouter ul > li.active a {
     @apply bg-white text-(--tab-primary) font-bold;
+}
+.tab_menu2 .tabouter ul > li.active a > i {
+    @apply font-normal;
 }
 
 /* tab_menu side 버튼 그룹 */
