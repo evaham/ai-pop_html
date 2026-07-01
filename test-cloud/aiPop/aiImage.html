@@ -84,21 +84,23 @@
         <div class="side-contents-layout" style="width: 860px">
           <div>
             <div>
-
               <div class="page-title-box">
                 <div class="page-title">이미지 리스트</div>
-                <select id="searchType" class="form-select">
-                  <option value="1">전체</option>
-                  <option value="2">POP이미지</option>
-                  <option value="3">프라이스카드</option>
-                </select>
-                <select id="searchDate" class="form-select">
-                  <option value="1">최근 7일</option>
-                  <option value="2">최근 15일</option>
-                  <option value="3">최근 30일</option>
-                  <option value="4">전체</option>
-                </select>
+                <div class="page-function-group">
+                  <select id="searchType" class="form-select">
+                    <option value="1">전체</option>
+                    <option value="2">POP이미지</option>
+                    <option value="3">프라이스카드</option>
+                  </select>
+                  <select id="searchDate" class="form-select">
+                    <option value="1">최근 7일</option>
+                    <option value="2">최근 15일</option>
+                    <option value="3">최근 30일</option>
+                    <option value="4">전체</option>
+                  </select>
+                </div>
               </div>
+              <!-- 리스트 -->
               <div class="itemlist maxviewsize">
                 <div class="item">
                   <div class="item__imgbox">
@@ -731,61 +733,56 @@
                   </span>
                 </button>
               </div>
-
             </div>
-
-
-
 					</div>
         </div>
         <!-- 오른쪽 화면 -->
         <div class="main-contents-layout" style="width:550px">
           <div class="preview-panel">
-            <div class="ai_crt_preview">
-              <div class="preview-card">
-                <div class="pb-3 border-b border-gray-100">
-                  <div class="ai_crt_info">미리보기</div>
-                  <div class="ai_crt_info--small mt-1">미리보기는 결과물 생성을 돕기 위한 것일 뿐 결과물과 반드시 일치하지는 않습니다.</div>
+            <div class="preview-card">
+              <div class="page-title-box">
+                <div class="page-title">미리보기
+                  <div class="page-text">미리보기는 결과물 생성을 돕기 위한 것일 뿐 결과물과 반드시 일치하지는 않습니다.</div>
                 </div>
-                <div class="aiimage-preview-imgbox" style="width:100%">
-                  <img src="http://tdc-api-dev-3.togethers.kr:2004/ImageAI/20260629/1001_20260629_154533993.jpg"
-                    class="max-w-full max-h-full" id="previewImg">
-                </div>
-                <div class="aiimage-btn-group">
-                  <button class="point-btn-blue">재생성 (TS차감)</button>
-                  <button class="line-btn">이미지 인쇄</button>
-                  <button class="line-btn">이미지 다운</button>
-                </div>
-                <div class="aiimage-info-box flex flex-col">
-                  <dl>
-                    <dt>생성일</dt>
-                    <dd>2026.06.01</dd>
-                  </dl>
-                  <dl>
-                    <dt>보관기간</dt>
-                    <dd>2026.07.31. 까지</dd>
-                  </dl>
-                  <dl>
-                    <dt>사용TS</dt>
-                    <dd>500 TS</dd>
-                  </dl>
-                  <dl>
-                    <dt>카테고리</dt>
-                    <dd>안내/공지형</dd>
-                  </dl>
-                  <dl>
-                    <dt>레이아웃</dt>
-                    <dd>가로형</dd>
-                  </dl>
-                  <dl>
-                    <dt>테마선택</dt>
-                    <dd>이벤트</dd>
-                  </dl>
-                  <dl>
-                    <dt>내용요약</dt>
-                    <dd>모바일전단 온라인 주문 이벤트 안내</dd>
-                  </dl>
-                </div>
+              </div>
+              <div class="aiimage-preview-imgbox" style="width:100%">
+                <img src="http://tdc-api-dev-3.togethers.kr:2004/ImageAI/20260629/1001_20260629_154533993.jpg"
+                  class="max-w-full max-h-full" id="previewImg">
+              </div>
+              <div class="aiimage-btn-group">
+                <button class="point-btn-blue">재생성 (TS차감)</button>
+                <button class="line-btn">이미지 인쇄</button>
+                <button class="line-btn">이미지 다운</button>
+              </div>
+              <div class="aiimage-info-box flex flex-col">
+                <dl>
+                  <dt>생성일</dt>
+                  <dd>2026.06.01</dd>
+                </dl>
+                <dl>
+                  <dt>보관기간</dt>
+                  <dd>2026.07.31. 까지</dd>
+                </dl>
+                <dl>
+                  <dt>사용TS</dt>
+                  <dd>500 TS</dd>
+                </dl>
+                <dl>
+                  <dt>카테고리</dt>
+                  <dd>안내/공지형</dd>
+                </dl>
+                <dl>
+                  <dt>레이아웃</dt>
+                  <dd>가로형</dd>
+                </dl>
+                <dl>
+                  <dt>테마선택</dt>
+                  <dd>이벤트</dd>
+                </dl>
+                <dl>
+                  <dt>내용요약</dt>
+                  <dd>모바일전단 온라인 주문 이벤트 안내</dd>
+                </dl>
               </div>
             </div>
           </div>

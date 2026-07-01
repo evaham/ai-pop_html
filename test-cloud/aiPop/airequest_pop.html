@@ -63,50 +63,54 @@
     }
   </style>
 </head>
-<body class="w-full h-full bg-gray-50">
-  <!-- <div id="loading" class="divLoading hidden">
-    <img src="/test-cloud/resources/img/img_loading.gif" />
+<body class="">
+  <div id="loading" class="divLoading" style="display: none;">
+    <img src="./test-cloud/resources/img/img_loading.gif" />
   </div>
-  <div id="popupLayer" class="popup_layer hidden">
-    <div class="popup_background"></div>
-    <div class="popup_content">
-      <div id="pricecardTemplate" class="hidden">
-        <div class="ai_crt_info">템플릿명을 입력해 주십시오.</div>
-        <div class="ai_crt_info--small">작은따옴표는 입력할 수 없습니다.</div>
-        <input type="text" class="tf_comm" style="margin-top:8px; width: 250px" id="pricecardTemplateTitle"
+  <div id="popupLayer" class="popup-layer hidden">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+      <!-- 레이어팝업 내용 -->
+      <div id="pricecardTemplate" class="popup-content-group">
+        <div class="popup-content-title">템플릿명을 입력해 주십시오.</div>
+        <div class="popup-content-text">작은따옴표는 입력할 수 없습니다.</div>
+        <input type="text" class="form-input" style="margin-top:8px; width:100%" id="pricecardTemplateTitle"
           onkeyup="jsGetByte(this, 50)" />
-        <div style="color: #7f7f7f; font-size: 12px; width: 100%; text-align: right">
-          <span id="pricecardTemplateTitleByte" style="color: #555; font-weight: bold">0</span> / 50 byte
+        <div class="form-text-byte">
+          <span id="pricecardTemplateTitleByte">0</span> / 50 byte
         </div>
-        <div style="width: 100%; text-align: center; margin-top: 10px;">
-          <button type="button" id="btnTemplateUpdate" class="ai_crt_box_btn selected" style="height:30px;">
-            <div class="ai_crt_info--small" style="font-size: 13px">현재 템플릿 수정하기</div>
+        <div class="popup-content-buttons">
+          <button type="button" id="btnTemplateUpdate" class="point-btn-blue">
+            <div>현재 템플릿 수정하기</div>
           </button>
-          <button type="button" class="ai_crt_box_btn selected" style="height:30px;" onclick="jsSaveTemplate2(0)">
-            <div class="ai_crt_info--small" style="font-size: 13px">새 템플릿 저장하기</div>
+          <button type="button" class="point-btn-blue" onclick="jsSaveTemplate2(0)">
+            <div>새 템플릿 저장하기</div>
           </button>
-          <button type="button" class="ai_crt_box_btn" style="height:30px;" onclick="jsCloseLayer()">
-            <div class="ai_crt_info--small" style="font-size: 13px">취소</div>
+          <button type="button" class="line-btn" onclick="jsCloseLayer()">
+            <div>취소</div>
           </button>
         </div>
       </div>
-      <div class="hidden" style="display:flex; flex-direction:column; align-items:center; overflow: auto">
-        <div class="ai_crt_info" style="width:100%; margin-bottom: 8px; border-bottom: 1px solid #aaa;">이미지 생성 완료</div>
-        <img id="pricecardImage" src="" />
-        <div style="margin-top:8px">
-          <button type="button" class="ai_crt_box_btn selected" style="margin-right: 8px;" onclick="jsPrint()">
-            <div class="ai_crt_info" style="font-size:14px;">인쇄하기</div>
+      <!-- 레이어 팝업 내용2 -->
+      <div class="popup-content-group">
+        <div class="popup-content-title">이미지 생성 완료</div>
+        <div>
+          <img id="pricecardImage" src="" />
+        </div>
+        <div class="popup-content-buttons">
+          <button type="button" class="point-btn-blue" onclick="jsPrint()">
+            <div>인쇄하기</div>
           </button>
-          <button type="button" class="ai_crt_box_btn selected" style="margin-right: 8px;" onclick="jsDownload()">
-            <div class="ai_crt_info" style="font-size:14px;">다운로드</div>
+          <button type="button" class="point-btn-blue" onclick="jsDownload()">
+            <div>다운로드</div>
           </button>
-          <button type="button" class="ai_crt_box_btn" onclick="jsCloseLayer()">
-            <div class="ai_crt_info" style="font-size:14px">닫기</div>
+          <button type="button" class="line-btn" onclick="jsCloseLayer()">
+            <div>닫기</div>
           </button>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   <!--// wrap_top -->
   <div class="page-shell">
     <div class="page-content">
@@ -140,11 +144,11 @@
             <!-- POP이미지 설정 -->
             <div id="pricecardBox" class="setting-group">
               <!-- POP이미지 레이아웃 -->
-              <div class="ai_crt_fieldset">
-                <div class="ai_crt_info">
+              <div class="fieldset-group">
+                <div class="fieldset-title">
                   <span class="text-red-500">*</span>유형
                 </div>
-                <div class="ai_crt_functionbox_row">
+                <div class="flex gap-1">
                   <select class="form-select" onchange="jsSelectLayout(this)">
                     <option value="product">상품 홍보형</option>
                     <option value="notice" selected>안내/공지형</option>
@@ -156,11 +160,11 @@
                 </div>
               </div>
 
-              <div class="ai_crt_fieldset">
-                <div class="ai_crt_info">
+              <div class="fieldset-group">
+                <div class="fieldset-title">
                   <span class="text-red-500">*</span>상품 데이터
                 </div>
-                <div class="ai_crt_info--small">입력하실 데이터를 선택하신 후 엑셀 데이터를 붙여넣기 하면 미리보기에 나타납니다.</div>
+                <div class="fieldset-text">입력하실 데이터를 선택하신 후 엑셀 데이터를 붙여넣기 하면 미리보기에 나타납니다.</div>
                 <div id="selPopGoods" class="grid-table" style="grid-template-rows: repeat(2, 1fr); grid-template-columns: 1fr 90px 90px 90px; place-items: center;">
                   <div class="grid-table-th">상품명</div>
                   <div class="grid-table-th">규격</div>
@@ -172,11 +176,11 @@
                   <input type="text" class="tf_comm_excel" id="popGoodsDCPrice" onpaste="jsPasteExcel(event)" oninput="jsInsertExcel(event)" onkeydown="jsMoveExcelCell(event)" value="">
                 </div>
               </div>
-              <div class="ai_crt_fieldset">
-                <div class="ai_crt_info">
+              <div class="fieldset-group">
+                <div class="fieldset-title">
                   <span class="text-red-500">*</span>가격표시단위
                 </div>
-                <div class="ai_crt_functionbox_row">
+                <div class="flex gap-1">
                   <select class="form-select" onchange="jsSelectLayout(this)">
                     <option value="product" selected>없음</option>
                     <option value="notice">￦(앞)</option>
@@ -187,8 +191,8 @@
                 </div>
               </div>
               <!-- POP이미지 홍보라벨 -->
-              <div class="ai_crt_fieldset">
-                <div class="ai_crt_info">홍보 내용</div>
+              <div class="fieldset-group">
+                <div class="fieldset-title">홍보 내용</div>
                 <div id="selPricecardTheme" class="ai_crt_functionbox_col">
                   <input class="form-input" style="width: 100%;" placeholder="입력하신 내용을 반영하여 AI 이미지가 생성됩니다." />
                   <div class="form-text-byte">
@@ -198,10 +202,10 @@
               </div>
 
               <!-- POP이미지 테마 -->
-              <div class="ai_crt_fieldset">
-                <div class="ai_crt_info">테마</div>
-                <div class="ai_crt_info--small">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
-                <div id="selPricecardTheme" class="ai_crt_functionbox_row" data-theme="">
+              <div class="fieldset-group">
+                <div class="fieldset-title">테마</div>
+                <div class="fieldset-text">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
+                <div id="selPricecardTheme" class="flex gap-1" data-theme="">
                   <button type="button" class="line-btn selected" onclick="jsSelectTheme('yellow')">
                     <div>
                       자동
@@ -230,10 +234,10 @@
                 </div>
               </div>
               <!-- POP이미지 강조라벨 -->
-              <div class="ai_crt_fieldset">
-                <div class="ai_crt_info">강조라벨</div>
-                <div class="ai_crt_info--small">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
-                <div id="selPricecardTheme" class="ai_crt_functionbox_row" data-theme="">
+              <div class="fieldset-group">
+                <div class="fieldset-title">강조라벨</div>
+                <div class="fieldset-text">선택한 테마에 어울리는 배경 색감 분위기가 자동으로 생성됩니다.</div>
+                <div id="selPricecardTheme" class="flex gap-1" data-theme="">
                   <select class="form-select" onchange="jsSelectLayout(this)">
                     <option value="product" selected>없음</option>
                     <option value="notice">폭탄세일</option>
@@ -251,20 +255,20 @@
               </div>
               <!-- POP이미지 추가설명 -->
 
-              <div class="ai_crt_fieldset">
-                <div class="ai_crt_info">추가설명</div>
-                <div class="ai_crt_info--small">강조할 내용이나 추가 사항을 입력하면 이미지 생성에 반영됩니다.</div>
-                <div id="selPricecardTheme" class="ai_crt_functionbox_row">
+              <div class="fieldset-group">
+                <div class="fieldset-title">추가설명</div>
+                <div class="fieldset-text">강조할 내용이나 추가 사항을 입력하면 이미지 생성에 반영됩니다.</div>
+                <div id="selPricecardTheme" class="flex gap-1">
                   <textarea class="form-textarea" placeholder="추가 설명을 입력해주세요."></textarea>
                 </div>
               </div>
               <!-- POP이미지 참조 -->
-              <div class="ai_crt_fieldset">
-                <div class="text-sm font-bold">참조 이미지</div>
-                <div class="ai_crt_info--small">입력 내용을 반영하여 AI 이미지가 생성됩니다.</div>
-                <div id="selPricecardTheme" class="ai_crt_functionbox_row flex gap-1 my-2">
+              <div class="fieldset-group">
+                <div class="fieldset-title">참조 이미지</div>
+                <div class="fieldset-text">입력 내용을 반영하여 AI 이미지가 생성됩니다.</div>
+                <div id="selPricecardTheme" class="upload-group">
                   <button type="button" class="upload-drop-btn" onclick="jsSelectTheme('yellow')">
-                    <div class="flex items-center">
+                    <div>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-7 fill-gray-500">
                         <path d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z"></path>
                       </svg>
@@ -273,7 +277,7 @@
                   <div class="upload-hint-box">
                     파일선택 버튼을 눌러 이미지를 업로드 하세요. <br />
                     (권장 이미지 사이즈 : 1MB 이하, JPG/PNG)
-                    <button type="button" class="line-btn mx-auto" onclick="jsSelectFile()">파일선택</button>
+                    <button type="button" class="base-btn mx-auto" onclick="jsSelectFile()">파일선택</button>
                   </div>
                 </div>
               </div>
@@ -283,21 +287,41 @@
         <!-- 오른쪽 화면 -->
         <div class="main-contents-layout" style="width: 550px;">
           <div class="preview-panel">
-            <div class="ai_crt_preview">
-              <div class="preview-card">
-                  <div class="pb-3 border-b border-gray-100">
-                    <div class="ai_crt_info">미리보기</div>
-                    <div class="ai_crt_info--small mt-1">미리보기는 결과물 생성을 돕기 위한 것일 뿐 결과물과 반드시 일치하지는 않습니다.</div>
-                  </div>
-                  <div class="mt-3 text-sm text-gray-600">선택된 유형 : <span id="spanLayout" class="font-bold text-gray-800">상품 홍보형 (세로형)</span></div>
-                  <div class="ai_crt_preview_paper mt-3 h-122.5 w-91.25 mx-auto">
-                    <div id="popPreviewTitle" class="ai_crt_preview_title text-[15px]">타이틀 문구</div>
-                    <div id="popPreviewGoods" class="ai_crt_preview_grid"></div>
-                  </div>
-                  <button type="button" class="ai_crt_box_btn selected flex items-center justify-center mt-4 h-12 w-91.25 mx-auto rounded-xl shadow-sm transition" onclick="jsRequestPop(this)">
-                    <div class="font-bold">AI 이미지 생성 (500TS 차감)</div>
-                  </button>
+            <div class="preview-card">
+              <div class="page-title-box">
+                <div class="page-title">미리보기
+                  <div class="page-text">미리보기는 결과물 생성을 돕기 위한 것일 뿐 결과물과 반드시 일치하지는 않습니다.</div>
                 </div>
+              </div>
+              <div class="mx-auto">
+                <div style="font-size:13px; margin-top:8px;">선택된 유형 : <span id="spanLayout" style="font-weight: bold;">상품 홍보형 (세로형)</span></div>                  <!-- 출력 미리보기 UI 화면 -->
+                <div style="height:490px; padding-bottom: 8px; margin-inline: auto; margin-block: 20px;">
+                  <div class="ai_crt_preview_paper" style="width: 365px; height: 490px; overflow: hidden;">
+                    <div id="popPreviewTitle" class="ai_crt_preview_title" style="dispaly:flex; height: 70px; justify-content: center; align-items: center; font-size: 20px">타이틀 문구</div>
+                    <div id="popPreviewGoods" data-category="goods" class="ai_crt_preview_grid" style="grid-template-rows: 2fr 1fr 1fr;">
+                      <div style="flex-grow:1; font-size:20px; display:flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div>AI 이미지 생성 영역</div><div>(라벨추가)</div>
+                      </div>
+                      <div class="ai_crt_preview_goods" style="display: flex; flex-direction: column; justify-content: center; align-items: flex-end; margin: 0px;">
+                        <div data-column="name" style="font-size:25px; color: #000; font-weight: bold;">상품명</div>
+                        <div data-column="spec" class="hidden" style="font-size:15px; color: #000;">규격</div>
+                      </div>
+                      <div class="ai_crt_preview_goods" style="display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; margin-top: 0px; gap: 0px;">
+                        <div data-column="sprice" class="hidden" style="font-size:15px; color:#000; text-decoration:line-through;">정상판매가</div>
+                        <div data-column="dcprice" style="font-size: 40px; color: rgb(218, 0, 0); font-weight: bold; margin-bottom: 0px;">판매가</div>
+                      </div>
+                    </div>
+                    <div id="popPreviewNotice" data-category="notice" class="ai_crt_preview_content hidden" style="flex-grow:1; margin-bottom: 0;">
+                      <div style="font-size:20px">AI 이미지 생성 영역</div>
+                      <div style="font-size:20px; color: #333">안내 공지 내용</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 출력 미리보기 UI 화면 끝 -->
+                <button type="button" class="ai_crt_box_btn selected" style="width: 100%; height: 50px" onclick="jsRequestPop(this)">
+                  <div class="ai_crt_info">AI 이미지 생성 (500TS 차감)</div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
