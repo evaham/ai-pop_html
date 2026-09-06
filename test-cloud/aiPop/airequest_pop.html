@@ -67,11 +67,11 @@
   <div id="loading" class="divLoading" style="display: none;">
     <img src="./test-cloud/resources/img/img_loading.gif" />
   </div>
-  <div id="popupLayer" class="popup-layer hidden">
+  <div id="popupLayer" class="popup-layer" style="display: none;">
     <div class="popup-background"></div>
     <div class="popup-content">
       <!-- 레이어팝업 내용 -->
-      <div id="pricecardTemplate" class="popup-content-group">
+      <div id="pricecardTemplate" class="popup-content-group hidden">
         <div class="popup-content-title">템플릿명을 입력해 주십시오.</div>
         <div class="popup-content-text">작은따옴표는 입력할 수 없습니다.</div>
         <input type="text" class="form-input" style="margin-top:8px; width:100%" id="pricecardTemplateTitle"
@@ -92,7 +92,7 @@
         </div>
       </div>
       <!-- 레이어 팝업 내용2 -->
-      <div class="popup-content-group">
+      <div class="popup-content-group hidden">
         <div class="popup-content-title">이미지 생성 완료</div>
         <div>
           <img id="pricecardImage" src="" />
@@ -104,6 +104,66 @@
           <button type="button" class="point-btn-blue" onclick="jsDownload()">
             <div>다운로드</div>
           </button>
+          <button type="button" class="line-btn" onclick="jsCloseLayer()">
+            <div>닫기</div>
+          </button>
+        </div>
+      </div>
+      <!-- 레이어 팝업 내용3 -->
+      <div class="popup-content-group" style="width:700px;">
+        <div class="popup-content-title">AI 이미지 생성 완료</div>
+        <hr class="popup-content-divider" />
+        <div class="flex gap-4">
+          <div class="flex-1 flex items-center justify-center bg-gray-50 p-4">
+            <image src="http://tdc-api-dev-3.togethers.kr:2004/ImageAI/20260629/1001_20260629_154533993.jpg" class="max-w-full max-h-full border" />
+          </div>
+          <div class="popup-content-infobox">
+            <div class="popup-content-buttons">
+              <button class="point-btn-blue">재생성 (TS차감)</button>
+              <button class="line-btn">이미지 인쇄</button>
+              <button class="line-btn">다운로드</button>
+            </div>
+            <div>
+              <div class="popup-content-infobox-title">생성일</div>
+              <div class="popup-content-infobox-text">2026.06.01</div>
+            </div>
+            <div>
+              <div class="popup-content-infobox-title">선택유형</div>
+              <dl>
+                <dt>보관기간</dt>
+                <dd>2026.07.31. 까지</dd>
+              </dl>
+              <dl>
+                <dt>사용TS</dt>
+                <dd>500 TS</dd>
+              </dl>
+              <dl>
+                <dt>카테고리</dt>
+                <dd>안내/공지형</dd>
+              </dl>
+              <dl>
+                <dt>레이아웃</dt>
+                <dd>가로형</dd>
+              </dl>
+            </div>
+            <div>
+              <div class="popup-content-infobox-title">이미지 정보</div>
+              <dl>
+                <dt>사이즈</dt>
+                <dd>385x512(0.5k)</dd>
+              </dl>
+              <dl>
+                <dt>용량</dt>
+                <dd>500k</dd>
+              </dl>
+            </div>
+            <div>
+              <div class="popup-content-infobox-title">보관기간</div>
+              <div class="popup-content-infobox-text">2026-07-31 24:00 까지</div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-content-close-btn">
           <button type="button" class="line-btn" onclick="jsCloseLayer()">
             <div>닫기</div>
           </button>

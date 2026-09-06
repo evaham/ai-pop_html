@@ -16,7 +16,7 @@ body {@apply w-full h-full bg-gray-50; }
   border-radius: 5px;
   cursor: pointer; }
 input[type="file"]::file-selector-button:hover { background-color: #253c6c; } */
-
+.hidden { @apply hidden! ; }
 .switch_comm { position: relative; display: inline-block; width: 34px; height: 21px; }
 .switch_comm input { opacity: 0; width: 0; height: 0; }
 .switch_slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ff8f79; border-radius: 10px; transition: 0.3s; }
@@ -36,6 +36,15 @@ input:checked + .switch_slider:before { transform: translateX(-13px); /* 버튼 
 .popup-content-title { @apply text-gray-800 font-bold text-lg; }
 .popup-content-text { @apply text-gray-500 text-sm; }
 .popup-content-buttons { @apply flex gap-1 mt-4; }
+.popup-content-divider { @apply -mx-4 my-4 border-b-0 border-gray-300; }
+.popup-content-infobox { @apply flex flex-col gap-6; }
+.popup-content-infobox-title { @apply text-sm font-bold mb-1; }
+.popup-content-infobox-text {}
+.popup-content-infobox dl { @apply flex; }
+.popup-content-infobox dt { @apply w-22; }
+.popup-content-infobox dd { }
+.popup-content-close-btn { @apply absolute top-4 right-4; }
+
 
 /* 공통 탭  */
 .page-shell { @apply flex flex-col w-full h-full bg-gray-50; }
@@ -64,7 +73,7 @@ input:checked + .switch_slider:before { transform: translateX(-13px); /* 버튼 
 /* 공통 레이아웃 UI */
 .wrap-layout { @apply flex-1 flex min-h-0; }
 .full-contents-layout { @apply flex-1 flex flex-col min-h-0 p-6 bg-white; }
-.side-contents-layout { @apply sticky top-11 self-start flex shrink-0 flex-col w-160 h-full max-h-[calc(100dvh-(var(--spacing)*15))] min-[1900px]:max-h-[calc(100dvh-(var(--spacing)*11))] p-6 border-r border-gray-300 bg-white overflow-y-auto; 
+.side-contents-layout { @apply sticky top-11 flex shrink-0 flex-col w-160 max-h-[calc(100dvh-(var(--spacing)*15))] min-[1900px]:max-h-[calc(100dvh-(var(--spacing)*11))] p-6 border-r border-gray-300 bg-white overflow-y-auto; 
   /* height: calc(100dvh - (var(--spacing) * 11)) */
 }
 .main-contents-layout { @apply relative flex flex-col w-full; }
@@ -196,8 +205,11 @@ input:checked + .switch_slider:before { transform: translateX(-13px); /* 버튼 
 /* 이용현황 테이블 영역 */
 .statice-tbl-wrap { @apply w-full overflow-x-auto my-2 border border-gray-200 bg-gray-200; }
 .statice-tbl { @apply w-auto border-spacing-0 border-collapse bg-white break-all whitespace-nowrap; }
-.statice-tbl th { @apply px-3 py-1 border border-gray-300 font-normal bg-gray-200 text-gray-600 text-center; }
-.statice-tbl td { @apply px-3 py-1 border border-gray-300 text-gray-600; }
+.statice-tbl th { @apply px-3 py-0.5 border border-gray-300 font-normal bg-gray-200 text-gray-600 text-center; }
+.statice-tbl td { @apply px-3 py-0.5 border border-gray-300 text-gray-600; }
+
+
+
 
 
 /* AI POP 생성창 */

@@ -1,18 +1,38 @@
-<html>
 
+<!DOCTYPE html>
+
+<html>
 <head>
   <meta charset="utf-8" />
   <title>탭 스타일</title>
-  <link rel="stylesheet" href="tab_style.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-  />
-  <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
-    rel="stylesheet"
-  />
+  <!-- 기존 reset.css, stylesheet.css -->
+  <!-- <link rel="stylesheet" href="tab_style copy.css" /> -->
+  <!-- <link rel="stylesheet" href="tab_style.css" /> -->
 <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.main-menu {display: flex; min-width: 1900px; border-bottom: 1px solid #e5e7eb; background-color: #ffffff; height: 56px; position: sticky; top: 0; z-index: 10; align-items: center; justify-content: space-between; padding-left: 16px; padding-right: 16px;}
+.main-menu > .main-tabouter {position: relative; display: flex; align-items: center; height: 100%;}
+.main-menu > .main-tabouter > ul {display: flex; align-items: center; justify-content: center; gap:2px; margin:0; padding:4px; margin-right: 8px; list-style:none}
+.main-menu > .main-tabouter > ul > li { display: flex; align-items: center; justify-content: center; padding: 0; list-style:none}
+.main-menu > .main-tabouter > ul > li > a {display: flex; align-items: center; justify-content: center; padding: 4px 8px; border-radius: 4px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 500; transition: background-color 0.3s ease; outline: none; cursor: pointer;}
+.main-menu > .main-tabouter > ul > li > a:hover {background-color: rgba(255, 255, 255, 0.2); text-decoration: none;}
+.main-menu > .main-tabouter > ul > li.active > a {background-color: #ffffff; color: #26499d; font-weight: bold; text-decoration: none;}
+.main-menu > .main-tabouter > ul > li > a > svg {margin-right:4px; font-weight: normal !important; opacity: 0.9;}
+.menu-group1, .menu-group2, .menu-group3 { border-radius: 6px; background:#26499d }
+
+.side-btn-group {display: flex; align-items: center;}
+.side-btn-group ul {display: flex; gap: 4px; margin: 0; padding: 0; list-style: none;}
+.side-btn-group ul li a {display: flex; align-items: center; justify-content: center; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; color: #4b5563; padding: 4px 8px; text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease; cursor: pointer;}
+.side-btn-group ul li a svg {margin-right: 4px; opacity: 0.9;}
+.side-btn-group ul li a:hover {background-color: #f3f4f6; color: #111827; text-decoration: none;}
+
+/* 1. iframe 이중 스크롤 방지 */
+.iframe-box { width: 100%; height: 100%; min-width: 1900px; height: calc(100dvh - 72px); border: none; }
+@media (min-width: 1900px) {
+  .iframe-box {
+    height: calc(100dvh - 56px);
+  }
+}
 /* 2. 작은 화면일 때 (예: 창 너비가 768px 이하로 줄어들 때) */
 @media (max-width: 768px) {
   .inner-scroll-box {
@@ -23,117 +43,42 @@
 </style>
 </head>
 <body>
-  <div>
-    <div id="tabMenu2" class="min-w-[1900px] tab_menu2 border border-gray-200 bg-white h-14 sticky top-0 z-10 flex items-center justify-between px-4">
-      <div class="tabouter">
-        <ul id="ulTopMenu2">
-            <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="general"><i class="ri-chat-2-line"></i>일반문자</a></li>
-            <li><a class="tab_menu2__link" data-tab-target="rcs"><i class="ri-discuss-line"></i>RCS</a></li>
-            <li><a class="tab_menu2__link" data-tab-target="friendtalk"><i class="ri-kakao-talk-line"></i>친구톡</a></li>
-            <li><a class="tab_menu2__link" data-tab-target="alerttalk"><i class="ri-kakao-talk-line"></i>알림톡</a></li>
-            <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="push"><i class="ri-notification-2-line"></i>푸시메세지</a></li>
-
-            <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="flyer"><i class="ri-file-list-3-line"></i>모바일전단</a></li>
-            <li class="active"><a class="tab_menu2__link" data-tab-target="ai-pop"><i class="ri-file-list-3-line"></i>AI POP</a></li>
-            <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="image-cloud"><i class="ri-folder-image-line"></i>이미지클라우드</a></li>
-
-            <li><a class="tab_menu2__link tab_menu2__link--first" data-tab-target="order"><i class="ri-list-check-3"></i>주문기능</a></li>
-            <li><a class="tab_menu2__link tab_menu2__link--last" data-tab-target="groupbuy"><i class="ri-team-line"></i>공동구매</a></li>
+  <form>
+    <div id="tabMenu2" class="main-menu">
+      <div id="ulTopMenu2" class="main-tabouter">
+        <ul class="menu-group1">
+          <li><a>일반문자</a></li>
+          <li><a>RCS</a></li>
+          <li><a>친구톡</a></li>
+          <li><a>알림톡</a></li>
+          <li><a>푸시메세지</a></li>
+        </ul>
+        <ul class="menu-group2">
+          <li><a>모바일전단</a></li>
+          <li class="active"><a>AI POP</a></li>
+          <li><a>이미지클라우드</a></li>
+        </ul>
+        <ul class="menu-group3">
+          <li><a>주문기능</a></li>
+          <li><a>공동구매</a></li>
         </ul>
       </div>
-      <div class="tab_menu2__side flex items-center">
-        <ul class="flex items-center">
-            <li><a class="border rounded border-slate-300 text-sm text-gray-600 px-2 py-2">온라인매뉴얼</a></li>
-            <li><a class="border rounded border-slate-300 text-sm text-gray-600 px-2 py-2">충전안내</a></li>
-            <li><a class="border rounded border-slate-300 text-sm text-gray-600 px-2 py-2">레포트</a></li>
+      <div class="side-btn-group">
+        <ul>
+            <li><a>온라인매뉴얼</a></li>
+            <li><a>충전안내</a></li>
+            <li><a>레포트</a></li>
         </ul>
       </div>
     </div>
-    <div class="wrap_top">
+    <!-- 기존 wrap_top -->
+    <div class="new-wrap_top">
       <div class="tabcontents">
-        <div data-tab-content="general" style=" margin-bottom: 40px; display: none;">
-          <img src="./img/일반문자.png" alt="탭 스타일 예시" />
-        </div>
-        <div data-tab-content="rcs" style=" margin-bottom: 40px; display: none;">
-          <img src="./img/RCS.png" alt="탭 스타일 예시" />
-        </div>
-        <div data-tab-content="friendtalk" style="margin-bottom: 40px; display: none;">
-          <img src="./img/친구톡.png" alt="탭 스타일 예시" />
-        </div>
-        <div data-tab-content="alerttalk" style="margin-bottom: 40px; display: none;">
-          <img src="./img/알림톡.png" alt="탭 스타일 예시" />
-        </div>
-        <div data-tab-content="push" style="margin-bottom: 40px; display: none;">
-          <img src="./img/푸시메시지.png" alt="탭 스타일 예시" />
-        </div>
-        <div data-tab-content="flyer" style="border: none;">
-          <iframe id="" src="./test-cloud/aiPop/airequest_pop.html"  class="w-full h-full p-0 m-0 min-w-[1900px] max-h-[calc(100dvh-(var(--spacing)*18))] min-[1900px]:max-h-[calc(100dvh-(var(--spacing)*14))]" title="AI-POP 페이지">
-            ai-pop
-          </iframe>        
-        </div>
         <div data-tab-content="ai-pop">
-          <iframe id="" src="./test-cloud/aiPop/airequest_pop.html"  class="w-full h-full p-0 m-0 min-w-[1900px] max-h-[calc(100dvh-(var(--spacing)*18))] min-[1900px]:max-h-[calc(100dvh-(var(--spacing)*14))]" title="AI-POP 페이지">
-            ai-pop
+          <iframe class="iframe-box" src="./test-cloud/aiPop/airequest_pop.html"  title="AI-POP 페이지">
           </iframe>        
-        </div>
-        <div data-tab-content="image-cloud" style="margin-bottom: 40px; display: none;">
-          <img src="./img/이미지클라우드.png" alt="탭 스타일 예시" />
-        </div>
-        <div data-tab-content="order" style="margin-bottom: 40px; display: none;">
-          <img src="./img/주문기능.png" alt="탭 스타일 예시" />
-        </div>
-        <div data-tab-content="groupbuy" style="margin-bottom: 40px; display: none;">
-          <img src="./img/공동구매.png" alt="탭 스타일 예시" />
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </body>
-<script>
-  const topMenu = document.getElementById("ulTopMenu2");
-  const tabContents = Array.from(document.querySelectorAll("[data-tab-content]"));
-
-  const showTabContent = (target) => {
-    if (!target) {
-      return;
-    }
-
-    tabContents.forEach((section) => {
-      section.style.display = section.dataset.tabContent === target ? "" : "none";
-    });
-  };
-
-  if (topMenu) {
-    topMenu.addEventListener("click", (event) => {
-      const link = event.target.closest("a");
-      if (!link || !topMenu.contains(link)) {
-        return;
-      }
-
-      const activeItem = topMenu.querySelector("li.active");
-      if (activeItem) {
-        activeItem.classList.remove("active");
-      }
-
-      const parentItem = link.closest("li");
-      if (parentItem) {
-        parentItem.classList.add("active");
-      }
-
-      showTabContent(link.dataset.tabTarget);
-    });
-
-    const initialActiveLink = topMenu.querySelector("li.active a");
-    if (initialActiveLink) {
-      showTabContent(initialActiveLink.dataset.tabTarget);
-    }
-  }
-</script>
-<script>
-  const iframe = document.getElementById('myIframe');
-  iframe.onload = function() {
-    // iframe 내부의 문서 높이를 가져와서 적용
-    const docHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-    iframe.style.height = docHeight + 'px';
-  };
-</script>
