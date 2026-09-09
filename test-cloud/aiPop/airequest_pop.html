@@ -71,22 +71,7 @@
       display: flex;
       overflow: hidden;
     }
-    .ac .ac-body {
-      overflow: hidden;
-      max-height: 2000px;
-      opacity: 1;
-      transition: max-height 0.2s ease, opacity 0.9s ease;
-    }
-    .ac.collapsed .ac-body {
-      max-height: 0;
-      opacity: 0;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    .ac .ac-header { cursor: pointer; }
-    .ac .ac-toggle span { display: none; }
-    .ac.collapsed .ac-toggle span:first-child { display: inline; }
-    .ac:not(.collapsed) .ac-toggle span:last-child { display: inline; }
+
   </style>
 </head>
 
@@ -125,12 +110,12 @@
             <div id="popBox" class="ac-group">
               <!-- POP 레이아웃 -->
 
-              <!-- 아코디언 1 -->
+              <!-- 1.유형선택 -->
               <div class="ac">
                 <div class="ac-header">
                   <div class="ac-icon">1</div>
                   <div class="ac-header-content">
-                    <div class="ac-title">유형선택<span class="ac-optional">필수</span></div>
+                    <div class="ac-title">유형선택</div>
                     <div class="ac-description">디자인 유형과 방향을 선택하세요</div>
                   </div>
                   <div class="selected-group">
@@ -155,8 +140,8 @@
               </div>
 
 
-              <!-- 아코디언 2-2 -->
-              <div class="ac" data-ac="3">
+              <!-- 2.상품홍보형-스타일선택 -->
+              <div class="ac">
                 <div class="ac-header">
                   <div class="ac-icon">2</div>
                   <div class="ac-header-content">
@@ -208,18 +193,18 @@
                       </button>
                     </div>
                     <div class="ac-label">강조 포인트</div>
-                    <div class="ac-line-btn-group">
-                      <button type="button" class="ac-line-btn" data-label="가격강조" onclick="jsSelectLabel(this)">
-                        <div class="line-btn-name">가격강조</div>
+                    <div class="ac-ac-line-item-group">
+                      <button type="button" class="ac-line-item selected" data-label="가격강조" onclick="jsSelectLabel(this)">
+                        <div class="ac-line-item-name">가격강조</div>
                       </button>
-                      <button type="button" class="ac-line-btn" data-label="신선도 강조" onclick="jsSelectLabel(this)">
-                        <div class="line-btn-name">신선도 강조</div>
+                      <button type="button" class="ac-line-item" data-label="신선도 강조" onclick="jsSelectLabel(this)">
+                        <div class="ac-line-item-name">신선도 강조</div>
                       </button>
-                      <button type="button" class="ac-line-btn" data-label="행사강조" onclick="jsSelectLabel(this)">
-                        <div class="line-btn-name">행사강조</div>
+                      <button type="button" class="ac-line-item" data-label="행사강조" onclick="jsSelectLabel(this)">
+                        <div class="ac-line-item-name">행사강조</div>
                       </button>
-                      <button type="button" class="ac-line-btn" data-label="상품강조" onclick="jsSelectLabel(this)">
-                        <div class="line-btn-name">상품강조</div>
+                      <button type="button" class="ac-line-item" data-label="상품강조" onclick="jsSelectLabel(this)">
+                        <div class="ac-line-item-name">상품강조</div>
                       </button>
                     </div>
                   </div>
@@ -227,13 +212,13 @@
               </div>
 
 
-              <!-- 아코디언 2-1 -->
+              <!-- 3.상품홍보형-상품정보 -->
               <div class="ac">
                 <div class="ac-header">
-                  <div class="ac-icon">2</div>
+                  <div class="ac-icon">3</div>
                   <div class="ac-header-content">
-                    <div class="ac-title">상품정보<span class="ac-optional">필수</span></div>
-                    <div class="ac-description">상품정보를 입력하시거나 엑셀파일의 데이터를 붙여넣기 하세요.</div>
+                    <div class="ac-title">상품정보</div>
+                    <div class="ac-description">이미지에 들어갈 상품정보를 입력하세요.</div>
                   </div>
                   <div class="ac-toggle"><span>열기</span><span>닫기</span></div>
                 </div>
@@ -243,31 +228,30 @@
                     <div class="flex gap-1">
                       <div id="selPopColumn" class="ac-line-group">
                         <button type="button" class="ac-line-item selected" data-column="name">
-                          <div class="ac-line-btn-name">
+                          <div class="ac-ac-line-item-name">
                             <span class="text-red-500">*</span>상품명
                           </div>
                         </button>
                         <button type="button" class="ac-line-item" data-column="spec" onclick="jsSelectColumn(this)">
-                          <div class="ac-line-btn-name">규격</div>
+                          <div class="ac-ac-line-item-name">규격</div>
                         </button>
                         <button type="button" class="ac-line-item" data-column="sprice" onclick="jsSelectColumn(this)">
-                          <div class="ac-line-btn-name">정상판매가</div>
+                          <div class="ac-ac-line-item-name">정상판매가</div>
                         </button>
                         <button type="button" class="ac-line-item selected" data-column="dcprice">
-                          <div class="ac-line-btn-name">
+                          <div class="ac-ac-line-item-name">
                             <span class="text-red-500">*</span>할인판매가
                           </div>
                         </button>
                         <button type="button" class="ac-line-item" data-column="dcrate" onclick="jsSelectColumn(this)">
-                          <div class="line-btn-name">할인율</div>
+                          <div class="ac-line-item-name">할인율</div>
                         </button>
                       </div>
                       <button type="button" class="ac-line-item" style="margin-left:auto" onclick="jsRemoveExcelRow()">
-                        <div class="line-btn-name">행 비우기</div>
+                        <div class="ac-line-item-name">행 비우기</div>
                       </button>
                     </div>
-                    <div id="popExcel" class="ac-grid-table"
-                      style="grid-template-rows: repeat(2, 1fr); grid-template-columns: 210px 90px; place-items: center;">
+                    <div id="popExcel" class="ac-grid-table" style="grid-template-rows: repeat(2, 1fr); grid-template-columns: 210px 90px; place-items: center;">
                       <div class="ac-grid-th" data-column="name">상품명</div>
                       <div class="ac-grid-th hidden" data-column="spec">규격</div>
                       <div class="ac-grid-th hidden" data-column="sprice">정상판매가</div>
@@ -311,8 +295,142 @@
 
 
 
-              <!-- 아코디언 3-1 -->
-              <div class="ac" data-ac="3">
+              <!-- 4.상품홍보형-추가 설명 및 참조 이미지 첨부 -->
+              <div class="ac">
+                <div class="ac-header">
+                  <div class="ac-icon">4</div>
+                  <div class="ac-header-content">
+                    <div class="ac-title">추가 설명 및 참조 이미지 첨부<span class="ac-optional">선택</span></div>
+                    <div class="ac-description">추가하고 싶은 내용을 입력하시면 이미지 생성에 반영됩니다.</div>
+                  </div>
+                  <div class="ac-toggle"><span>열기</span><span>닫기</span></div>
+                </div>
+                <div class="ac-body">
+                  <!-- POP 추가설명 -->
+                  <div class="ac-fieldset">
+                    <label class="ac-label">추가 설명 입력</label>
+                    <textarea id="popExtra" class="ac-form-textarea" onkeyup="jsGetByte(this, 1000)"></textarea>
+                    <div class="ac-form-text-byte">
+                      <span id="popExtraByte">0</span> / 1000 Bytes
+                    </div>
+                  </div>
+
+
+                  <div class="ac-fieldset">
+                    <label class="ac-label">참조 이미지 추가</label>
+                    <div class="ac-upload-group">
+                      <div class="ac-upload-preview" onclick="document.getElementById('popFile').click();">
+                        <img id="popAttach" src="" alt="참고이미지" class="hidden">
+                        <div id="popAttachEmpty"  >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-7 fill-gray-500">
+                            <path
+                              d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z">
+                            </path>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="hidden">
+                        <div id="popAttachBox" class="ac-upload-hint-box">
+                          <div>파일선택 버튼을 눌러 이미지를 업로드하세요.</div>
+                          <div>[<span id="popAttachFileName"></span> / <span id="popAttachFileSize"></span>]</div>
+                          <div class="flex gap-1 mt-2">
+                            <button type="button" class="ac-base-btn" onclick="document.getElementById('popFile').click();">이미지
+                              변경</button>
+                            <button type="button" class="ac-base-btn" onclick="jsRemoveAttach()">이미지 삭제</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div id="popAttachBoxEmpty" class="ac-upload-hint-box">
+                          <div>파일선택 버튼을 눌러 이미지를 업로드하세요.</div>
+                          <div>[jpg, png / 최대 2MB]</div>
+                          <div class="flex gap-1 mt-2">
+                            <button type="button" class="ac-base-btn"
+                              onclick="document.getElementById('popFile').click();">파일선택</button>
+                            <input type="file" id="popFile" accept=".jpg,.jpeg,.png" style="color:transparent"
+                              onchange="jsPreviewAttach()">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- 5.상품홍보형-이미지해상도선택 -->
+              <div class="ac">
+                <div class="ac-header">
+                  <div class="ac-icon">5</div>
+                  <div class="ac-header-content">
+                    <div class="ac-title">이미지 해상도 선택</div>
+                    <div class="ac-description">이미지의 크기를 선택하세요</div>
+                  </div>
+                  <div class="selected-group">
+                    <span class="selected-item">모바일 화면용</span>
+                  </div>
+
+                  <div class="ac-toggle"><span>열기</span><span>닫기</span></div>
+                </div>
+                <div class="ac-body">
+                  <div class="ac-fieldset">
+                    <!-- 모바일 -->
+                    <div role="radiogroup" class="ac-radio-wrapper">
+                      <label class="ac-radio-group border" for="imageResolutionLow">
+                        <input id="imageResolutionLow" type="radio" name="imageResolution" value="low" />
+                        <div class="ac-radio-content">
+                          <div class="ac-radio-title">모바일용 <span class="ac-radio-sub">(0.5K)</span></div>
+                          <div class="ac-radio-description">448 * 592 px / 빠른 생성 및 모바일 · 웹 게시용</div>
+                        </div>
+                        <div class="ac-radio-price"><span>300</span> TS</div>
+                      </label>
+                      <!-- 일반용 -->
+                      <label class="ac-radio-group" for="imageResolutionHigh">
+                        <input id="imageResolutionHigh" type="radio" name="imageResolution" value="medium" />
+                        <div class="ac-radio-content">
+                          <div class="ac-radio-title">일반용 <span class="ac-radio-sub">(1K)</span></div>
+                          <div class="ac-radio-description">1024 * 1354 px / 소형POP 및 일반 인쇄용</div>
+                        </div>
+                        <div class="ac-radio-price"><span>500</span> TS</div>
+                      </label>
+
+  
+                      <!-- 고화질용 -->
+                      <label class="ac-radio-group border" for="imageResolutionUltra">
+                        <input id="imageResolutionUltra" type="radio" name="imageResolution" value="high" />
+                        <div class="ac-radio-content">
+                          <div class="ac-radio-title">고화질용 <span class="ac-radio-sub">(2K)</span></div>
+                          <div class="ac-radio-description">2048 * 2708 px / AI이미지 및 선명한 인쇄용</div>
+                        </div>
+                        <div class="ac-radio-price"><span>700</span> TS</div>
+                      </label>
+
+                      <!-- 대형 포스터용 -->
+                      <label class="ac-radio-group border" for="imageResolutionPoster">
+                        <input id="imageResolutionPoster" type="radio" name="imageResolution" value="high" />
+                        <div class="ac-radio-content">
+                          <div class="ac-radio-title">대형 포스터용 <span class="ac-radio-sub">(4K)</span></div>
+                          <div class="ac-radio-description">4096 * 5416 px / A3 포스터 및 고화질 인쇄용</div>
+                        </div>
+                        <div class="ac-radio-price"><span>1,500</span> TS</div>
+                      </label>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+
+              <button type="button" class="ac-pay-button">
+                <div>AI 이미지 생성 (500TS 차감)</div>
+              </button>
+
+
+
+
+
+
+
+              <!-- 1.안내/공지형-홍보옵션 3 -->
+              <div class="ac hidden">
                 <div class="ac-header">
                   <div class="ac-icon">3</div>
                   <div class="ac-header-content">
@@ -322,52 +440,50 @@
                   <div class="ac-toggle"><span>열기</span><span>닫기</span></div>
                 </div>
                 <div class="ac-body">
-
-
                   <!-- POP 강조형 뱃지 -->
                   <div class="ac-fieldset">
                     <div class="fieldset-title">강조형 뱃지를 선택하세요.</div>
                     <div class="fieldset-text">선택하신 뱃지에 어울리는 디자인으로 AI가 알맞은 위치에 배치합니다. (최대 4개 선택 가능)</div>
                     <div id="selPopGoodsLabel" data-category="goods" class="flex gap-1" style="flex-wrap: wrap;">
-                      <button type="button" class="line-btn" data-label="폭탄세일" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="폭탄세일" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">폭탄세일</div>
+                        <div class="ac-line-item-name">폭탄세일</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="한정수량" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="한정수량" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">한정수량</div>
+                        <div class="ac-line-item-name">한정수량</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="주말특가" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="주말특가" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">주말특가</div>
+                        <div class="ac-line-item-name">주말특가</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="인기상품" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="인기상품" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">인기상품</div>
+                        <div class="ac-line-item-name">인기상품</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="점장추천" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="점장추천" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">점장추천</div>
+                        <div class="ac-line-item-name">점장추천</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="고당도" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="고당도" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">고당도</div>
+                        <div class="ac-line-item-name">고당도</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="산지직송" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="산지직송" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">산지직송</div>
+                        <div class="ac-line-item-name">산지직송</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="당일도축" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="당일도축" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">당일도축</div>
+                        <div class="ac-line-item-name">당일도축</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="오늘수확" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="오늘수확" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">오늘수확</div>
+                        <div class="ac-line-item-name">오늘수확</div>
                       </button>
-                      <button type="button" class="line-btn" data-label="국내산" onclick="jsSelectLabel(this)"
+                      <button type="button" class="ac-line-item" data-label="국내산" onclick="jsSelectLabel(this)"
                         style="width:68px">
-                        <div class="line-btn-name">국내산</div>
+                        <div class="ac-line-item-name">국내산</div>
                       </button>
                     </div>
                   </div>
@@ -375,16 +491,8 @@
               </div>
 
 
-
-
-
-
-
-
-
-
-              <!-- 아코디언 3-2 -->
-              <div class="ac" data-ac="3">
+              <!-- 2.안내/공지형-내용입력 -->
+              <div class="ac hidden">
                 <div class="ac-header">
                   <div class="ac-icon">3</div>
                   <div class="ac-header-content">
@@ -404,7 +512,7 @@
                     <div>
                       <input type="text" id="popTitle" class="form-input" rows="2" style="width: 100%;"
                         onkeyup="jsGetByte(this, 100)">
-                      <div class="form-text-byte">
+                      <div class="ac-form-text-byte">
                         <span id="popTitleByte">0</span> / 100 Bytes
                       </div>
                     </div>
@@ -418,7 +526,7 @@
                     <div class="fieldset-text">입력하신 내용을 반영하여 AI 이미지가 생성됩니다.</div>
                     <div>
                       <textarea id="popNotice" class="form-textarea" onkeyup="jsGetByte(this, 500)"></textarea>
-                      <div class="form-text-byte">
+                      <div class="ac-form-text-byte">
                         <span id="popNoticeByte">0</span> / 500 Bytes
                       </div>
                     </div>
@@ -428,69 +536,11 @@
 
 
 
-              <!-- 아코디언 4 -->
-              <div class="ac" data-ac="3">
-                <div class="ac-header">
-                  <div class="ac-icon">4</div>
-                  <div class="ac-header-content">
-                    <div class="ac-title">추가 설명 및 참조 이미지 첨부</div>
-                    <div class="ac-description">추가하고 싶은 내용을 입력하시면 이미지 생성에 반영됩니다.</div>
-                  </div>
-                  <div class="ac-toggle"><span>열기</span><span>닫기</span></div>
-                </div>
-                <div class="ac-body">
-                  <!-- POP 추가설명 -->
-                  <div class="ac-fieldset">
-                    <div>
-                      <textarea id="popExtra" class="ac-form-textarea" onkeyup="jsGetByte(this, 1000)"></textarea>
-                      <div class="form-text-byte">
-                        <span id="popExtraByte">0</span> / 1000 Bytes
-                      </div>
-                    </div>
-                    <div class="ac-upload-group">
-                      <div class="ac-upload-preview">
-                        <img id="popAttach" src="" alt="참고이미지" class="hidden">
-                        <div id="popAttachEmpty">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-7 fill-gray-500">
-                            <path
-                              d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z">
-                            </path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="ac-label">추가 설명 입력</div>
-                        <div id="popAttachBox" class="upload-hint-box hidden">
-                          <div>파일선택 버튼을 눌러 이미지를 업로드하세요.</div>
-                          <div>[<span id="popAttachFileName"></span> / <span id="popAttachFileSize"></span>]</div>
-                          <div class="flex gap-1" style="justify-content: center; margin-top: 5px">
-                            <button type="button" class="base-btn" onclick="document.getElementById('popFile').click();">이미지
-                              변경</button>
-                            <button type="button" class="base-btn" onclick="jsRemoveAttach()">이미지 삭제</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="ac-label">참조 이미지 추가</div>
-                        <div id="popAttachBoxEmpty" class="upload-hint-box">
-                          <div>파일선택 버튼을 눌러 이미지를 업로드하세요.</div>
-                          <div>[jpg, png / 최대 2MB]</div>
-                          <button type="button" class="base-btn mx-auto" style="margin-top: 5px;"
-                            onclick="document.getElementById('popFile').click();">파일선택</button>
-                          <input type="file" id="popFile" accept=".jpg,.jpeg,.png" style="color:transparent"
-                            onchange="jsPreviewAttach()">
-                        </div>
-                      </div>
-                    </div>
 
 
-                  </div>
-                </div>
-              </div>
 
-
-              <!-- 아코디언 5 -->
-              <div class="ac" data-ac="3">
+              <!-- 3.안내/공지형-이미지참조 5 -->
+              <div class="ac hidden">
                 <div class="ac-header">
                   <div class="ac-icon">5</div>
                   <div class="ac-header-content">
@@ -502,10 +552,10 @@
                 <div class="ac-body">
                   <!-- POP 참고이미지 첨부 -->
                   <div class="ac-fieldset">
-                    <div class="fieldset-title">참조할 이미지를 추가하세요.</div>
-                    <div class="fieldset-text">결과물과 가장 가깝게 만들고 싶은 이미지를 1장 등록하세요.</div>
-                    <div class="upload-group">
-                      <div class="upload-preview">
+                    <div class="ac-fieldset-title">참조할 이미지를 추가하세요.</div>
+                    <div class="ac-fieldset-text">결과물과 가장 가깝게 만들고 싶은 이미지를 1장 등록하세요.</div>
+                    <div class="ac-upload-group">
+                      <div class="ac-upload-preview">
                         <img id="popAttach" src="" alt="참고이미지" class="hidden">
                         <div id="popAttachEmpty">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-7 fill-gray-500">
@@ -515,26 +565,23 @@
                           </svg>
                         </div>
                       </div>
-                      <div id="popAttachBox" class="upload-hint-box hidden">
+                      <div class="ac-upload-hint-box hidden">
                         <div>파일선택 버튼을 눌러 이미지를 업로드하세요.</div>
                         <div>[<span id="popAttachFileName"></span> / <span id="popAttachFileSize"></span>]</div>
                         <div class="flex gap-1" style="justify-content: center; margin-top: 5px">
-                          <button type="button" class="base-btn" onclick="document.getElementById('popFile').click();">이미지
-                            변경</button>
-                          <button type="button" class="base-btn" onclick="jsRemoveAttach()">이미지 삭제</button>
+                          <button type="button" class="ac-base-btn" onclick="document.getElementById('popFile').click();">이미지 변경</button>
+                          <button type="button" class="ac-base-btn" onclick="jsRemoveAttach()">이미지 삭제</button>
                         </div>
                       </div>
-                      <div id="popAttachBoxEmpty" class="upload-hint-box">
+                      <div class="ac-upload-hint-box">
                         <div>파일선택 버튼을 눌러 이미지를 업로드하세요.</div>
                         <div>[jpg, png / 최대 2MB]</div>
-                        <button type="button" class="base-btn mx-auto" style="margin-top: 5px;"
+                        <button type="button" class="ac-base-btn mx-auto" style="margin-top: 5px;"
                           onclick="document.getElementById('popFile').click();">파일선택</button>
                         <input type="file" id="popFile" accept=".jpg,.jpeg,.png" style="color:transparent"
                           onchange="jsPreviewAttach()">
                       </div>
                     </div>
-                    <input type="hidden" id="popSamba" value="">
-                    <input type="hidden" id="popImagePath" value="">
                   </div>
                 </div>
               </div>
@@ -542,13 +589,123 @@
           </div>
         </div>
 
+<style>
+  .main-contents-layout.custom-samples { width:100%; padding:20px 0; box-sizing:border-box; }
+  .main-contents-inner.custom-samples { max-width:1100px; margin:0 auto; padding:0 16px; box-sizing:border-box; }
+  .main-contents-section.custom-samples { margin-bottom:14px; }
+  .main-contents-section.custom-samples .title { font-size:1.125rem; font-weight:700; margin:0 0 6px; color:#111827; }
+  .main-contents-section.custom-samples .subtitle { font-size:0.875rem; color:#6b7280; margin:0; }
+
+  /* Masonry-like columns so 이미지 가로/세로 혼합 연출 */
+  /* .item-list.masonry { column-gap:12px; column-fill:balance; column-count:4; }
+  .item { display:inline-block; width:100%; margin:0 0 12px; break-inside:avoid; position:relative; border-radius:10px; overflow:hidden; background:#fff; box-shadow:0 1px 2px rgba(16,24,40,0.04); }
+  .thumb { width:100%; display:block; background:#f3f4f6; position:relative; }
+  .thumb img { width:100%; height:auto; display:block; object-fit:cover; transition:transform .25s ease; }
+  .item:hover .thumb img { transform:scale(1.03); } */
+
+</style>
+
+<div class="main-contents-layout">
+  <div class="main-contents-inner h-full mx-20 border-r border-l border-gray-200">
+    <div class="main-contents-section">
+      <p class="title">매장에서 필요한 다양한 이미지를 만들수 있습니다.</p>
+      <p class="subtitle">아래 샘플은 이미지 중심으로 구성되어 결과 예시를 빠르게 확인할 수 있습니다.</p>
+    </div>
+
+    <div>
+      <div class="item-list grid grid-cols-4 gap-4">
+        <div class="item">
+          <div class="p-2 pb-0 text-center">팝아트 일러스트 스타일</div>
+          <div class="p-2">
+            <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="p-2 pb-0 text-center">팝아트 일러스트 스타일</div>
+          <div class="p-2">
+            <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="p-2 pb-0 text-center">팝아트 일러스트 스타일</div>
+          <div class="p-2">
+            <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="p-2 pb-0 text-center">팝아트 일러스트 스타일</div>
+          <div class="p-2">
+            <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+        
+
+
+
+
+
+
+
+
+      <style>
+        /* 샘플 화면 CSS */
+
+
+      </style>
+      <div class="main-contents-layout hidden" style="width:100%">
+        <div class="main-contents-inner">
+          <div class="main-contents-section">
+            <p class="text-lg font-bold">매장에서 필요한 다양한 이미지를 만들수 있습니다.</p>
+            <p class="text-sm text-gray-600">AI이미지를 통해 매장에서 필요한 이미지를 바로 생성할 수 있습니다.</p>
+          </div>
+          <div>
+            <div class="item-list">
+              <div class="item">
+                <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1">
+                <p>샘플 이미지 1 설명</p>
+              </div>
+              <div class="item">
+                <img src="./1001_20260907_134437124.jpg" alt="샘플 이미지 2">
+                <p>샘플 이미지 2 설명</p>
+              </div>
+              <div class="item">
+                <img src="./1001_20260908_092928486.jpg" alt="샘플 이미지 3">
+                <p>샘플 이미지 3 설명</p>
+              </div>
+              <div class="item">
+                <img src="./1001_20260908_094048489.jpg" alt="샘플 이미지 3">
+                <p>샘플 이미지 3 설명</p>
+              </div>
+              <div class="item">
+                <img src="./1001_20260907_134437124.jpg" alt="샘플 이미지 3">
+                <p>샘플 이미지 3 설명</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
         <!-- 미리보기 영역 -->
-        <div class="main-contents-layout" style="width: 100%;">
+        <!-- <div class="main-contents-layout" style="width: 100%;">
           <div class="preview-panel">
             <div class="preview-card">
               <div class="page-title-box">
                 <div class="page-title">
-                  미리보기
+                  AI 이미지 샘플
                   <div class="page-text">미리보기는 결과물 생성을 돕기 위한 것일 뿐 결과물과 반드시 일치하지는 않습니다.</div>
                 </div>
               </div>
@@ -604,7 +761,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- 오른쪽 레이어 : TS머니 정보 -->
         <!-- Infomation -->
 
@@ -742,12 +899,12 @@
             <div class="popup-content-buttons" style="flex-direction: column; margin-top: 0;">
               <div class="flex gap-1">
                 <button type="button" class="point-btn-blue" style="width: 50%;" onclick="jsRetry()">신규 POP 생성</button>
-                <button type="button" class="line-btn retry" style="width: 50%; letter-spacing: -1px;"
+                <button type="button" class="ac-line-item retry" style="width: 50%; letter-spacing: -1px;"
                   onclick="jsEditRequest()">옵션 수정 후 재생성</button>
               </div>
               <div class="flex gap-1">
-                <button type="button" class="line-btn" style="width: 50%;" onclick="jsPrint()">인쇄하기</button>
-                <button type="button" class="line-btn" style="width: 50%;" onclick="jsDownload()">다운로드</button>
+                <button type="button" class="ac-line-item" style="width: 50%;" onclick="jsPrint()">인쇄하기</button>
+                <button type="button" class="ac-line-item" style="width: 50%;" onclick="jsDownload()">다운로드</button>
               </div>
             </div>
             <hr style="border-color: var(--color-gray-300);">
@@ -788,7 +945,7 @@
           작업을 계속 하시려면 아래 갱신 버튼을 눌러주세요.
         </div>
         <div class="popup-content-buttons justify-center">
-          <button type="button" class="line-btn">
+          <button type="button" class="ac-line-item">
             <div>세션갱신</div>
           </button>
         </div>

@@ -993,120 +993,181 @@ input:checked + .workspace-switch-slider:before {
 .templatepreview__btn{ margin:12px; padding: 6px; border-radius: 4px; text-align: center; background: #dadde4;}
 
 
+.linkpopup__thumb label,
+.linkpopup__thumb img
+    { width:100%; height:100%; }
+.divAddtarget {padding:5px;border:1px solid #ddd;border-top:0;background:#fff}
+.divAddtarget .tblSummary {width:100%;max-width:100%;border:1px solid #ddd;border-spacing:0;border-collapse:collapse;background:#fff;box-sizing:border-box}
+.divAddtarget .tblSummary>tbody>tr>th{padding:4px;border:1px solid #ddd;background:#ddd;vertical-align:inherit}
+.divAddtarget .tblSummary>tbody>tr>td{padding:8px;border:1px solid #ddd;vertical-align:inherit}
+.divAddtarget .txtAddTarget{display:inline-block;height:30px;padding:3px 5px;line-height:1.4;border:1px solid #ccc;color:#333;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-sizing:border-box;width:120px}
+.divAddtarget .btnAddTarget{width:49px;height:29px;border:none;background:url(../img/img_button1.png) no-repeat;cursor:pointer}
+.divAddtarget .btnAddTarget:focus,.divAddtarget .btnAddTarget:hover{background:url(../img/img_button1_hover.png) no-repeat}         
+.preview__sendbtn { cursor:pointer; }
+
+.wrap_left .divMergeWrap .divMergeList{display:none;position:absolute;right:auto; left:180px;top:-1px;border:1px solid #999;border-radius:5px;background:#fff;padding:10px;z-index:2}
+.emoji__box { width:451px; }
 
 
+.wrap_left .divLinkWrap { position:absolute; top:190px; }
+.wrap_left .divLinkWrap .divLinkList { display:none; position:absolute; margin-left:-50px; width:940px; height:700px; top:-150px; border:1px solid #999;border-radius:5px;background:#fff;padding:10px;z-index:20; }
 
-	
-        .linkpopup__thumb label,
-        .linkpopup__thumb img
-         { width:100%; height:100%; }
-        .divAddtarget {padding:5px;border:1px solid #ddd;border-top:0;background:#fff}
-        .divAddtarget .tblSummary {width:100%;max-width:100%;border:1px solid #ddd;border-spacing:0;border-collapse:collapse;background:#fff;box-sizing:border-box}
-        .divAddtarget .tblSummary>tbody>tr>th{padding:4px;border:1px solid #ddd;background:#ddd;vertical-align:inherit}
-        .divAddtarget .tblSummary>tbody>tr>td{padding:8px;border:1px solid #ddd;vertical-align:inherit}
-        .divAddtarget .txtAddTarget{display:inline-block;height:30px;padding:3px 5px;line-height:1.4;border:1px solid #ccc;color:#333;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-sizing:border-box;width:120px}
-        .divAddtarget .btnAddTarget{width:49px;height:29px;border:none;background:url(../img/img_button1.png) no-repeat;cursor:pointer}
-        .divAddtarget .btnAddTarget:focus,.divAddtarget .btnAddTarget:hover{background:url(../img/img_button1_hover.png) no-repeat}         
-        .preview__sendbtn { cursor:pointer; }
-        
-        .wrap_left .divMergeWrap .divMergeList{display:none;position:absolute;right:auto; left:180px;top:-1px;border:1px solid #999;border-radius:5px;background:#fff;padding:10px;z-index:2}
-        .emoji__box { width:451px; }
-        
-       
-        .wrap_left .divLinkWrap { position:absolute; top:190px; }
-        .wrap_left .divLinkWrap .divLinkList { display:none; position:absolute; margin-left:-50px; width:940px; height:700px; top:-150px; border:1px solid #999;border-radius:5px;background:#fff;padding:10px;z-index:20; }
-        
-        .wrap_right .wrap_info dl dd{ font-size:13px; letter-spacing:-1px; }
-        
-        .divBackground { display:none;position:fixed;top:0;left:0;bottom:0;right:0;z-index:1; } 
-        .preview__phone { height:510px; }
-        .preview__mssgwrap { height:480px; }
-        .preview__txt { word-wrap: break-word; }
-        
-        .help__linkimg:hover .help__cont2 {display:block}
-        .help__cont2 {display:none;position:absolute;margin:19px 0; width:300px; bottom:0; padding:10px;border:1px solid #ddd;border-radius:5px;background:#fff;z-index:10;box-shadow:0 6px 12px rgba(0,0,0,.175);box-sizing:border-box}
-        
-        
-        .txtEasyPayAmount {display:inline-block;height:30px;padding:3px 5px;line-height:1.4;border:1px solid #ccc;color:#333;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-sizing:border-box;width:120px}
-        #divPaypwd { position:absolute; right:0; width:372px; z-index:2; display:none; border:1px solid #999;border-radius:3px;background:#fff;padding: 0;  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)}
-        #divPaypwd .header {position: relative; height: 45px;border-top: 1px solid #2f3545; border-bottom: 1px solid #292e3a; background: #343a49 url(/Common/img/pay/bg_header.png) no-repeat 100% 0; }
-        #divPaypwd .sr_only{overflow:hidden;line-height:999px}
-        #divPaypwd .close {position: absolute; right: 2px; top: 2px; width: 40px;height: 40px; background: url(/Common/img/pay/icon_x.png) no-repeat 0 0; }    
-    	
-    	
-        #divLayerPopup { display: none; position: fixed; top: 0; left: 0; bottom: 0; right: 0; z-index: 10; }
-        #divLayerPopup .divMsg { overflow:hidden; position: absolute; left: 20%; top: 15%; margin-left: -100px; margin-top: -100px; padding: 0; border-radius: 5px; background: #fff; }
-        #divLayerPopup .divMsg span { display:block; max-height:95%; overflow-y:scroll; }
-        #divLayerPopup .divMsg img { max-width:500px; height:auto; }
-        #divLayerPopup .btnClose { position:absolute; top:0; right:0; width:53px; cursor:pointer; }
-        #divLayerPopup .divNotToday { margin-top:0px; border-top:1px solid #000; }
-        
-        
-    .free__btn {border: 1px solid #9d9d9d; background: #2c5aa7; color: #fff; }
-    .free__btn:hover {background: #dfdfdf; color:#333;} 
-    */
-    .ac-group {@apply flex flex-col gap-6}
+.wrap_right .wrap_info dl dd{ font-size:13px; letter-spacing:-1px; }
 
-    .ac { @apply overflow-hidden border border-gray-200 rounded-2xl bg-white shadow-xs; }
-    .ac-header { @apply flex items-center justify-between p-4 cursor-pointer; }
-    .ac-header-content { @apply flex-1; }
-    .ac-title { @apply font-bold; }
-    .ac-description { @apply text-sm text-gray-500; }
-    .ac-toggle { @apply ml-2; }
-    .ac-content { @apply mt-4; }
-    .ac-optional { @apply px-1 py-0.5 rounded text-sm text-blue-600 bg-blue-100 ml-2; }
-    .ac-icon { @apply size-8 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full mr-2; }
-    .ac-body { @apply p-4 pb-6 border-t border-gray-200; }
-    .ac-fieldset { @apply flex flex-col gap-1; }
+.divBackground { display:none;position:fixed;top:0;left:0;bottom:0;right:0;z-index:1; } 
+.preview__phone { height:510px; }
+.preview__mssgwrap { height:480px; }
+.preview__txt { word-wrap: break-word; }
+
+.help__linkimg:hover .help__cont2 {display:block}
+.help__cont2 {display:none;position:absolute;margin:19px 0; width:300px; bottom:0; padding:10px;border:1px solid #ddd;border-radius:5px;background:#fff;z-index:10;box-shadow:0 6px 12px rgba(0,0,0,.175);box-sizing:border-box}
 
 
-
-    .ac-label { @apply text-sm font-bold; }
-    .ac-input { @apply border border-gray-300 rounded-xl p-2; }
-
-    /* 패널 버튼형 */
-    .ac-btn-group { @apply flex gap-4 w-100 mb-4; }
-    .ac-btn { @apply w-full h-26 border border-gray-300 rounded-xl bg-white text-gray-700 font-bold px-4 py-2; }
-    .ac-btn.selected { @apply border-2 border-blue-500 bg-blue-50 text-blue-600; }
-
-    /* 이미지 버튼 */
-    .ac-style-group { @apply flex flex-wrap gap-3 mb-4; }
-    .ac-style-item { @apply flex flex-col w-[calc((100%-2.25rem)/4)] h-40 border border-gray-300 rounded-xl bg-white px-1.5 py-2 cursor-pointer; }
-    .ac-style-item.selected { @apply border-2 }
-    .ac-style-item p { @apply text-gray-600 font-bold mt-auto; }
-    .ac-style-item span { @apply text-xs text-gray-500 leading-tight tracking-tight; }
-
-    /* 라인버튼 */
-    .ac-line-group { @apply flex gap-2; }
-    .ac-line-item { @apply border border-gray-300 rounded-lg bg-white text-sm text-gray-700 font-bold px-2 py-1 cursor-pointer; }
-    .ac-line-item.selected { @apply border-2 border-blue-500 bg-blue-50 text-blue-600; }
+.txtEasyPayAmount {display:inline-block;height:30px;padding:3px 5px;line-height:1.4;border:1px solid #ccc;color:#333;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-sizing:border-box;width:120px}
+#divPaypwd { position:absolute; right:0; width:372px; z-index:2; display:none; border:1px solid #999;border-radius:3px;background:#fff;padding: 0;  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)}
+#divPaypwd .header {position: relative; height: 45px;border-top: 1px solid #2f3545; border-bottom: 1px solid #292e3a; background: #343a49 url(/Common/img/pay/bg_header.png) no-repeat 100% 0; }
+#divPaypwd .sr_only{overflow:hidden;line-height:999px}
+#divPaypwd .close {position: absolute; right: 2px; top: 2px; width: 40px;height: 40px; background: url(/Common/img/pay/icon_x.png) no-repeat 0 0; }    
 
 
-    .selected-group { @apply flex gap-1; }
-    .selected-item { @apply font-bold text-blue-500; }
-
-    .tab-group { @apply flex gap-2 w-100 mb-4 p-1 rounded-xl bg-gray-100;}
-    .tab-btn { @apply flex-1 rounded-lg text-gray-500 font-bold px-4 py-1.5 cursor-pointer;}
-    .tab-btn.selected { @apply border border-gray-300 bg-white text-gray-700;}
-
-
-
-    .ac-grid-table { @apply overflow-x-auto inline-grid w-full mt-2 bg-gray-200 gap-px border border-gray-300 text-sm; }
-    .ac-grid-table > div {  @apply flex w-full h-full items-center px-1 bg-gray-50; }
-    .ac-grid-table .ac-grid-th { @apply justify-center; }
-    .ac-grid-table .ac-grid-check { @apply size-3 mr-1; }
-
-
-    .ac-grid-table { @apply grid gap-2; }
-    .ac-grid-th { @apply font-bold text-gray-700; }
-    .ac-grid-td { @apply text-gray-600; }
-
-    .ac-form-textarea { @apply border border-gray-300 rounded-xl p-2; }
+#divLayerPopup { display: none; position: fixed; top: 0; left: 0; bottom: 0; right: 0; z-index: 10; }
+#divLayerPopup .divMsg { overflow:hidden; position: absolute; left: 20%; top: 15%; margin-left: -100px; margin-top: -100px; padding: 0; border-radius: 5px; background: #fff; }
+#divLayerPopup .divMsg span { display:block; max-height:95%; overflow-y:scroll; }
+#divLayerPopup .divMsg img { max-width:500px; height:auto; }
+#divLayerPopup .btnClose { position:absolute; top:0; right:0; width:53px; cursor:pointer; }
+#divLayerPopup .divNotToday { margin-top:0px; border-top:1px solid #000; }
 
     
+.free__btn {border: 1px solid #9d9d9d; background: #2c5aa7; color: #fff; }
+.free__btn:hover {background: #dfdfdf; color:#333;} 
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ac-group {@apply flex flex-col gap-6}
+
+.ac { @apply overflow-hidden border border-gray-200 rounded-2xl bg-white shadow-xs; }
+.ac-header { @apply flex items-center justify-between p-4 cursor-pointer; }
+.ac-header-content { @apply flex-1; }
+.ac-title { @apply font-bold; }
+.ac-description { @apply text-sm text-gray-500; }
+
+
+.ac-toggle { @apply ml-2; }
+.ac-toggle span {@apply hidden;}
+.ac.collapsed .ac-toggle span:first-child { @apply inline; }
+.ac:not(.collapsed) .ac-toggle span:last-child { @apply inline; }
+
+
+
+/* .ac .ac-body {
+    overflow: hidden;
+    max-height: 2000px;
+    opacity: 1;
+    transition: max-height 0.2s ease, opacity 0.9s ease;
+} */
+.ac.collapsed .ac-body {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+.ac-content { @apply mt-4; }
+.ac-optional { @apply px-1 py-0.5 rounded text-sm font-medium text-gray-600 bg-gray-100 ml-2; }
+.ac-icon { @apply size-8 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full mr-2; }
+.ac-body { @apply overflow-hidden max-h-[2000px] opacity-1 p-4 pb-6 border-t border-gray-200 ; }
+.ac-fieldset { @apply flex flex-col gap-1; }
+
+
+
+.ac-label { @apply text-sm font-bold; }
+.ac-input { @apply border border-gray-300 rounded-xl p-2; }
+
+/* 패널 버튼형 */
+.ac-btn-group { @apply flex gap-4 w-100 mb-4; }
+.ac-btn { @apply w-full h-26 border border-gray-300 rounded-xl bg-white text-gray-700 font-bold px-4 py-2; }
+.ac-btn.selected { @apply border-2 border-blue-500 bg-blue-50 text-blue-600; }
+
+/* 이미지 버튼 */
+.ac-style-group { @apply flex flex-wrap gap-3 mb-4; }
+.ac-style-item { @apply flex flex-col w-[calc((100%-2.25rem)/4)] h-40 border border-gray-300 rounded-xl bg-white px-1.5 py-2 cursor-pointer; }
+.ac-style-item.selected { @apply border-2 }
+.ac-style-item p { @apply text-gray-600 font-bold mt-auto; }
+.ac-style-item span { @apply text-xs text-gray-500 leading-tight tracking-tight; }
+
+/* 라인버튼 */
+.ac-line-group { @apply flex gap-2; }
+.ac-line-item { @apply border border-gray-300 rounded-lg bg-white text-sm text-gray-700 font-bold px-2 py-1 cursor-pointer; }
+.ac-line-item.selected { @apply border-2 border-blue-500 bg-blue-50 text-blue-600; }
+
+
+.selected-group { @apply flex gap-1; }
+.selected-item { @apply font-bold text-blue-500; }
+
+.tab-group { @apply flex gap-2 w-100 mb-4 p-1 rounded-xl bg-gray-100;}
+.tab-btn { @apply flex-1 rounded-lg text-gray-500 font-bold px-4 py-1.5 cursor-pointer;}
+.tab-btn.selected { @apply border border-gray-300 bg-white text-gray-700;}
+
+
+
+.ac-grid-table { @apply overflow-x-auto inline-grid w-full mt-2 bg-gray-200 gap-px border border-gray-300 text-sm; }
+.ac-grid-table > div {  @apply flex w-full h-full items-center px-1 bg-gray-50; }
+.ac-grid-table .ac-grid-th { @apply justify-center; }
+.ac-grid-table .ac-grid-check { @apply size-3 mr-1; }
+
+
+.ac-grid-table { @apply grid gap-px; }
+.ac-grid-th { @apply font-bold text-gray-700; }
+.ac-grid-td { @apply text-gray-600; }
+
+.ac-form-textarea { @apply border border-gray-300 rounded-xl p-2; }
+.ac-form-text-byte { @apply flex items-center mb-3 text-xs tracking-tight text-gray-400; }
+.ac-form-text-byte > span { @apply text-gray-600 mr-1; }
+
 /* 업로드 */
-.ac-upload-group { @apply flex gap-1; }
-.ac-upload-preview { @apply flex items-center justify-center size-24 p-1 border border-gray-300 rounded-xl; }
+.ac-upload-group { @apply flex gap-1 p-2 rounded-xl bg-gray-50; }
+.ac-upload-preview { @apply flex items-center justify-center size-24 p-1 border border-gray-300 rounded-xl bg-white; }
 .ac-upload-preview svg { @apply fill-gray-500; }
 .ac-upload-preview img { @apply max-w-full max-h-full; }
-.ac-upload-hint-box { @apply flex-1 flex flex-col h-24 text-sm text-gray-500 p-2 border border-gray-300 rounded-xl text-center; }
+.ac-upload-hint-box { @apply flex-1 flex flex-col h-24 text-sm p-2; }
+
+.ac-base-btn { @apply flex items-center justify-center mr-auto px-1 py-0.5 border border-gray-300 rounded text-sm bg-white cursor-pointer; }
+.ac-base-btn:hover { @apply bg-gray-100 no-underline; }
+.ac-base-btn:active, .ac-base-btn.selected { @apply bg-gray-200; }
+
+/* 라디오그룹 */
+.ac-radio-wrapper { @apply flex flex-col gap-2; }
+.ac-radio-group { @apply flex items-center gap-2 py-2 px-4 cursor-pointer border border-gray-300 rounded-xl; }
+.ac-radio-group input[type="radio"] { @apply w-4 h-4 mr-2 flex-none; }
+.ac-radio-content { @apply flex flex-col; }
+.ac-radio-title { @apply font-semibold; }
+.ac-radio-sub { @apply font-normal text-gray-600 text-sm; }
+.ac-radio-description { @apply text-gray-600 text-sm mt-0.5; }
+.ac-radio-price { @apply w-20 px-2 py-1 rounded text-sm text-gray-600 text-center ml-auto bg-blue-50; }
+
+/* 지불버튼 */
+.ac-pay-button { @apply flex items-center justify-center w-100 h-12 mx-auto bg-blue-500 text-white font-bold rounded-xl cursor-pointer; }
+.ac-pay-button:hover { @apply bg-blue-600; }
+.ac-pay-button:active { @apply bg-blue-700; }
+
+
+
+
+
+
+/* AI이미지 샘플 */
+.ac-preview-wrap { @apply relative flex flex-col w-full; }
+.ac-preview-panel { @apply flex-1 flex flex-col bg-gray-50 min-h-0; }
+.preview-card { @apply flex h-full flex-col overflow-y-auto bg-white p-6 shadow-sm; }
