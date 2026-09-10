@@ -73,6 +73,9 @@
     }
 
   </style>
+  <style>
+
+  </style>
 </head>
 
 <body>
@@ -111,7 +114,7 @@
               <!-- POP 레이아웃 -->
 
               <!-- 1.유형선택 -->
-              <div class="ac">
+              <div class="ac-box">
                 <div class="ac-header">
                   <div class="ac-icon">1</div>
                   <div class="ac-header-content">
@@ -138,10 +141,8 @@
                   </div>
                 </div>
               </div>
-
-
               <!-- 2.상품홍보형-스타일선택 -->
-              <div class="ac">
+              <div class="ac-box">
                 <div class="ac-header">
                   <div class="ac-icon">2</div>
                   <div class="ac-header-content">
@@ -159,40 +160,56 @@
                     <div class="ac-label">스타일</div>
 
                     <div class="ac-style-group" role="tablist" aria-label="스타일선택">
-                      <button type="button" class="ac-style-item overflow-hidden relative bg-slate-600">
-                        <img class="absolute inset-0 w-full h-full object-cover opacity-80" src="./1001_20260819_140739510.jpg" alt="컬러 임펙트 스타일" loading="lazy">
-                        <div class="mt-auto z-10">
-                          <p>컬러 임펙트</p>
+                      <button type="button" class="ac-style-item selected">
+                        <img src="./1001_20260819_140739510.jpg" alt="컬러 임펙트 스타일" loading="lazy">
+                       
+                        <div class="text-group">
+                          <p class="text-white font-bold">컬러 임펙트</p>
                           <span>강한 색상으로 시선 집중</span>
                         </div>
                       </button>
                       <button type="button" class="ac-style-item">
-                        <p>쿨 & 프레시</p>
-                        <span>싱싱하고 신선함 극대화</span>
+                        <img src="./1001_20260908_092928486.jpg" alt="쿨 & 프레시 스타일" loading="lazy">
+                        <div class="text-group">
+                          <p>쿨 & 프레시</p>
+                          <span>싱싱하고 신선함 극대화</span>
+                        </div>
                       </button>
                       <button type="button" class="ac-style-item">
-                        <p>친환경 & 유기농</p>
-                        <span>산지에서 바로 온 느낌</span>
+                        <div class="text-group">
+                          <p>친환경 & 유기농</p>
+                          <span>산지에서 바로 온 느낌</span>
+                        </div>
                       </button>
                       <button type="button" class="ac-style-item">
-                        <p>네추럴 심플</p>
-                        <span>밝은 배경 & 심플한 느낌</span>
+                        <div class="text-group">
+                          <p>네추럴 심플</p>
+                          <span>밝은 배경 & 심플한 느낌</span>
+                        </div>
                       </button>
                       <button type="button" class="ac-style-item">
-                        <p>고급 마켓</p>
-                        <span>어두운 배경 & 고급스러움</span>
+                        <div class="text-group">
+                          <p>고급 마켓</p>
+                          <span>어두운 배경 & 고급스러움</span>
+                        </div>
                       </button>
                       <button type="button" class="ac-style-item">
-                        <p>칠판 일러스트</p>
-                        <span>친근한 손글씨 느낌</span>
+                        <div class="text-group">
+                          <p>칠판 일러스트</p>
+                          <span>친근한 손글씨 느낌</span>
+                        </div>
                       </button>
                       <button type="button" class="ac-style-item">
-                        <p>팝아트 일러스트</p>
-                        <span>활기차고 트렌디한 느낌</span>
+                        <div class="text-group">
+                          <p>팝아트 일러스트</p>
+                          <span>활기차고 트렌디한 느낌</span>
+                        </div>
                       </button>
                       <button type="button" class="ac-style-item">
-                        <p>레트로 마켓</p>
-                        <span>8~90년대 빈티지 감성</span>
+                        <div class="text-group">
+                          <p>레트로 마켓</p>
+                          <span>8~90년대 빈티지 감성</span>
+                        </div>
                       </button>
                     </div>
                     <div class="ac-label">강조 포인트</div>
@@ -213,10 +230,8 @@
                   </div>
                 </div>
               </div>
-
-
               <!-- 3.상품홍보형-상품정보 -->
-              <div class="ac">
+              <div class="ac-box">
                 <div class="ac-header">
                   <div class="ac-icon">3</div>
                   <div class="ac-header-content">
@@ -295,11 +310,8 @@
                   </div>
                 </div>
               </div>
-
-
-
               <!-- 4.상품홍보형-추가 설명 및 참조 이미지 첨부 -->
-              <div class="ac">
+              <div class="ac-box">
                 <div class="ac-header">
                   <div class="ac-icon">4</div>
                   <div class="ac-header-content">
@@ -359,10 +371,8 @@
                   </div>
                 </div>
               </div>
-
-
               <!-- 5.상품홍보형-이미지해상도선택 -->
-              <div class="ac">
+              <div class="ac-box">
                 <div class="ac-header">
                   <div class="ac-icon">5</div>
                   <div class="ac-header-content">
@@ -426,12 +436,6 @@
                 <div>AI 이미지 생성 (500TS 차감)</div>
               </button>
 
-
-
-
-
-
-
               <!-- 1.안내/공지형-홍보옵션 3 -->
               <div class="ac hidden">
                 <div class="ac-header">
@@ -493,7 +497,6 @@
                 </div>
               </div>
 
-
               <!-- 2.안내/공지형-내용입력 -->
               <div class="ac hidden">
                 <div class="ac-header">
@@ -536,11 +539,6 @@
                   </div>
                 </div>
               </div>
-
-
-
-
-
 
               <!-- 3.안내/공지형-이미지참조 5 -->
               <div class="ac hidden">
@@ -592,116 +590,86 @@
           </div>
         </div>
 
-<style>
-  .main-contents-layout.custom-samples { width:100%; padding:20px 0; box-sizing:border-box; }
-  .main-contents-inner.custom-samples { max-width:1100px; margin:0 auto; padding:0 16px; box-sizing:border-box; }
-  .main-contents-section.custom-samples { margin-bottom:14px; }
-  .main-contents-section.custom-samples .title { font-size:1.125rem; font-weight:700; margin:0 0 6px; color:#111827; }
-  .main-contents-section.custom-samples .subtitle { font-size:0.875rem; color:#6b7280; margin:0; }
-
-  /* Masonry-like columns so 이미지 가로/세로 혼합 연출 */
-  /* .item-list.masonry { column-gap:12px; column-fill:balance; column-count:4; }
-  .item { display:inline-block; width:100%; margin:0 0 12px; break-inside:avoid; position:relative; border-radius:10px; overflow:hidden; background:#fff; box-shadow:0 1px 2px rgba(16,24,40,0.04); }
-  .thumb { width:100%; display:block; background:#f3f4f6; position:relative; }
-  .thumb img { width:100%; height:auto; display:block; object-fit:cover; transition:transform .25s ease; }
-  .item:hover .thumb img { transform:scale(1.03); } */
-
-</style>
-
-<div class="main-contents-layout">
-  <div class="main-contents-inner h-full mx-20 ">
-    <div class="main-contents-section">
-      <p class="title">매장에서 필요한 다양한 이미지를 만들수 있습니다.</p>
-      <p class="subtitle">아래 샘플은 이미지 중심으로 구성되어 결과 예시를 빠르게 확인할 수 있습니다.</p>
-    </div>
-
-    <div>
-      <div class="item-list grid grid-cols-4 gap-4">
-        <div class="item">
-          <div class="p-2 pb-0 text-center">팝아트 일러스트 스타일</div>
-          <div class="p-2">
-            <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="p-2 pb-0 text-center">팝아트 일러스트 스타일</div>
-          <div class="p-2">
-            <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="p-2 pb-0 text-center">팝아트 일러스트 스타일</div>
-          <div class="p-2">
-            <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="p-2 pb-0 text-center">팝아트 일러스트 스타일</div>
-          <div class="p-2">
-            <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>
-</div>
-        
-
-
-
-
-
-
-
-
-      <style>
-        /* 샘플 화면 CSS */
-
-
-      </style>
-      <div class="main-contents-layout hidden" style="width:100%">
-        <div class="main-contents-inner">
-          <div class="main-contents-section">
-            <p class="text-lg font-bold">매장에서 필요한 다양한 이미지를 만들수 있습니다.</p>
-            <p class="text-sm text-gray-600">AI이미지를 통해 매장에서 필요한 이미지를 바로 생성할 수 있습니다.</p>
-          </div>
-          <div>
-            <div class="item-list">
-              <div class="item">
-                <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1">
-                <p>샘플 이미지 1 설명</p>
+        <div class="main-contents-layout">
+          <div class="cre-contents">
+            <div class="cre-header">
+              <p class="cre-title">매장에서 필요한 다양한 이미지를 만들수 있습니다.</p>
+              <p class="cre-subtitle">AIPOP만들기 기능을 사용하시면, 아래와 같이 매장에서 필요한 이미지를 만들 수 있습니다.</p>
+            </div>
+            <div class="cre-body">
+              <div class="cre-list-tit">템플릿</div>
+              <div class="cre-list-wrapper" tabindex="0" role="region" aria-label="상품홍보형 샘플">
+                <div class="cre-item-list">
+                <div class="item">
+                  <div class="item-description">팝아트 일러스트 스타일</div>
+                  <div class="content">
+                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item-description">팝아트 일러스트 스타일</div>
+                  <div class="content">
+                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item-description">팝아트 일러스트 스타일</div>
+                  <div class="content">
+                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item-description">팝아트 일러스트 스타일</div>
+                  <div class="content">
+                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item-description">팝아트 일러스트 스타일</div>
+                  <div class="content">
+                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item-description">팝아트 일러스트 스타일</div>
+                  <div class="content">
+                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  </div>
+                </div>
+                </div>
               </div>
-              <div class="item">
-                <img src="./1001_20260907_134437124.jpg" alt="샘플 이미지 2">
-                <p>샘플 이미지 2 설명</p>
-              </div>
-              <div class="item">
-                <img src="./1001_20260908_092928486.jpg" alt="샘플 이미지 3">
-                <p>샘플 이미지 3 설명</p>
-              </div>
-              <div class="item">
-                <img src="./1001_20260908_094048489.jpg" alt="샘플 이미지 3">
-                <p>샘플 이미지 3 설명</p>
-              </div>
-              <div class="item">
-                <img src="./1001_20260907_134437124.jpg" alt="샘플 이미지 3">
-                <p>샘플 이미지 3 설명</p>
+              <div class="cre-list-tit">안내/공지형</div>
+              <div class="cre-list-wrapper" tabindex="0" role="region" aria-label="안내공지형 샘플">
+                <div class="cre-item-list">
+                  <div class="item">
+                    <div class="item-description">팝아트 일러스트 스타일</div>
+                    <div class="content">
+                      <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-description">팝아트 일러스트 스타일</div>
+                    <div class="content">
+                      <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-description">팝아트 일러스트 스타일</div>
+                    <div class="content">
+                      <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="item-description">팝아트 일러스트 스타일</div>
+                    <div class="content">
+                      <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-
-
-
-
-
         <!-- 미리보기 영역 -->
         <!-- <div class="main-contents-layout" style="width: 100%;">
           <div class="preview-panel">
@@ -765,18 +733,10 @@
             </div>
           </div>
         </div> -->
+      
+
         <!-- 오른쪽 레이어 : TS머니 정보 -->
         <!-- Infomation -->
-
-
-
-
-
-
-
-
-
-
         <div class="ts-wrap">
           <div class="ts-sticky">
             <div class="ts-card">
@@ -974,7 +934,7 @@
     // - 각 .ac 요소의 헤더에 접근성 속성(ARIA)과 키보드 포커스를 추가
     // - 기본 상태를 'collapsed'로 설정하여 모든 섹션을 접힌 상태로 시작
     function initacs(){
-      var acs = document.querySelectorAll('.ac');
+      var acs = document.querySelectorAll('.ac-box');
       acs.forEach(function(acc, idx){
         var header = acc.querySelector('.ac-header');
         var body = acc.querySelector('.ac-body');
@@ -1033,7 +993,6 @@
       initacs();
     }
   })();
-
   </script>
 </body>
 </html>
