@@ -127,9 +127,7 @@ input:checked + .switch_slider:before { transform: translateX(-13px);  } */
 /* 공통 레이아웃 UI */
 .wrap-layout { @apply flex-1 flex min-h-0; }
 .full-contents-layout { @apply flex-1 flex flex-col min-h-0 p-6 bg-white; }
-.side-contents-layout { 
-  @apply sticky top-11 flex shrink-0 flex-col w-160 max-h-[calc(100dvh-(var(--spacing)*15))] min-[1900px]:max-h-[calc(100dvh-(var(--spacing)*11))] p-6 border-r border-gray-300 bg-white overflow-y-auto scrollbar-gutter-stable; 
-}
+.side-contents-layout {  @apply sticky top-11 flex shrink-0 flex-col w-160 max-h-[calc(100dvh-(var(--spacing)*15))] min-[1900px]:max-h-[calc(100dvh-(var(--spacing)*11))] p-6 border-r border-gray-300 bg-white overflow-y-auto scrollbar-gutter-stable; }
 .main-contents-layout { @apply relative flex flex-col w-full; }
 
 /* 공통 미리보기 UI */
@@ -1150,11 +1148,6 @@ input:checked + .workspace-switch-slider:before {
 .ac-pay-button:hover { @apply bg-blue-600; }
 .ac-pay-button:active { @apply bg-blue-700; }
 
-
-
-
-
-
 /* AI이미지 샘플 예시 */
 .cre-contents { @apply relative flex flex-col w-full p-6 rounded-2xl; }
 .cre-header { @apply flex flex-col gap-2 mb-4 mx-auto; }
@@ -1163,18 +1156,17 @@ input:checked + .workspace-switch-slider:before {
 .cre-list-tit { @apply text-lg font-bold mt-1; }
 .cre-body { @apply flex flex-col gap-2; }
 
-
-/* 슬라이드 */
+/* 샘플 템플릿 리스트 */
 .cre-list-wrapper { @apply relative flex items-center gap-2; }
-.cre-item-list { @apply flex flex-wrap gap-2 py-2; }
-.cre-item-list > .item { @apply w-[calc((100%-1.5rem)/4)] snap-start; }
+.cre-item-list { @apply columns-4 gap-4;}
+.cre-item-list > .item { @apply mb-4 cursor-pointer;}
 .cre-item-list > .item { @apply relative overflow-hidden flex flex-col rounded-xl; }
-.cre-item-list > .item .item-description { @apply absolute bottom-0 w-full px-2 pb-2 pt-8 text-left text-sm text-white font-bold bg-linear-to-b from-transparent via-black/80 via-60% to-black/80; }
+.cre-item-list > .item .item-description { @apply absolute bottom-0 w-full px-2 py-1.5 text-left text-sm text-white font-bold bg-black/60; }
 .cre-item-list > .item .content { @apply p-0; }
 .cre-item-list > .item .content img { @apply flex items-center justify-center; }
 
-
-/* .cre-list-prev, .cre-list-next { @apply inline-flex items-center justify-center size-9 bg-black/60 border-none rounded-2xl cursor-pointer; }
-.cre-list-prev { @apply absolute left-3; }
-.cre-list-next { @apply absolute right-0; }
-.cre-list-prev[disabled], .cre-list-next[disabled] { @apply opacity-35 cursor-default;} */
+.highlight-options { @apply absolute top-1 left-1 flex flex-wrap gap-1; }
+.highlight-options .highlight1 { @apply text-xs text-center bg-red-500/85 text-white font-bold px-2 py-1 rounded; }
+.highlight-options .highlight2 { @apply text-xs text-center bg-sky-500/85 text-white font-bold px-2 py-1 rounded; }
+.highlight-options .highlight3 { @apply text-xs text-center bg-blue-500/85 text-white font-bold px-2 py-1 rounded; }
+.highlight-options .highlight4 { @apply text-xs text-center bg-indigo-500/85 text-white font-bold px-2 py-1 rounded; }

@@ -12,8 +12,6 @@
   </script>
   <link rel="stylesheet" href="./new_aipop_common.css?20260989">
   <link rel="stylesheet" href="/image-cloud/resources/css/style.css?20260103">
-  <script type="text/javascript" src="/image-cloud/resources/js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="/image-cloud/resources/js/aipop.js?20260722"></script>
   <style>
     html,
     body {
@@ -71,13 +69,9 @@
       display: flex;
       overflow: hidden;
     }
-
-  </style>
-  <style>
-
+ 
   </style>
 </head>
-
 <body>
   <!--// wrap_top -->
   <div class="page-shell">
@@ -89,7 +83,8 @@
               <a class="level1 tab selected" href="#" tabindex="-1">AI POP 만들기</a>
             </li>
             <li role="menuitem">
-              <a class="level1 tab" href="#" onclick="gFuncMenu('aiRequest.do?requestService=3')" tabindex="-1">프라이스카드 만들기</a>
+              <a class="level1 tab" href="#" onclick="gFuncMenu('aiRequest.do?requestService=3')" tabindex="-1">프라이스카드
+                만들기</a>
             </li>
             <li role="menuitem">
               <a class="level1 tab" href="#" onclick="gFuncMenu('aiImage.do')" tabindex="-1">AI이미지관리</a>
@@ -152,7 +147,10 @@
                   <div class="selected-group">
                     <span class="selected-item">미선택 (AI자동)</span>
                   </div>
-                  <div class="ac-toggle"><span>열기</span><span>닫기</span></div>
+                  <div class="ac-toggle">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#666"><path d="M480-360 280-560h400L480-360Z"/></svg></span>
+                    <span><svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#666"><path d="m280-400 200-200 200 200H280Z"/></svg></span>
+                  </div>
                 </div>
                 <div class="ac-body">
                   <!-- 디자인 스타일 -->
@@ -162,7 +160,7 @@
                     <div class="ac-style-group" role="tablist" aria-label="스타일선택">
                       <button type="button" class="ac-style-item selected">
                         <img src="./1001_20260819_140739510.jpg" alt="컬러 임펙트 스타일" loading="lazy">
-                       
+
                         <div class="text-group">
                           <p class="text-white font-bold">컬러 임펙트</p>
                           <span>강한 색상으로 시선 집중</span>
@@ -214,7 +212,8 @@
                     </div>
                     <div class="ac-label">강조 포인트</div>
                     <div class="ac-ac-line-item-group">
-                      <button type="button" class="ac-line-item selected" data-label="가격강조" onclick="jsSelectLabel(this)">
+                      <button type="button" class="ac-line-item selected" data-label="가격강조"
+                        onclick="jsSelectLabel(this)">
                         <div class="ac-line-item-name">가격강조</div>
                       </button>
                       <button type="button" class="ac-line-item" data-label="신선도 강조" onclick="jsSelectLabel(this)">
@@ -269,7 +268,8 @@
                         <div class="ac-line-item-name">행 비우기</div>
                       </button>
                     </div>
-                    <div id="popExcel" class="ac-grid-table" style="grid-template-rows: repeat(2, 1fr); grid-template-columns: 210px 90px; place-items: center;">
+                    <div id="popExcel" class="ac-grid-table"
+                      style="grid-template-rows: repeat(2, 1fr); grid-template-columns: 210px 90px; place-items: center;">
                       <div class="ac-grid-th" data-column="name">상품명</div>
                       <div class="ac-grid-th hidden" data-column="spec">규격</div>
                       <div class="ac-grid-th hidden" data-column="sprice">정상판매가</div>
@@ -336,7 +336,7 @@
                     <div class="ac-upload-group">
                       <div class="ac-upload-preview" onclick="document.getElementById('popFile').click();">
                         <img id="popAttach" src="" alt="참고이미지" class="hidden">
-                        <div id="popAttachEmpty"  >
+                        <div id="popAttachEmpty">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-7 fill-gray-500">
                             <path
                               d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z">
@@ -349,7 +349,8 @@
                           <div>파일선택 버튼을 눌러 이미지를 업로드하세요.</div>
                           <div>[<span id="popAttachFileName"></span> / <span id="popAttachFileSize"></span>]</div>
                           <div class="flex gap-1 mt-2">
-                            <button type="button" class="ac-base-btn" onclick="document.getElementById('popFile').click();">이미지
+                            <button type="button" class="ac-base-btn"
+                              onclick="document.getElementById('popFile').click();">이미지
                               변경</button>
                             <button type="button" class="ac-base-btn" onclick="jsRemoveAttach()">이미지 삭제</button>
                           </div>
@@ -407,7 +408,7 @@
                         <div class="ac-radio-price"><span>500</span> TS</div>
                       </label>
 
-  
+
                       <!-- 고화질용 -->
                       <label class="ac-radio-group border" for="imageResolutionUltra">
                         <input id="imageResolutionUltra" type="radio" name="imageResolution" value="high" />
@@ -428,7 +429,7 @@
                         <div class="ac-radio-price"><span>1,500</span> TS</div>
                       </label>
                     </div>
-                  </div>  
+                  </div>
                 </div>
               </div>
 
@@ -511,7 +512,8 @@
                   <!-- POP 타이틀 -->
                   <div class="ac-fieldset">
                     <div class="fieldset-title" data-category="goods">홍보 타이틀을 입력하세요.</div>
-                    <div class="fieldset-text" data-category="goods">입력하신 내용을 반영하여 AI 이미지가 생성됩니다. 예)이번주 마감 특가 할인! / 7월 신선 야채
+                    <div class="fieldset-text" data-category="goods">입력하신 내용을 반영하여 AI 이미지가 생성됩니다. 예)이번주 마감 특가 할인! / 7월
+                      신선 야채
                       행사</div>
                     <div class="fieldset-title hidden" data-category="notice">안내/공지 타이틀을 입력하세요.</div>
                     <div class="fieldset-text hidden" data-category="notice">빈 칸으로 두시면 AI가 자동으로 생성합니다.</div>
@@ -570,7 +572,8 @@
                         <div>파일선택 버튼을 눌러 이미지를 업로드하세요.</div>
                         <div>[<span id="popAttachFileName"></span> / <span id="popAttachFileSize"></span>]</div>
                         <div class="flex gap-1" style="justify-content: center; margin-top: 5px">
-                          <button type="button" class="ac-base-btn" onclick="document.getElementById('popFile').click();">이미지 변경</button>
+                          <button type="button" class="ac-base-btn"
+                            onclick="document.getElementById('popFile').click();">이미지 변경</button>
                           <button type="button" class="ac-base-btn" onclick="jsRemoveAttach()">이미지 삭제</button>
                         </div>
                       </div>
@@ -598,49 +601,33 @@
             </div>
             <div class="cre-body">
               <div class="cre-list-tit">템플릿</div>
-              <div class="cre-list-wrapper" tabindex="0" role="region" aria-label="상품홍보형 샘플">
+              <div class="cre-list-wrapper" aria-label="상품홍보형 샘플">
                 <div class="cre-item-list">
-                <div class="item">
-                  <div class="item-description">팝아트 일러스트 스타일</div>
-                  <div class="content">
-                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  <div class="item">
+                    <div class="item-description">팝아트 일러스트 스타일</div>
+                    <!-- 강조포인트 옵션에 따라 화면에 표시-->
+                    <div class="highlight-options">
+                      <div class="highlight1">가격강조</div>
+                      <div class="highlight2">신선도강조</div>
+                      <div class="highlight3">행사강조</div>
+                      <div class="highlight4">상품강조</div>
+                    </div>
+                    <div class="content">
+                      <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                    </div>
                   </div>
-                </div>
-                <div class="item">
-                  <div class="item-description">팝아트 일러스트 스타일</div>
-                  <div class="content">
-                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  <div class="item">
+                    <div class="item-description">팝아트 일러스트 스타일</div>
+                    <div class="content">
+                      <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                    </div>
                   </div>
-                </div>
-                <div class="item">
-                  <div class="item-description">팝아트 일러스트 스타일</div>
-                  <div class="content">
-                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                  <div class="item">
+                    <div class="item-description">팝아트 일러스트 스타일</div>
+                    <div class="content">
+                      <img src="./1001_20260807_162101602_Thumb.jpg" alt="샘플 이미지 1" loading="lazy">
+                    </div>
                   </div>
-                </div>
-                <div class="item">
-                  <div class="item-description">팝아트 일러스트 스타일</div>
-                  <div class="content">
-                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item-description">팝아트 일러스트 스타일</div>
-                  <div class="content">
-                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item-description">팝아트 일러스트 스타일</div>
-                  <div class="content">
-                    <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
-                  </div>
-                </div>
-                </div>
-              </div>
-              <div class="cre-list-tit">안내/공지형</div>
-              <div class="cre-list-wrapper" tabindex="0" role="region" aria-label="안내공지형 샘플">
-                <div class="cre-item-list">
                   <div class="item">
                     <div class="item-description">팝아트 일러스트 스타일</div>
                     <div class="content">
@@ -656,7 +643,7 @@
                   <div class="item">
                     <div class="item-description">팝아트 일러스트 스타일</div>
                     <div class="content">
-                      <img src="./1001_20260819_140739510.jpg" alt="샘플 이미지 1" loading="lazy">
+                      <img src="./1001_20260807_162127100_Thumb.jpg" alt="샘플 이미지 1" loading="lazy">
                     </div>
                   </div>
                   <div class="item">
@@ -733,7 +720,7 @@
             </div>
           </div>
         </div> -->
-      
+
 
         <!-- 오른쪽 레이어 : TS머니 정보 -->
         <!-- Infomation -->
@@ -929,70 +916,71 @@
   </div>
 
   <script type="text/javascript">
-  (function(){
-    // 아코디언 초기화 함수
-    // - 각 .ac 요소의 헤더에 접근성 속성(ARIA)과 키보드 포커스를 추가
-    // - 기본 상태를 'collapsed'로 설정하여 모든 섹션을 접힌 상태로 시작
-    function initacs(){
-      var acs = document.querySelectorAll('.ac-box');
-      acs.forEach(function(acc, idx){
-        var header = acc.querySelector('.ac-header');
-        var body = acc.querySelector('.ac-body');
-        if(!header || !body) return; // 헤더/본문이 없으면 무시
+    (function () {
+      // 아코디언 초기화 함수
+      // - 각 .ac 요소의 헤더에 접근성 속성(ARIA)과 키보드 포커스를 추가
+      // - 기본 상태를 'collapsed'로 설정하여 모든 섹션을 접힌 상태로 시작
+      function initacs() {
+        var acs = document.querySelectorAll('.ac-box');
+        acs.forEach(function (acc, idx) {
+          var header = acc.querySelector('.ac-header');
+          var body = acc.querySelector('.ac-body');
+          if (!header || !body) return; // 헤더/본문이 없으면 무시
 
-        // 본문에 고유 ID 할당(이미 있으면 재사용)
-        var id = body.id || ('ac-body-' + (idx+1));
-        body.id = id;
+          // 본문에 고유 ID 할당(이미 있으면 재사용)
+          var id = body.id || ('ac-body-' + (idx + 1));
+          body.id = id;
 
-        // 접근성 속성 추가: 헤더를 버튼처럼 동작하도록 설정
-        header.setAttribute('role','button');
-        header.setAttribute('tabindex','0');
-        header.setAttribute('aria-controls', id);
-        header.setAttribute('aria-expanded', 'false');
+          // 접근성 속성 추가: 헤더를 버튼처럼 동작하도록 설정
+          header.setAttribute('role', 'button');
+          header.setAttribute('tabindex', '0');
+          header.setAttribute('aria-controls', id);
+          header.setAttribute('aria-expanded', 'false');
 
-        // 기본은 접힌 상태로 초기화
-        if(!acc.classList.contains('collapsed')) acc.classList.add('collapsed');
-        body.style.maxHeight = '0px';
-        body.style.opacity = '0';
+          // 기본은 접힌 상태로 초기화
+          if (!acc.classList.contains('collapsed')) acc.classList.add('collapsed');
+          body.style.maxHeight = '0px';
+          body.style.opacity = '0';
 
-        // 클릭 처리: 헤더 클릭 시 토글
-        header.addEventListener('click', function(e){
-          toggleac(acc, header, body);
+          // 클릭 처리: 헤더 클릭 시 토글
+          header.addEventListener('click', function (e) {
+            toggleac(acc, header, body);
+          });
+
         });
-
-      });
-    }
-
-    // 아코디언 토글 동작
-    // - 확장 시: .collapsed 클래스 제거, aria-expanded=true, 본문 높이를 scrollHeight로 설정하여 전환
-    // - 축소 시: 본문의 현재 높이를 지정한 뒤 0으로 바꿔 전환하고 .collapsed 클래스 추가
-    function toggleac(acc, header, body){
-      var isCollapsed = acc.classList.contains('collapsed');
-      if(isCollapsed){
-        // 펼치기
-        acc.classList.remove('collapsed');
-        header.setAttribute('aria-expanded','true');
-        body.style.maxHeight = body.scrollHeight + 'px';
-        body.style.opacity = '1';
-        setTimeout(function(){ if(!acc.classList.contains('collapsed')) body.style.maxHeight = ''; }, 350);
-      } else {
-        // 접기
-        body.style.maxHeight = body.scrollHeight + 'px';
-        void body.offsetHeight;
-        body.style.maxHeight = '0px';
-        body.style.opacity = '0';
-        header.setAttribute('aria-expanded','false');
-        setTimeout(function(){ acc.classList.add('collapsed'); }, 10);
       }
-    }
 
-    // 문서 로드 후 초기화
-    if(document.readyState === 'loading'){
-      document.addEventListener('DOMContentLoaded', initacs);
-    } else {
-      initacs();
-    }
-  })();
+      // 아코디언 토글 동작
+      // - 확장 시: .collapsed 클래스 제거, aria-expanded=true, 본문 높이를 scrollHeight로 설정하여 전환
+      // - 축소 시: 본문의 현재 높이를 지정한 뒤 0으로 바꿔 전환하고 .collapsed 클래스 추가
+      function toggleac(acc, header, body) {
+        var isCollapsed = acc.classList.contains('collapsed');
+        if (isCollapsed) {
+          // 펼치기
+          acc.classList.remove('collapsed');
+          header.setAttribute('aria-expanded', 'true');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          body.style.opacity = '1';
+          setTimeout(function () { if (!acc.classList.contains('collapsed')) body.style.maxHeight = ''; }, 350);
+        } else {
+          // 접기
+          body.style.maxHeight = body.scrollHeight + 'px';
+          void body.offsetHeight;
+          body.style.maxHeight = '0px';
+          body.style.opacity = '0';
+          header.setAttribute('aria-expanded', 'false');
+          setTimeout(function () { acc.classList.add('collapsed'); }, 10);
+        }
+      }
+
+      // 문서 로드 후 초기화
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initacs);
+      } else {
+        initacs();
+      }
+    })();
   </script>
 </body>
+
 </html>
