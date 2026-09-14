@@ -2190,6 +2190,10 @@ input:checked + .workspace-switch-slider:before {
   font-weight: var(--font-weight-bold);
   color: var(--color-gray-700);
 }
+.ac-btn:hover {
+  cursor: pointer;
+  background-color: var(--color-gray-50);
+}
 .ac-btn.selected {
   border-style: var(--tw-border-style);
   border-width: 2px;
@@ -2277,15 +2281,19 @@ input:checked + .workspace-switch-slider:before {
   padding-block: var(--spacing);
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
-  --tw-font-weight: var(--font-weight-bold);
-  font-weight: var(--font-weight-bold);
   color: var(--color-gray-700);
+}
+.ac-line-item:hover {
+  cursor: pointer;
+  background-color: var(--color-gray-50);
 }
 .ac-line-item.selected {
   border-style: var(--tw-border-style);
   border-width: 2px;
   border-color: var(--color-blue-500);
   background-color: var(--color-blue-50);
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
   color: var(--color-blue-600);
 }
 .selected-group {

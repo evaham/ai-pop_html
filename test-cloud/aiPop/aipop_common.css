@@ -1082,6 +1082,7 @@ input:checked + .workspace-switch-slider:before {
 /* 패널 버튼형 */
 .ac-btn-group { @apply flex gap-4 w-100 mb-4; }
 .ac-btn { @apply flex flex-col items-center justify-center w-full h-26 border border-gray-300 rounded-xl bg-white text-gray-700 font-bold px-4 py-2; }
+.ac-btn:hover { @apply bg-gray-50 cursor-pointer; }
 .ac-btn.selected { @apply border-2 border-blue-500 bg-blue-50 text-blue-600; }
 
 /* 이미지 버튼 */
@@ -1097,8 +1098,9 @@ input:checked + .workspace-switch-slider:before {
 
 /* 라인버튼 */
 .ac-line-group { @apply flex gap-2; }
-.ac-line-item { @apply border border-gray-300 rounded-lg bg-white text-sm text-gray-700 font-bold px-2 py-1 cursor-pointer; }
-.ac-line-item.selected { @apply border-2 border-blue-500 bg-blue-50 text-blue-600; }
+.ac-line-item { @apply border border-gray-300 rounded-lg bg-white text-sm text-gray-700 px-2 py-1 cursor-pointer; }
+.ac-line-item:hover { @apply bg-gray-50 cursor-pointer; }
+.ac-line-item.selected { @apply border-2 border-blue-500 bg-blue-50 text-blue-600 font-bold; }
 
 
 .selected-group { @apply flex gap-1; }
