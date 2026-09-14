@@ -1,14 +1,179 @@
-
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta charset="utf-8" />
   <title>탭 스타일</title>
   <!-- 기존 reset.css, stylesheet.css -->
   <!-- <link rel="stylesheet" href="tab_style copy.css" /> -->
-  <!-- <link rel="stylesheet" href="tab_style.css" /> -->
-<style>
+  <link rel="stylesheet" href="./base_reset.css" />
+  <link rel="stylesheet" href="./StyleSheet.css" />
+  <style>
+    /* 1. iframe 이중 스크롤 방지 */
+    .iframe-box {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-width: 1900px;
+      height: calc(100dvh - 72px);
+      border: none;
+    }
+
+    @media (min-width: 1900px) {
+      .iframe-box {
+        height: calc(100dvh - 56px);
+      }
+    }
+
+    /* 2. 작은 화면일 때 (예: 창 너비가 768px 이하로 줄어들 때) */
+    @media (max-width: 768px) {
+      .inner-scroll-box {
+        max-height: none;
+        /* 높이 제한을 없애서 내용을 아래로 쭉 펼침 */
+        overflow-y: visible;
+        /* 내부 스크롤바를 없앰 */
+      }
+    }
+
+
+
+
+
+    /* 2026-07-08 신규 탭 스타일 (기존 .tab_menu/.tabouter/.tabside 대체) */
+    .main-menu,
+    .main-menu * {
+      box-sizing: border-box;
+    }
+
+    .main-menu {
+      display: flex;
+      min-width: 1900px;
+      border-bottom: 1px solid #e5e7eb;
+      background-color: #ffffff;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .main-menu>.main-tabouter {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      flex-wrap: wrap;
+    }
+
+    .main-menu>.main-tabouter>ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      margin: 0;
+      padding: 4px;
+      margin-right: 8px;
+      list-style: none
+    }
+
+    .main-menu>.main-tabouter>ul>li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      list-style: none
+    }
+
+    .main-menu>.main-tabouter>ul>li>a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .main-menu>.main-tabouter>ul>li>a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+    }
+
+    .main-menu>.main-tabouter>ul>li.active>a {
+      background-color: #ffffff;
+      color: #26499d;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .main-menu>.main-tabouter>ul>li>a>svg {
+      margin-right: 4px;
+      font-weight: normal !important;
+      opacity: 0.9;
+    }
+
+    .main-menu .menu-group1,
+    .main-menu .menu-group2,
+    .main-menu .menu-group3 {
+      border-radius: 6px;
+      background: #26499d
+    }
+
+    .side-btn-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .side-btn-group ul {
+      display: flex;
+      gap: 4px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .side-btn-group ul li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #4b5563;
+      padding: 4px 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .side-btn-group ul li a:hover {
+      background-color: #f3f4f6;
+      color: #111827;
+      text-decoration: none;
+    }
+
+    .side-btn-group ul li a.free__btn {
+      border-color: transparent;
+      background: #26499d;
+      color: #fff;
+    }
+
+    .side-btn-group ul li a.free__btn:hover {
+      background: #1c3877;
+      color: #fff;
+    }
+
+
+    /* 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 .main-menu {display: flex; min-width: 1900px; border-bottom: 1px solid #e5e7eb; background-color: #ffffff; height: 56px; position: sticky; top: 0; z-index: 10; align-items: center; justify-content: space-between; padding-left: 16px; padding-right: 16px;}
 .main-menu > .main-tabouter {position: relative; display: flex; align-items: center; height: 100%;}
@@ -24,23 +189,8 @@
 .side-btn-group ul {display: flex; gap: 4px; margin: 0; padding: 0; list-style: none;}
 .side-btn-group ul li a {display: flex; align-items: center; justify-content: center; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; color: #4b5563; padding: 4px 8px; text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease; cursor: pointer;}
 .side-btn-group ul li a svg {margin-right: 4px; opacity: 0.9;}
-.side-btn-group ul li a:hover {background-color: #f3f4f6; color: #111827; text-decoration: none;}
-
-/* 1. iframe 이중 스크롤 방지 */
-.iframe-box { width: 100%; height: 100%; min-width: 1900px; height: calc(100dvh - 72px); border: none; }
-@media (min-width: 1900px) {
-  .iframe-box {
-    height: calc(100dvh - 56px);
-  }
-}
-/* 2. 작은 화면일 때 (예: 창 너비가 768px 이하로 줄어들 때) */
-@media (max-width: 768px) {
-  .inner-scroll-box {
-    max-height: none;   /* 높이 제한을 없애서 내용을 아래로 쭉 펼침 */
-    overflow-y: visible; /* 내부 스크롤바를 없앰 */
-  }
-}
-</style>
+.side-btn-group ul li a:hover {background-color: #f3f4f6; color: #111827; text-decoration: none;} */
+  </style>
 </head>
 <body>
   <form>
@@ -65,17 +215,16 @@
       </div>
       <div class="side-btn-group">
         <ul>
-            <li><a>온라인매뉴얼</a></li>
-            <li><a>충전안내</a></li>
-            <li><a>레포트</a></li>
+          <li><a>온라인매뉴얼</a></li>
+          <li><a>충전안내</a></li>
+          <li><a>레포트</a></li>
         </ul>
       </div>
     </div>
     <!-- 기존 wrap_top -->
-    <div class="new-wrap_top">
+    <div class="new-wrap_top" style="font-size:0px">
       <div class="tabcontents">
-        <iframe class="iframe-box" src="./test-cloud/aiPop/airequest_pop.html" title="AI-POP 페이지">
-        </iframe>
+        <iframe class="iframe-box" src="./test-cloud/aiPop/airequest_pop.html" title="AI-POP 페이지" frameborder="0" scrolling="yes" src="about:blank"></iframe>
       </div>
     </div>
   </form>
