@@ -43,6 +43,7 @@
     --font-weight-bold: 700;
     --tracking-tight: -0.025em;
     --leading-tight: 1.25;
+    --radius-sm: 0.25rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
@@ -451,9 +452,9 @@ body {
 .popup-background {
   position: absolute;
   inset: 0px;
-  background-color: color-mix(in srgb, oklch(27.8% 0.033 256.848) 30%, transparent);
+  background-color: color-mix(in srgb, #000 30%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
-    background-color: color-mix(in oklab, var(--color-gray-800) 30%, transparent);
+    background-color: color-mix(in oklab, var(--color-black) 30%, transparent);
   }
 }
 .popup-content {
@@ -465,9 +466,10 @@ body {
   --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
   translate: var(--tw-translate-x) var(--tw-translate-y);
   transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   background-color: var(--color-white);
-  padding: calc(var(--spacing) * 4);
+  padding: calc(var(--spacing) * 6);
+  padding-top: calc(var(--spacing) * 4);
   --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
@@ -485,6 +487,84 @@ body {
 .popup-content-text {
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
+  color: var(--color-gray-500);
+}
+.popup-header {
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  font-size: var(--text-lg);
+  line-height: var(--tw-leading, var(--text-lg--line-height));
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-800);
+}
+.popup-close-btn {
+  position: absolute;
+  top: calc(var(--spacing) * 4);
+  right: calc(var(--spacing) * 4);
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  cursor: pointer;
+}
+.popup-close-btn svg {
+  height: 100%;
+  width: 100%;
+  fill: var(--color-gray-500);
+}
+.popup-templatebox-tab {
+  margin-bottom: calc(var(--spacing) * 4);
+  display: flex;
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 1px;
+  border-color: var(--color-blue-800);
+}
+.popup-templatebox-tab > .item {
+  margin-bottom: -1px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 1px;
+  border-color: var(--color-blue-800);
+  background-color: var(--color-gray-50);
+  padding-inline: calc(var(--spacing) * 8);
+  padding-block: calc(var(--spacing) * 2);
+  font-size: var(--text-base);
+  line-height: var(--tw-leading, var(--text-base--line-height));
+  color: var(--color-gray-400);
+}
+.popup-templatebox-tab > .item:hover {
+  color: var(--color-gray-600);
+}
+.popup-templatebox-tab > .item.selected {
+  z-index: 1;
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 0px;
+  border-color: var(--color-blue-800);
+  background-color: var(--color-white);
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  color: #26499d;
+}
+.popup-tab-title {
+  margin-bottom: calc(var(--spacing) * 4);
+  font-size: var(--text-base);
+  line-height: var(--tw-leading, var(--text-base--line-height));
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-800);
+}
+.popup-tab-title span {
+  margin-left: calc(var(--spacing) * 2);
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+  --tw-font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-normal);
   color: var(--color-gray-500);
 }
 .popup-content-buttons {
@@ -505,11 +585,63 @@ body {
   background-color: #c3d9f0;
   border-color: #1c3c7a;
 }
-.workspace-btn.tint {
-  background-color: #dce9f5;
+.popup-content-templatebox {
+  margin-inline: auto;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: calc(var(--spacing) * 4);
 }
-.workspace-btn.tint:hover {
-  background-color: #c3d9f0;
+.popup-content-templatebox-frame {
+  position: relative;
+  display: flex;
+  width: 309px;
+  height: 309px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-gray-100);
+}
+.popup-content-templatebox-frame:hover {
+  background-color: #e8e8e8;
+}
+.popup-content-templatebox-canvas {
+  position: relative;
+  background: #fff;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  z-index: 1;
+}
+.popup-content-templatebox-btn {
+  width: 100%;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 15px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.popup-content-fontbox {
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 5px;
+  justify-content: center;
+  overflow: auto;
+}
+.popup-content-fontbox > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.popup-content-fontbox > div:hover {
+  background-color: #e8e8e8;
 }
 .popup-content-divider {
   margin-inline: calc(var(--spacing) * -4);
@@ -553,6 +685,12 @@ body {
   position: absolute;
   top: calc(var(--spacing) * 4);
   right: calc(var(--spacing) * 4);
+}
+.workspace-btn.tint {
+  background-color: #dce9f5;
+}
+.workspace-btn.tint:hover {
+  background-color: #c3d9f0;
 }
 .page-shell {
   display: flex;
@@ -990,15 +1128,6 @@ body {
   background-color: var(--color-gray-600);
   color: var(--color-white);
   --tw-ring-color: var(--color-gray-600);
-}
-.popup-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-  background-image: url('../img/img_colse_20x20.png');
 }
 .upload-group {
   display: flex;
@@ -1483,85 +1612,6 @@ body {
   padding-inline: calc(var(--spacing) * 3);
   padding-block: calc(var(--spacing) * 0.5);
   color: var(--color-gray-600);
-}
-.popup-content-templatebox {
-  width: 100%;
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 306px);
-  gap: 15px;
-  justify-content: center;
-  overflow: auto;
-  scrollbar-gutter: stable;
-  border-top: 1px solid rgba(0,0,0,0.1);
-}
-.popup-content-templatebox-tab {
-  width: 110px;
-  height: 38px;
-  box-sizing: border-box;
-  text-align: center;
-  cursor: pointer;
-  border-bottom-style: solid;
-  border-bottom-width: 6px;
-  border-bottom-color: transparent;
-}
-.popup-content-templatebox-tab:hover {
-  border-bottom-color: var(--color-gray-200);
-}
-.popup-content-templatebox-tab.selected {
-  border-bottom-color: var(--color-gray-800);
-}
-.popup-content-templatebox-frame {
-  background-color: var(--color-gray-100);
-  position: relative;
-  width: 306px;
-  height: 306px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5px;
-  cursor: pointer;
-}
-.popup-content-templatebox-frame:hover {
-  background-color: #e8e8e8;
-}
-.popup-content-templatebox-canvas {
-  position: relative;
-  background: #fff;
-  border: 1px solid #ccc;
-  overflow: hidden;
-  z-index: 1;
-}
-.popup-content-templatebox-btn {
-  width: 100%;
-  text-align: left;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-size: 15px;
-  line-height: 20px;
-  cursor: pointer;
-}
-.popup-content-fontbox {
-  width: 100%;
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 300px);
-  gap: 5px;
-  justify-content: center;
-  overflow: auto;
-}
-.popup-content-fontbox > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  line-height: 1.3;
-  cursor: pointer;
-}
-.popup-content-fontbox > div:hover {
-  background-color: #e8e8e8;
 }
 .workspace-btn, .workspace-align-btn {
   padding: 4px 8px;
