@@ -74,34 +74,35 @@
 								<div class="pc-header">
 									<div class="pc-icon">1</div>
 									<div class="pc-header-content">
-										<div class="pc-title">템플릿을 선택하세요.</div>
-										<div class="pc-description">템플릿에서 직접 변형/다른 이름으로 저장이 가능합니다.<br>매장템플릿은 최대 5개까지 저장 가능합니다.</div>
+										<div class="pc-title">템플릿 디자인</div>
+										<div class="pc-description">템플릿 선택 후 수정이 가능합니다.</div>
 									</div>
-                  <div class="pc-selected-group">
+                  <!-- <div class="pc-selected-group">
                     <span class="pc-selected-item">선택된 내용을 표시</span>
-                  </div>
+                  </div> -->
                   <div class="pc-toggle">
                     <span><svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#666"><path d="M480-360 280-560h400L480-360Z"/></svg></span>
                     <span><svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#666"><path d="m280-400 200-200 200 200H280Z"/></svg></span>
                   </div>
-
 								</div>
 								<div class="pc-body">
 									<div class="pc-fieldset">
 										<div class="pc-label">템플릿 선택</div>
                     <div class="pop-btn-group" role="tablist" aria-label="유형선택">
-                      <button type="button" class="pop-btn selected">
-                        <span class="w-14 mb-2 -mr-4"><img src="./img_target.png" alt="아이콘"></span>
+                      <button type="button" class="pop-btn" onclick="jsOpenTemplateBox()">
+                        <span class="flex items-center justify-center w-14 h-14 mb-2 rounded-lg border border-gray-200 bg-white">
+													<svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#999"><path d="M360-400h400L622-580l-92 120-62-80-108 140Zm-40 160q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Z"/></svg>
+												</span>
                         센터 템플릿
                       </button>
-                      <button type="button" class="pop-btn">
+                      <button type="button" class="pop-btn" onclick="jsOpenTemplateBox()">
                         <span class="w-16 mb-2"><img src="./img_speaker.png" alt="아이콘"></span>
                         매장 템플릿
                       </button>
                     </div>
-										<div id="selPricecardTemplate" class="flex flex-wrap gap-1">
+										<!-- <div id="selPricecardTemplate" class="flex flex-wrap gap-1">
 											<div class="templat-view-btn ml-0!" onclick="jsOpenTemplateBox()">전체 템플릿 디자인 미리보기</div>
-										</div>		
+										</div>		 -->
 									</div>
 								</div>
 							</div>
@@ -112,10 +113,8 @@
 								<div class="pc-header">
 									<div class="pc-icon">2</div>
 									<div class="pc-header-content">
-										<div class="pc-title">
-											색상테마를 선택하세요.
-										</div>
-										<div class="pc-description">색상 선택이 고민되시면 색상테마를 적용해 보세요.</div>
+										<div class="pc-title">색상 테마</div>
+										<div class="pc-description">템플릿의 색상 테마를 변경하세요.</div>
 									</div>
                   <div class="pc-selected-group">
                     <span class="pc-selected-item">선택된 내용을 표시</span>
@@ -148,8 +147,8 @@
 								<div class="pc-header">
 									<div class="pc-icon">3</div>
 									<div class="pc-header-content">
-										<div class="pc-title">상품 데이터를 입력하세요.</div>
-										<div class="pc-description">엑셀 데이터를 복사하신 후 칸에 붙여넣기 하면 미리보기에 나타납니다.</div>
+										<div class="pc-title">상품정보</div>
+										<div class="pc-description">프라이스카드에 넣을 상품정보를 입력하세요</div>
 									</div>
                   <div class="pc-selected-group">
                     <span class="pc-selected-item">선택된 내용을 표시</span>
@@ -160,7 +159,6 @@
                   </div>
 								</div>
 								<div class="pc-body">
-
 									<!-- 행과 열 입력 필드 -->
 									<div class="pc-fieldset">
 										<div class="pc-label">행과 열을 입력하세요.</div>
