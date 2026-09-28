@@ -1165,24 +1165,24 @@ input:checked + .workspace-switch-slider:before {
 /* 샘플 템플릿 화면 */
 /* AI이미지 샘플 예시 */
 .cre-contents { @apply relative flex flex-col w-full p-6; }
-.cre-header { @apply flex flex-col py-6 gap-2 mx-auto; }
-.cre-title { @apply text-2xl font-bold text-center; }
-.cre-subtitle { @apply text-gray-600 text-center; }
-.cre-list-tit { @apply text-base font-bold mt-1; }
+.cre-header { @apply flex flex-col; }
+.cre-title { @apply text-lg font-bold; }
+.cre-subtitle { @apply text-sm text-gray-500; }
+.cre-list-tit { @apply text-base font-bold mt-3; }
 .cre-body { @apply flex flex-col gap-2; }
 
 /* 샘플 템플릿 리스트 */
-.cre-list-wrapper { @apply relative flex items-center gap-2; }
-.cre-item-list { @apply columns-4 gap-4;}
-.cre-item-list > .item { @apply relative overflow-hidden flex flex-col mb-4 cursor-pointer border rounded-xl border-gray-300;}
-.cre-item-list > .item:hover .content { @apply bg-black; }
-.cre-item-list > .item:hover .content img { @apply opacity-80; }
-.cre-item-list > .item .item-description { @apply w-full px-2 py-1.5 text-left text-sm text-gray-700 z-1; }
-.cre-item-list > .item .content { @apply p-0; }
-.cre-item-list > .item .content img { @apply flex items-center justify-center w-full; }
+.cre-list-wrapper { @apply relative flex items-center gap-2;}
+.cre-item-list { @apply grid grid-cols-4 gap-4;}
+.cre-item-list > .item { @apply flex flex-col cursor-pointer}
+.cre-item-list > .item > .content { @apply flex items-center justify-center w-full h-69; }
+.cre-item-list > .item > .content > img { @apply flex w-full h-full; }
+.cre-item-list > .item:hover > .content { @apply bg-black; }
+.cre-item-list > .item:hover > .content > img { @apply opacity-80; }
+.cre-item-list > .item .item-description { @apply order-2 w-full px-2 py-1.5 text-center text-sm bg-gray-900 text-gray-50 z-1; }
 .cre-more-button { @apply flex items-center justify-center w-30 h-10 mt-4 mx-auto bg-gray-200 text-gray-700 font-bold rounded-full cursor-pointer; }
 
-.highlight-options { @apply absolute top-10 left-1 flex flex-wrap gap-1 z-1; }
+.highlight-options { @apply hidden absolute top-10 left-1 flex-wrap gap-1 z-1; }
 .highlight-options .highlight { @apply text-xs text-center bg-[rgba(59,130,246,.85)] text-white font-bold px-2 py-1 rounded; }
 
 
