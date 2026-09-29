@@ -1053,10 +1053,8 @@ input:checked + .workspace-switch-slider:before {
 
 
 /* AI POP 만들기 */
+.pop-scroll { @apply -mx-6 -my-6 p-6 overflow-y-auto; }
 .pop-group {@apply flex flex-col gap-4}
-
-.pop-side-scroll { @apply overflow-y-auto; }
-
 .pop-box { @apply overflow-hidden border border-gray-300 rounded-2xl bg-white; }
 .pop-header { @apply flex items-center justify-between p-4 cursor-pointer; }
 .pop-header-content { @apply flex-1; }
@@ -1104,13 +1102,11 @@ input:checked + .workspace-switch-slider:before {
 .icon-check { @apply hidden absolute top-1 right-1 size-5 rounded-full bg-[#26499d]/90 z-1; }
 .icon-check svg { @apply w-full h-full fill-white; }
 
-
 /* 라인버튼 */
 .pop-line-group { @apply flex gap-2; }
 .pop-line-btn { @apply ring-1 ring-gray-300 rounded bg-white text-sm text-gray-600 px-2 py-1 cursor-pointer; }
 .pop-line-btn:hover { @apply bg-gray-50 cursor-pointer; }
 .pop-line-btn.selected { @apply ring-[#26499d]/90 bg-[#26499d]/90 text-white font-bold; }
-
 
 .pop-selected-group { @apply flex gap-1; }
 .pop-selected-item { @apply text-sm text-blue-800; }
@@ -1118,7 +1114,6 @@ input:checked + .workspace-switch-slider:before {
 .tab-group { @apply flex gap-2 w-100 mb-4 p-1 rounded-xl bg-gray-100;}
 .tab-btn { @apply flex-1 rounded-lg text-gray-500 font-bold px-4 py-1.5 cursor-pointer;}
 .tab-btn.selected { @apply border border-gray-300 bg-white text-gray-700;}
-
 
 /* 상품데이터 입력 */
 .pop-grid-table { @apply overflow-x-auto inline-grid w-full mt-2 bg-gray-200 gap-px border border-gray-300 text-sm; }
@@ -1172,7 +1167,7 @@ input:checked + .workspace-switch-slider:before {
 .cre-body { @apply flex flex-col gap-2; }
 
 /* 샘플 템플릿 리스트 */
-.cre-list-wrapper { @apply relative flex items-center gap-2;}
+.cre-list-wrapper { @apply relative gap-2;}
 .cre-item-list { @apply grid grid-cols-4 gap-4;}
 .cre-item-list > .item { @apply flex flex-col cursor-pointer}
 .cre-item-list > .item > .content { @apply flex items-center justify-center w-full h-69; }
